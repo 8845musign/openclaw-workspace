@@ -1,0 +1,14 @@
+{
+  "ics": [
+    {
+      "name": "Work",
+      "description": "仕事用カレンダー",
+      "url": "https://example.com/work.ics"
+    },
+    {
+      "name": "Private",
+      "description": "個人予定",
+      "url": "https://example.com/private.ics"
+    }
+  ]
+}
