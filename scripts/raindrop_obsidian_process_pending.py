@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+import html
 import json
 import os
 import re
@@ -43,16 +44,45 @@ def web_fetch_markdown(url: str) -> str:
     return raw
 
 
+def extract_text(raw: str) -> str:
+    # Remove scripts/styles/comments first
+    raw = re.sub(r"<script[\s\S]*?</script>", " ", raw, flags=re.IGNORECASE)
+    raw = re.sub(r"<style[\s\S]*?</style>", " ", raw, flags=re.IGNORECASE)
+    raw = re.sub(r"<!--([\s\S]*?)-->", " ", raw)
+    # Strip tags and decode entities
+    text = re.sub(r"<[^>]+>", " ", raw)
+    text = html.unescape(text)
+    # Normalize whitespace
+    text = re.sub(r"\s+", " ", text).strip()
+    return text
+
+
 def sanitize_filename(s: str) -> str:
     s = re.sub(r'[\\/:*?"<>|]', "", s)
     s = re.sub(r"\s+", "-", s.strip())
     return s[:120] or "untitled"
 
 
-def summarize(md: str):
-    lines = [ln.strip() for ln in md.splitlines() if ln.strip()]
-    lines = [ln for ln in lines if not ln.startswith("#") and len(ln) > 30]
-    picks = lines[:3]
+def summarize(text: str):
+    # Split by punctuation-like boundaries for Japanese/English mixed text
+    chunks = re.split(r"(?<=[。！？.!?])\s+", text)
+    chunks = [c.strip() for c in chunks if c and len(c.strip()) >= 40]
+    # Filter obvious boilerplate fragments
+    bad = ["DOCTYPE", "<meta", "cookie", "JavaScript", "利用規約", "プライバシー", "All rights reserved"]
+    cleaned = []
+    for c in chunks:
+        if any(b.lower() in c.lower() for b in bad):
+            continue
+        cleaned.append(c)
+    picks = cleaned[:3]
+    if len(picks) < 3:
+        # fallback: take long spans from raw text
+        spans = re.findall(r".{60,180}", text)
+        for s in spans:
+            if len(picks) >= 3:
+                break
+            if not any(b.lower() in s.lower() for b in bad):
+                picks.append(s.strip())
     if len(picks) < 3:
         picks += ["(要約抽出が不十分なため本文確認推奨)"] * (3 - len(picks))
     return picks[:3]
@@ -84,8 +114,9 @@ def main():
                 continue
             coll = c_map.get(it.get("assignedCollectionId"), "(未分類)")
 
-            md = web_fetch_markdown(url)
-            bullets = summarize(md)
+            raw = web_fetch_markdown(url)
+            text = extract_text(raw)
+            bullets = summarize(text)
             stem = f"{date}-{sanitize_filename(title)}"
 
             summary_path = os.path.join(VAULT_ARTICLES, f"{stem}-summary.md")
