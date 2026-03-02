@@ -73,10 +73,30 @@ for i,(sig,cnt) in enumerate(top,1):
         sample = sample[:140] + '…'
     msg_lines.append(f"{i}. x{cnt} {sample}")
 
+def propose_fix(sample: str) -> str:
+    s = sample.lower()
+    if '401' in s or 'incorrect access_token' in s or 'unauthorized' in s:
+        return '認証情報を再発行し、secrets reload後に疎通テストを追加する'
+    if '403' in s or 'forbidden' in s:
+        return '権限不足/redirect_uri不一致を確認し、OAuth設定値を再検証する'
+    if 'timeout' in s:
+        return 'API呼び出しにリトライ（指数バックオフ）とタイムアウト延長を入れる'
+    if 'json' in s and 'decode' in s:
+        return 'レスポンスのContent-Type検証とHTML混入時のフォールバック処理を追加する'
+    if 'no such file' in s or 'enoent' in s:
+        return '事前にディレクトリ/ファイル存在確認を入れ、未存在時に自動作成する'
+    if 'traceback' in s or 'exception' in s:
+        return '例外箇所に入力値ログを追加し、例外種別ごとのハンドリングを分ける'
+    return '該当処理に入力バリデーションと失敗時の再試行/スキップ戦略を追加する'
+
+msg_lines.append('修正案（再発上位に対応）:')
+for i,(sig,cnt) in enumerate(top,1):
+    sample = samples[sig][0] if samples[sig] else sig
+    msg_lines.append(f"- #{i}: {propose_fix(sample)}")
+
 msg_lines.append("次アクション候補:")
 msg_lines.append("- 上位3件の原因切り分け")
-msg_lines.append("- 恒久対応 or リトライ/ガード追加")
-msg_lines.append("- 翌日再発有無を確認")
+msg_lines.append("- 修正案を反映して翌日再発有無を確認")
 
 msg = "\n".join(msg_lines)
 print(msg)
