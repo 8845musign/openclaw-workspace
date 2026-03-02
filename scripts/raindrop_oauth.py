@@ -7,10 +7,14 @@ import sys
 import time
 import urllib.parse
 import urllib.request
+import urllib.error
 
 SECRETS_PATH = os.path.expanduser("~/.openclaw/secrets.json")
 AUTH_URL = "https://raindrop.io/oauth/authorize"
-TOKEN_URL = "https://raindrop.io/oauth/access_token"
+TOKEN_URLS = [
+    "https://raindrop.io/oauth/access_token",
+    "https://api.raindrop.io/v1/oauth/access_token",
+]
 
 
 def load_secrets(path: str):
@@ -35,9 +39,13 @@ def save_secrets(path: str, data: dict):
 
 def post_json(url: str, payload: dict):
     body = json.dumps(payload).encode("utf-8")
-    req = urllib.request.Request(url, data=body, headers={"Content-Type": "application/json"})
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return json.loads(r.read().decode("utf-8"))
+    req = urllib.request.Request(url, data=body, headers={"Content-Type": "application/json", "User-Agent": "openclaw-raindrop-oauth/1.0"})
+    try:
+        with urllib.request.urlopen(req, timeout=30) as r:
+            return json.loads(r.read().decode("utf-8"))
+    except urllib.error.HTTPError as e:
+        detail = e.read().decode("utf-8", "replace")
+        raise RuntimeError(f"HTTP {e.code} from {url}: {detail}")
 
 
 def cmd_authorize(args):
@@ -81,13 +89,23 @@ def cmd_authorize(args):
         print("State mismatch. Abort.")
         return 4
 
-    token = post_json(TOKEN_URL, {
+    token = None
+    last_err = None
+    payload = {
         "grant_type": "authorization_code",
         "code": code,
         "client_id": client_id,
         "client_secret": client_secret,
         "redirect_uri": redirect_uri,
-    })
+    }
+    for u in TOKEN_URLS:
+        try:
+            token = post_json(u, payload)
+            break
+        except Exception as e:
+            last_err = e
+    if token is None:
+        raise RuntimeError(f"Token exchange failed: {last_err}")
 
     access_token = token.get("access_token")
     refresh_token = token.get("refresh_token")
@@ -120,12 +138,22 @@ def refresh_tokens(s: dict):
     if not all([client_id, client_secret, refresh_token]):
         raise RuntimeError("Missing RAINDROP_CLIENT_ID / RAINDROP_CLIENT_SECRET / RAINDROP_REFRESH_TOKEN")
 
-    token = post_json(TOKEN_URL, {
+    token = None
+    last_err = None
+    payload = {
         "grant_type": "refresh_token",
         "refresh_token": refresh_token,
         "client_id": client_id,
         "client_secret": client_secret,
-    })
+    }
+    for u in TOKEN_URLS:
+        try:
+            token = post_json(u, payload)
+            break
+        except Exception as e:
+            last_err = e
+    if token is None:
+        raise RuntimeError(f"Refresh failed: {last_err}")
 
     access_token = token.get("access_token")
     new_refresh = token.get("refresh_token") or refresh_token
