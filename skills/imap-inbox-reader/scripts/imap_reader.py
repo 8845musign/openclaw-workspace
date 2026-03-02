@@ -106,10 +106,18 @@ def fetch_by_uids(imap: imaplib.IMAP4_SSL, uids: List[bytes], limit: int):
     out = []
     for uid in uids[-limit:][::-1]:
         status, data = imap.uid("fetch", uid, "(RFC822)")
-        if status != "OK" or not data or not data[0]:
+        if status != "OK" or not data:
             continue
 
-        raw = data[0][1]
+        raw = None
+        for item in data:
+            # Typical shape: (b'123 (RFC822 {4567}', b'...raw bytes...')
+            if isinstance(item, tuple) and len(item) >= 2 and isinstance(item[1], (bytes, bytearray)):
+                raw = bytes(item[1])
+                break
+        if not raw:
+            continue
+
         msg = email.message_from_bytes(raw)
         body = extract_text(msg)
         out.append(
