@@ -18,18 +18,29 @@ Accept a URL, fetch article text, and create Markdown files in `articles/` insid
    - Sanitize title for filenames: remove `/\\:*?"<>|`, collapse spaces to `-`.
 4. Build date prefix with local date: `YYYY-MM-DD`.
 5. Always create Japanese summary file:
-   - `YYYY-MM-DD-{article-title}-sumary.md`
+   - `YYYY-MM-DD-{article-title}-summary.md`
+   - Add YAML frontmatter at top with at least:
+     - `source_url: "{URL}"`
+     - `title: "{article title}"`
+     - `captured_at: "YYYY-MM-DD"`
+     - `type: "article-summary"`
    - Content sections:
      - `# 要約`
      - `## 3行サマリー`
      - `## 重要ポイント`
      - `## 次に読むべき人`
-     - `## 元URL`
-6. If source article is mainly English, also create translation file:
+6. Always create Japanese article file:
    - `YYYY-MM-DD-{article-title}-ja.md`
-   - Translate naturally into Japanese (not literal word-by-word).
+   - Add YAML frontmatter at top with at least:
+     - `source_url: "{URL}"`
+     - `title: "{article title}"`
+     - `captured_at: "YYYY-MM-DD"`
+     - `type: "article-ja"`
+   - If source is English, translate naturally into Japanese (not literal word-by-word).
+   - If source is already Japanese, preserve/clean structure and save as readable Japanese notes.
    - Preserve headings/lists/code blocks.
-   - Start with `> Source: {URL}`.
+   - **Do not summarize or abridge in `*-ja.md` even when the article is long.** Keep full translated/cleaned content as much as available from fetched text.
+   - Summarization belongs only to `*-summary.md`.
 7. Write files under `{vault}/articles/`.
 8. Report created filenames and paths to the user.
 
@@ -42,9 +53,16 @@ Accept a URL, fetch article text, and create Markdown files in `articles/` insid
 
 ## Output Template
 
-For `*-sumary.md`:
+For `*-summary.md`:
 
 ```md
+---
+source_url: "https://..."
+title: "..."
+captured_at: "YYYY-MM-DD"
+type: "article-summary"
+---
+
 # 要約
 
 ## 3行サマリー
@@ -57,7 +75,4 @@ For `*-sumary.md`:
 
 ## 次に読むべき人
 - ...
-
-## 元URL
-- <https://...>
 ```
