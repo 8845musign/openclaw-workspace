@@ -2,6 +2,7 @@
 set -euo pipefail
 
 WORKDIR="/home/hiroki-yokouchi/.openclaw/workspace"
+OPENCLAW_BIN="/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/bin/openclaw"
 LOGDIR="$WORKDIR/logs"
 mkdir -p "$LOGDIR"
 
@@ -22,6 +23,11 @@ fi
 
 cd "$WORKDIR"
 
+if [[ ! -x "$OPENCLAW_BIN" ]]; then
+  echo "[$(date '+%F %T%z')] error: openclaw binary not executable at $OPENCLAW_BIN"
+  exit 1
+fi
+
 echo "[$(date '+%F %T%z')] start hourly raindrop job"
 
 python3 scripts/raindrop_obsidian_sync.py --limit 50
@@ -29,11 +35,12 @@ python3 scripts/raindrop_obsidian_sync.py --limit 50
 TMP_OUT="$(mktemp)"
 python3 scripts/raindrop_obsidian_process_pending.py | tee "$TMP_OUT"
 
-python3 - "$TMP_OUT" <<'PY'
+python3 - "$TMP_OUT" "$OPENCLAW_BIN" <<'PY'
 import subprocess, sys
 from pathlib import Path
 
 p = Path(sys.argv[1])
+openclaw_bin = sys.argv[2]
 text = p.read_text(encoding='utf-8', errors='replace').strip()
 if not text or text == 'NO_PENDING':
     print('no pending items to notify')
@@ -70,7 +77,7 @@ for b in blocks:
 
     try:
         subprocess.run([
-            'openclaw', 'system', 'event',
+            openclaw_bin, 'system', 'event',
             '--text', msg,
             '--mode', 'now'
         ], check=True)
