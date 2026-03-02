@@ -33,9 +33,9 @@ def save_secrets(path: str, data: dict):
         pass
 
 
-def post_form(url: str, form: dict):
-    body = urllib.parse.urlencode(form).encode("utf-8")
-    req = urllib.request.Request(url, data=body, headers={"Content-Type": "application/x-www-form-urlencoded"})
+def post_json(url: str, payload: dict):
+    body = json.dumps(payload).encode("utf-8")
+    req = urllib.request.Request(url, data=body, headers={"Content-Type": "application/json"})
     with urllib.request.urlopen(req, timeout=30) as r:
         return json.loads(r.read().decode("utf-8"))
 
@@ -81,7 +81,7 @@ def cmd_authorize(args):
         print("State mismatch. Abort.")
         return 4
 
-    token = post_form(TOKEN_URL, {
+    token = post_json(TOKEN_URL, {
         "grant_type": "authorization_code",
         "code": code,
         "client_id": client_id,
@@ -120,7 +120,7 @@ def refresh_tokens(s: dict):
     if not all([client_id, client_secret, refresh_token]):
         raise RuntimeError("Missing RAINDROP_CLIENT_ID / RAINDROP_CLIENT_SECRET / RAINDROP_REFRESH_TOKEN")
 
-    token = post_form(TOKEN_URL, {
+    token = post_json(TOKEN_URL, {
         "grant_type": "refresh_token",
         "refresh_token": refresh_token,
         "client_id": client_id,
