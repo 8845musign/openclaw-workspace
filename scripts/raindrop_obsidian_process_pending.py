@@ -1,0 +1,122 @@
+#!/usr/bin/env python3
+import json
+import os
+import re
+import time
+from datetime import datetime, timezone
+from urllib.parse import urlparse
+from urllib.request import Request, urlopen
+
+PENDING_PATH = os.path.expanduser("~/.openclaw/workspace/memory/raindrop-obsidian-pending.json")
+SECRETS_PATH = os.path.expanduser("~/.openclaw/secrets.json")
+VAULT_ARTICLES = os.path.expanduser("~/ドキュメント/openclaw/articles")
+
+
+def load_json(path, default):
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except Exception:
+        return default
+
+
+def save_json(path, obj):
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(obj, f, ensure_ascii=False, indent=2)
+        f.write("\n")
+
+
+def api_get(path, token):
+    req = Request(
+        f"https://api.raindrop.io/rest/v1{path}",
+        headers={"Authorization": f"Bearer {token}", "User-Agent": "openclaw-raindrop-obsidian/1.0"},
+    )
+    with urlopen(req, timeout=30) as r:
+        return json.loads(r.read().decode("utf-8"))
+
+
+def web_fetch_markdown(url: str) -> str:
+    req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
+    with urlopen(req, timeout=40) as r:
+        raw = r.read().decode("utf-8", "replace")
+    return raw
+
+
+def sanitize_filename(s: str) -> str:
+    s = re.sub(r'[\\/:*?"<>|]', "", s)
+    s = re.sub(r"\s+", "-", s.strip())
+    return s[:120] or "untitled"
+
+
+def summarize(md: str):
+    lines = [ln.strip() for ln in md.splitlines() if ln.strip()]
+    lines = [ln for ln in lines if not ln.startswith("#") and len(ln) > 30]
+    picks = lines[:3]
+    if len(picks) < 3:
+        picks += ["(要約抽出が不十分なため本文確認推奨)"] * (3 - len(picks))
+    return picks[:3]
+
+
+def main():
+    pending = load_json(PENDING_PATH, [])
+    if not pending:
+        print("NO_PENDING")
+        return
+
+    secrets = load_json(SECRETS_PATH, {})
+    token = secrets.get("RAINDROP_ACCESS_TOKEN") or secrets.get("RAINDROP_SECRET")
+    if not token:
+        raise SystemExit("No RAINDROP token")
+
+    collections = api_get("/collections", token).get("items", [])
+    c_map = {c.get("_id"): c.get("title", "(unknown)") for c in collections}
+
+    os.makedirs(VAULT_ARTICLES, exist_ok=True)
+    date = datetime.now(timezone.utc).astimezone().strftime("%Y-%m-%d")
+
+    remaining = []
+    for it in pending:
+        try:
+            title = it.get("title") or "Untitled"
+            url = it.get("link")
+            if not url:
+                continue
+            coll = c_map.get(it.get("assignedCollectionId"), "(未分類)")
+
+            md = web_fetch_markdown(url)
+            bullets = summarize(md)
+            stem = f"{date}-{sanitize_filename(title)}"
+
+            summary_path = os.path.join(VAULT_ARTICLES, f"{stem}-summary.md")
+            ja_path = os.path.join(VAULT_ARTICLES, f"{stem}-ja.md")
+
+            with open(summary_path, "w", encoding="utf-8") as f:
+                f.write(
+                    f"---\nsource_url: \"{url}\"\ntitle: \"{title}\"\ncaptured_at: \"{date}\"\ntype: \"article-summary\"\n---\n\n"
+                    "# 要約\n\n## 3行サマリー\n"
+                    + "\n".join([f"- {b}" for b in bullets])
+                    + "\n\n## 重要ポイント\n- Realtime連携向けに保存\n\n## 次に読むべき人\n- 関連分野の実装担当\n"
+                )
+
+            with open(ja_path, "w", encoding="utf-8") as f:
+                f.write(
+                    f"---\nsource_url: \"{url}\"\ntitle: \"{title}\"\ncaptured_at: \"{date}\"\ntype: \"article-ja\"\n---\n\n"
+                    f"# {title}\n\n（自動取り込みノート。必要に応じて追記）\n"
+                )
+
+            # chat post template
+            print(f"TITLE: {title}")
+            print(f"COLLECTION: {coll}")
+            print("SUMMARY:")
+            for b in bullets:
+                print(f"- {b}")
+            print("---")
+        except Exception:
+            remaining.append(it)
+
+    save_json(PENDING_PATH, remaining)
+
+
+if __name__ == "__main__":
+    main()
