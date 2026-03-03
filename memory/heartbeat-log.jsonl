@@ -1,0 +1,33 @@
+{"ts": "2026-03-03T15:48:22.147500+09:00", "source": "chat", "summary": "Recent chat: user continues OpenClaw PoC; value noted in easy scripting/automation, pain noted in heavy data integration.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-03T15:48:22.147500+09:00", "source": "mail", "summary": "IMAP incremental check: 2 new emails (UID 32-33), 0 actionable.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-03T15:48:22.147500+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-03T16:18:40.237158+09:00", "source": "chat", "summary": "Recent chat: discussed heartbeat/MEMORY運用を整備。ユーザーはOpenClaw実証実験を継続中で、スクリプト実装/自動化の手軽さに価値、データ連携の重さが課題。", "importance": "med", "action_needed": false}
+{"ts": "2026-03-03T16:18:40.237158+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-03T16:18:40.237158+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-03T16:47:56.287331+09:00", "source": "chat", "summary": "No notable new chat delta since last heartbeat cursor.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-03T16:47:56.287331+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-03T16:47:56.287331+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-03T17:17:56.439347+09:00", "source": "chat", "summary": "No notable new chat delta requiring action since last heartbeat check.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-03T17:17:56.439347+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-03T17:17:56.439347+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-03T17:47:56.070170+09:00", "source": "chat", "summary": "No significant new chat delta requiring notification.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-03T17:47:56.070170+09:00", "source": "mail", "summary": "IMAP incremental check: 4 new emails, 0 actionable.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-03T17:47:56.070170+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-03T19:18:54.065547+09:00", "source": "chat", "summary": "Recent chat: user asked for today's mail overview and confirmed no urgent-notification expectation; no action requested beyond summary.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-03T19:18:54.065547+09:00", "source": "mail", "summary": "IMAP incremental check: 9 new emails since last UID 37 (up to UID 46), mostly GitHub PR updates and event/promotional notices; 0 clearly actionable/urgent.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-03T19:18:54.065547+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-03T19:47:00+09:00", "source": "chat", "summary": "Recent chat delta: user requested AI news and NVIDIA inference trend deep-dive; informational exchange completed, no follow-up action requested.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-03T19:47:00+09:00", "source": "mail", "summary": "IMAP incremental check skipped (no mailbox task runner invoked in this heartbeat).", "importance": "low", "action_needed": false}
+{"ts": "2026-03-03T19:47:00+09:00", "source": "calendar", "summary": "ICS incremental check skipped (sources/config not available in this heartbeat context).", "importance": "low", "action_needed": false}
+{"ts": "2026-03-03T20:17:00+09:00", "source": "chat", "summary": "Recent chat delta: user requested Raindrop cron notification format fixes (Japanese summaries + classification field should reflect AI-assigned result after unsorted classification). Changes were applied and confirmed.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-03T20:17:00+09:00", "source": "mail", "summary": "IMAP incremental check skipped (no mailbox task runner invoked in this heartbeat).", "importance": "low", "action_needed": false}
+{"ts": "2026-03-03T20:17:00+09:00", "source": "calendar", "summary": "ICS incremental check skipped (sources/config not available in this heartbeat context).", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T00:25:00+09:00", "source": "chat", "summary": "Recent chat delta: wrapped up Raindrop cron notification fixes and completed daily summary/memory update reminders; no new urgent action requested.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T00:25:00+09:00", "source": "mail", "summary": "IMAP incremental check skipped (mail monitor runner/config not available in this heartbeat execution context).", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T00:25:00+09:00", "source": "calendar", "summary": "ICS incremental check skipped (sources/config not available in this heartbeat context).", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T00:56:20+09:00", "source": "chat", "summary": "No notable new chat delta requiring action since last heartbeat cursor.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T00:56:20+09:00", "source": "mail", "summary": "IMAP incremental check skipped (mail monitor runner/config not available in this heartbeat execution context).", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T00:56:20+09:00", "source": "calendar", "summary": "ICS incremental check skipped (sources/config not available in this heartbeat context).", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T01:26:46+09:00", "source": "chat", "summary": "Chat delta since last cursor: no new actionable user request.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T01:26:46+09:00", "source": "mail", "summary": "IMAP incremental check: 1 new email (UID 50), no actionable items.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T01:26:46+09:00", "source": "calendar", "summary": "ICS sources not configured; calendar delta check skipped.", "importance": "low", "action_needed": false}
