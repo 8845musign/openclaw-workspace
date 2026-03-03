@@ -59,6 +59,7 @@ for b in blocks:
     lines = [ln.rstrip() for ln in b.splitlines() if ln.strip()]
     title = ''
     collection = ''
+    classification = ''
     summary = []
     in_summary = False
     for ln in lines:
@@ -67,6 +68,9 @@ for b in blocks:
             in_summary = False
         elif ln.startswith('COLLECTION:'):
             collection = ln.replace('COLLECTION:', '', 1).strip()
+            in_summary = False
+        elif ln.startswith('CLASSIFICATION:'):
+            classification = ln.replace('CLASSIFICATION:', '', 1).strip()
             in_summary = False
         elif ln.startswith('SUMMARY:'):
             in_summary = True
@@ -78,6 +82,7 @@ for b in blocks:
 
     msg = "\n".join([
         f"タイトル: {title}",
+        f"分類: {classification or collection or '(不明)'}",
         f"コレクション: {collection or '(不明)'}",
         "サマリー:",
         *(summary[:3] if summary else ['- (サマリーなし)'])

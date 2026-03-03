@@ -237,15 +237,21 @@ def main():
             current_id = it.get("currentCollectionId")
             reason = it.get("assignmentReason") or ""
 
+            classified = ""
+            if isinstance(reason, str) and reason.startswith("scored:"):
+                classified = reason.split(":", 1)[1].strip()
+
             if assigned_id not in (None, -1):
                 coll = c_map.get(assigned_id, "(不明)")
             elif current_id not in (None, -1):
                 coll = c_map.get(current_id, "(不明)")
-            elif isinstance(reason, str) and reason.startswith("scored:"):
-                coll = reason.split(":", 1)[1].strip() or "(不明)"
+            elif classified:
+                coll = classified
             else:
                 # AI判定なし（no_matchなど）は通知対象外
                 continue
+
+            classification = classified or coll
 
             raw = web_fetch_html(url)
             markdown_body = extract_article_markdown(raw)
@@ -287,6 +293,7 @@ def main():
 
             print(f"TITLE: {title}")
             print(f"COLLECTION: {coll}")
+            print(f"CLASSIFICATION: {classification}")
             print("SUMMARY:")
             for b in bullets:
                 print(f"- {b}")
