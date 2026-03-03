@@ -31,3 +31,21 @@
 {"ts": "2026-03-04T01:26:46+09:00", "source": "chat", "summary": "Chat delta since last cursor: no new actionable user request.", "importance": "low", "action_needed": false}
 {"ts": "2026-03-04T01:26:46+09:00", "source": "mail", "summary": "IMAP incremental check: 1 new email (UID 50), no actionable items.", "importance": "low", "action_needed": false}
 {"ts": "2026-03-04T01:26:46+09:00", "source": "calendar", "summary": "ICS sources not configured; calendar delta check skipped.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T01:56:52+09:00", "source": "chat", "summary": "Chat delta since last cursor: no new actionable user request.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T01:56:52+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T01:56:52+09:00", "source": "calendar", "summary": "ICS sources not configured; calendar delta check skipped.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T02:25:00+09:00", "source": "chat", "summary": "Chat delta since last cursor: heartbeat ping only; no new actionable user request.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T02:25:00+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable (last UID 50).", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T02:25:00+09:00", "source": "calendar", "summary": "ICS sources config not found (skills/ics-calendar-reader/references/ics-sources.json); calendar delta check skipped.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T02:56:54.167932+09:00", "source": "chat", "summary": "Recent chat delta since last cursor: no new actionable user messages.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T02:56:54.167932+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T02:56:54.167932+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T03:26:33+09:00", "source": "chat", "summary": "Chat delta since last cursor: heartbeat ping only; no new actionable user request.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T03:26:33+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable (last UID 50).", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T03:26:33+09:00", "source": "calendar", "summary": "ICS sources config not found (skills/ics-calendar-reader/references/ics-sources.json); calendar delta check skipped.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T03:55:00+09:00", "source": "chat", "summary": "Chat delta since last cursor: heartbeat ping only; no new actionable user request.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T03:55:00+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable (last UID 50).", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T03:55:00+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T04:25:00+09:00", "source": "chat", "summary": "Chat delta since last cursor: heartbeat ping only; no new actionable user request.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T04:25:00+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable (last UID 50).", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T04:25:00+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
