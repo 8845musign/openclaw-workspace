@@ -5,7 +5,7 @@ description: Read calendar events from one or more ICS feeds and answer schedule
 
 # ICS Calendar Reader
 
-Load config from `skills/ics-calendar-reader/references/ics-sources.example.json` (or a user-provided equivalent with the same schema).
+Load config from `skills/ics-calendar-reader/references/ics-sources.json` (or a user-provided equivalent with the same schema).
 
 ## Config schema (minimal)
 
