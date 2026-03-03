@@ -4,6 +4,8 @@ set -euo pipefail
 WORKDIR="/home/hiroki-yokouchi/.openclaw/workspace"
 OPENCLAW_BIN="/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/bin/openclaw"
 NODE_BIN_DIR="/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/bin"
+NOTIFY_CHANNEL="${RAINDROP_NOTIFY_CHANNEL:-slack}"
+NOTIFY_TARGET="${RAINDROP_NOTIFY_TARGET:-U08T8S3BBFX}"
 LOGDIR="$WORKDIR/logs"
 mkdir -p "$LOGDIR"
 
@@ -39,12 +41,14 @@ python3 scripts/raindrop_obsidian_sync.py --limit 50
 TMP_OUT="$(mktemp)"
 python3 scripts/raindrop_obsidian_process_pending.py | tee "$TMP_OUT"
 
-python3 - "$TMP_OUT" "$OPENCLAW_BIN" <<'PY'
+python3 - "$TMP_OUT" "$OPENCLAW_BIN" "$NOTIFY_CHANNEL" "$NOTIFY_TARGET" <<'PY'
 import subprocess, sys
 from pathlib import Path
 
 p = Path(sys.argv[1])
 openclaw_bin = sys.argv[2]
+notify_channel = sys.argv[3]
+notify_target = sys.argv[4]
 text = p.read_text(encoding='utf-8', errors='replace').strip()
 if not text or text == 'NO_PENDING':
     print('no pending items to notify')
@@ -81,9 +85,10 @@ for b in blocks:
 
     try:
         subprocess.run([
-            openclaw_bin, 'system', 'event',
-            '--text', msg,
-            '--mode', 'now'
+            openclaw_bin, 'message', 'send',
+            '--channel', notify_channel,
+            '--target', notify_target,
+            '--message', msg
         ], check=True)
         print(f'notified: {title}')
     except Exception as e:
