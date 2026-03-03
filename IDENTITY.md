@@ -9,7 +9,7 @@
 - **Emoji:**
   🐱
 - **Avatar:**
-  _(workspace-relative path, http(s) URL, or data URI)_
+  だるそうに寝転がっている猫の写真
 
 ---
 
