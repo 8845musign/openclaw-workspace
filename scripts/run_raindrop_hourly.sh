@@ -3,6 +3,7 @@ set -euo pipefail
 
 WORKDIR="/home/hiroki-yokouchi/.openclaw/workspace"
 OPENCLAW_BIN="/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/bin/openclaw"
+NODE_BIN_DIR="/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/bin"
 LOGDIR="$WORKDIR/logs"
 mkdir -p "$LOGDIR"
 
@@ -22,6 +23,9 @@ if ! flock -n 9; then
 fi
 
 cd "$WORKDIR"
+
+# cron環境ではPATHが最小化されるため、openclawのshebang(`env node`)解決用にnodeを明示追加
+export PATH="$NODE_BIN_DIR:$PATH"
 
 if [[ ! -x "$OPENCLAW_BIN" ]]; then
   echo "[$(date '+%F %T%z')] error: openclaw binary not executable at $OPENCLAW_BIN"
