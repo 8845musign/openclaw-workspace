@@ -2,6 +2,7 @@
 set -euo pipefail
 
 WORKDIR="/home/hiroki-yokouchi/.openclaw/workspace"
+OPENCLAW_BIN="/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/bin/openclaw"
 LOGDIR="$WORKDIR/logs"
 mkdir -p "$LOGDIR"
 
@@ -15,7 +16,12 @@ DATE_KEY="$(date '+%Y-%m-%d')"
 
 echo "[$(date '+%F %T%z')] start daily error review"
 
-python3 - "$LOGDIR" "$DATE_KEY" <<'PY'
+if [[ ! -x "$OPENCLAW_BIN" ]]; then
+  echo "[$(date '+%F %T%z')] error: openclaw binary not executable at $OPENCLAW_BIN"
+  exit 1
+fi
+
+python3 - "$LOGDIR" "$DATE_KEY" "$OPENCLAW_BIN" <<'PY'
 import json
 import re
 import sys
@@ -24,6 +30,7 @@ from pathlib import Path
 
 logdir = Path(sys.argv[1])
 date_key = sys.argv[2]
+openclaw_bin = sys.argv[3]
 
 error_files = sorted([p for p in logdir.glob('*.error.log') if p.is_file()])
 if not error_files:
@@ -89,7 +96,7 @@ print(prompt)
 # notify chat via openclaw system event
 import subprocess
 subprocess.run([
-    'openclaw','system','event','--text',prompt,'--mode','now'
+    openclaw_bin,'system','event','--text',prompt,'--mode','now'
 ], check=False)
 
 # save JSON report
