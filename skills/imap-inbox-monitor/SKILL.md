@@ -31,12 +31,15 @@ Optional:
 ```bash
 set -a; source ~/.openclaw/.env; set +a
 python3 scripts/imap_monitor.py run
+# default paths:
+# --state-file  /home/hiroki-yokouchi/.openclaw/workspace/state/imap_state.json
+# --memory-file /home/hiroki-yokouchi/.openclaw/workspace/memory/imap-mail-summaries.jsonl
 ```
 
 Optional flags:
 
 ```bash
-python3 scripts/imap_monitor.py run --limit 100 --state-file ./state/imap_state.json --memory-file ../../memory/imap-mail-summaries.jsonl
+python3 scripts/imap_monitor.py run --limit 100 --state-file /home/hiroki-yokouchi/.openclaw/workspace/state/imap_state.json --memory-file /home/hiroki-yokouchi/.openclaw/workspace/memory/imap-mail-summaries.jsonl
 ```
 
 ## Expected behavior

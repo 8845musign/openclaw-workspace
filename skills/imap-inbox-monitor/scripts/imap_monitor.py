@@ -221,8 +221,8 @@ def main() -> None:
 
     p_run = sub.add_parser("run", help="Fetch only new messages since previous run")
     p_run.add_argument("--limit", type=int, default=100)
-    p_run.add_argument("--state-file", default="./state/imap_state.json")
-    p_run.add_argument("--memory-file", default="../../memory/imap-mail-summaries.jsonl")
+    p_run.add_argument("--state-file", default="/home/hiroki-yokouchi/.openclaw/workspace/state/imap_state.json")
+    p_run.add_argument("--memory-file", default="/home/hiroki-yokouchi/.openclaw/workspace/memory/imap-mail-summaries.jsonl")
     p_run.set_defaults(func=run)
 
     args = parser.parse_args()
