@@ -237,19 +237,10 @@ def main():
 
             raw = web_fetch_html(url)
             markdown_body = extract_article_markdown(raw)
-            bullets = summarize(markdown_body)
             stem = f"{date}-{sanitize_filename(title)}"
 
             summary_path = os.path.join(VAULT_ARTICLES, f"{stem}-summary.md")
             ja_path = os.path.join(VAULT_ARTICLES, f"{stem}-ja.md")
-
-            with open(summary_path, "w", encoding="utf-8") as f:
-                f.write(
-                    f"---\nsource_url: \"{url}\"\ntitle: \"{title}\"\ncaptured_at: \"{date}\"\ntype: \"article-summary\"\n---\n\n"
-                    "# 要約\n\n## 3行サマリー\n"
-                    + "\n".join([f"- {b}" for b in bullets])
-                    + "\n\n## 重要ポイント\n- Realtime連携向けに保存\n\n## 次に読むべき人\n- 関連分野の実装担当\n"
-                )
 
             src_lang = detect_lang(markdown_body)
             ja_text = markdown_body
@@ -261,6 +252,17 @@ def main():
                 except Exception:
                     ja_text = markdown_body
                     translated = False
+
+            summary_source = ja_text if (src_lang == "ja" or translated) else markdown_body
+            bullets = summarize(summary_source)
+
+            with open(summary_path, "w", encoding="utf-8") as f:
+                f.write(
+                    f"---\nsource_url: \"{url}\"\ntitle: \"{title}\"\ncaptured_at: \"{date}\"\ntype: \"article-summary\"\n---\n\n"
+                    "# 要約\n\n## 3行サマリー\n"
+                    + "\n".join([f"- {b}" for b in bullets])
+                    + "\n\n## 重要ポイント\n- Realtime連携向けに保存\n\n## 次に読むべき人\n- 関連分野の実装担当\n"
+                )
 
             with open(ja_path, "w", encoding="utf-8") as f:
                 f.write(
