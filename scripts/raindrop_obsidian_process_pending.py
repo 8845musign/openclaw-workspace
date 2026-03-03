@@ -233,7 +233,19 @@ def main():
             url = it.get("link")
             if not url:
                 continue
-            coll = c_map.get(it.get("assignedCollectionId"), "(未分類)")
+            assigned_id = it.get("assignedCollectionId")
+            current_id = it.get("currentCollectionId")
+            reason = it.get("assignmentReason") or ""
+
+            if assigned_id not in (None, -1):
+                coll = c_map.get(assigned_id, "(不明)")
+            elif current_id not in (None, -1):
+                coll = c_map.get(current_id, "(不明)")
+            elif isinstance(reason, str) and reason.startswith("scored:"):
+                coll = reason.split(":", 1)[1].strip() or "(不明)"
+            else:
+                # AI判定なし（no_matchなど）は通知対象外
+                continue
 
             raw = web_fetch_html(url)
             markdown_body = extract_article_markdown(raw)
