@@ -106,3 +106,27 @@
 {"ts": "2026-03-04T14:30:00+09:00", "source": "mail", "summary": "IMAP incremental check: 1 new mail (UID 67), actionable=0.", "importance": "low", "action_needed": false}
 {"ts": "2026-03-04T14:30:00+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
 {"ts": "2026-03-04T14:30:00+09:00", "source": "chat", "summary": "No high-priority chat delta requiring proactive notification since last cursor.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T15:01:53+09:00", "source": "chat", "summary": "前回チェック以降、運用説明（skill/cron詳細化）を実施。緊急対応なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T15:01:53+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着0件、要対応0件。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T15:01:53+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置のためカレンダー差分なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T15:31:43+09:00", "source": "chat", "summary": "ひろきがOpenAI Realtime APIで会話中webサーチを挟む実験を開始予定（進捗共有）。", "importance": "med", "action_needed": false}
+{"ts": "2026-03-04T15:31:43+09:00", "source": "calendar", "summary": "ICSカレンダーソース未設定（ics-sources.json不在）のため更新差分チェックは未実施。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T16:01:28+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着0件、要対応0件（last_seen_uid=69）", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T16:01:28+09:00", "source": "calendar", "summary": "ICSソース設定未配置のためカレンダー差分チェックをスキップ", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T16:01:28+09:00", "source": "chat", "summary": "前回カーソル以降の重要な新規差分なし", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T16:31:21+09:00", "source": "chat", "summary": "前回カーソル以降、要通知の新規チャット差分なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T16:31:21+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着1件（UID 70）、要対応0件。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T16:31:21+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置のためカレンダー差分チェックをスキップ。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T17:01:32+09:00", "source": "mail", "summary": "IMAP incremental check: new_count=0, actionable_count=0", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T17:01:32+09:00", "source": "calendar", "summary": "ICS source config missing (skills/ics-calendar-reader/references/ics-sources.json)", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T17:31:26+09:00", "source": "chat", "summary": "前回カーソル以降の会話差分なし", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T17:31:26+09:00", "source": "mail", "summary": "IMAP新着なし（new_count=0, actionable_count=0）", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T17:31:26+09:00", "source": "calendar", "summary": "ICSソース未設定のため差分取得スキップ", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T18:00:00+09:00", "source": "chat", "summary": "前回チェック以降は運用ノイズ中心で、要対応の新規会話イベントなし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T18:00:00+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着0件、要対応0件（last_seen_uid=72）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T18:00:00+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置のため、カレンダー差分チェックをスキップ。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T18:31:26+09:00", "source": "chat", "summary": "前回カーソル以降、要通知の新規チャット差分なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T18:31:26+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着0件、要対応0件（last_seen_uid=72）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T18:31:26+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置のため、カレンダー差分チェックをスキップ。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T19:01:26+09:00", "source": "mail", "summary": "IMAP incremental check: 新着メールなし（actionable 0件）", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T19:01:26+09:00", "source": "calendar", "summary": "ICS source config未配置のためカレンダー差分チェックをスキップ", "importance": "low", "action_needed": false}
