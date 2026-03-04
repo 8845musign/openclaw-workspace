@@ -141,3 +141,8 @@
 {"ts": "2026-03-04T21:01:14+09:00", "source": "chat", "summary": "20:31以降は雑談チェックイン後、heartbeat要求のみ。新規の要対応チャット差分なし。", "importance": "low", "action_needed": false}
 {"ts": "2026-03-04T21:01:14+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着0件、要対応0件（last_seen_uid=76）。", "importance": "low", "action_needed": false}
 {"ts": "2026-03-04T21:01:14+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置（skills/ics-calendar-reader/references/ics-sources.json なし）のため差分チェックをスキップ。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T22:00:00+09:00", "source": "chat", "summary": "21:30以降は22:00定時の会話要約送信とheartbeat要求のみ。新規の要対応チャット差分なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T22:00:00+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着0件、要対応0件（last_seen_uid=77）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T22:00:00+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置（skills/ics-calendar-reader/references/ics-sources.jsonなし）のため差分チェックをスキップ。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T22:31:30+09:00", "source": "mail", "summary": "IMAP incremental check: 新着なし (UID 77のまま)", "importance": "low", "action_needed": false}
+{"ts": "2026-03-04T22:31:30+09:00", "source": "calendar", "summary": "ICS sources config missing; calendar delta check skipped", "importance": "low", "action_needed": false}
