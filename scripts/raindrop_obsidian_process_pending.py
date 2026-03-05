@@ -8,6 +8,7 @@ import time
 from datetime import datetime, timezone
 from urllib.parse import quote
 from urllib.request import Request, urlopen
+from urllib.error import HTTPError
 
 PENDING_PATH = os.path.expanduser("~/.openclaw/workspace/memory/raindrop-obsidian-pending.json")
 SECRETS_PATH = os.path.expanduser("~/.openclaw/secrets.json")
@@ -175,6 +176,60 @@ def looks_like_poor_extraction(md_text: str) -> bool:
     return noise_hits >= 3
 
 
+def is_anti_bot_page(md_text: str) -> bool:
+    t = (md_text or "").lower()
+    markers = [
+        "performing security verification",
+        "verify you are not a bot",
+        "security service to protect",
+        "captcha",
+        "access denied",
+    ]
+    return any(m in t for m in markers)
+
+
+def get_hn_original_url(hn_url: str) -> str:
+    m = re.search(r"[?&]id=(\d+)", hn_url)
+    if not m:
+        return ""
+    item_id = m.group(1)
+    req = Request(f"https://hacker-news.firebaseio.com/v0/item/{item_id}.json", headers={"User-Agent": "Mozilla/5.0"})
+    with urlopen(req, timeout=20) as r:
+        data = json.loads(r.read().decode("utf-8", "replace"))
+    return (data or {}).get("url") or ""
+
+
+def get_alternative_urls(url: str) -> list[str]:
+    alts = []
+    if "news.ycombinator.com/item" in url:
+        try:
+            orig = get_hn_original_url(url)
+            if orig:
+                alts.append(orig)
+        except Exception:
+            pass
+
+    target = alts[0] if alts else url
+    if "dl.acm.org/doi" in target:
+        doi = target.split("/doi/")[-1].split("?")[0].strip("/")
+        if doi.startswith("fullHtml/"):
+            doi = doi[len("fullHtml/"):]
+        alts.append(f"https://www.osnews.com/story/144509/the-windows-95-user-interface-a-case-study-in-usability-engineering/")
+        alts.append(f"https://web.archive.org/web/20081022103457/http://www.sigchi.org/chi96/proceedings/desbrief/Sullivan/kds_txt.htm")
+        if doi:
+            alts.append(f"https://r.jina.ai/http://dl.acm.org/doi/{doi}")
+            alts.append(f"https://r.jina.ai/http://dl.acm.org/doi/fullHtml/{doi}")
+
+    # unique preserve order
+    uniq = []
+    seen = set()
+    for u in alts:
+        if u and u not in seen:
+            seen.add(u)
+            uniq.append(u)
+    return uniq
+
+
 def detect_lang(text: str) -> str:
     sample = text[:4000]
     ja_chars = re.findall(r"[ぁ-んァ-ヶ一-龠]", sample)
@@ -277,8 +332,16 @@ def main():
 
             classification = classified or coll
 
-            raw = web_fetch_html(url)
-            markdown_body = extract_article_markdown(raw)
+            markdown_body = ""
+            source_url_used = url
+
+            try:
+                raw = web_fetch_html(url)
+                markdown_body = extract_article_markdown(raw)
+            except HTTPError:
+                markdown_body = ""
+            except Exception:
+                markdown_body = ""
 
             if looks_like_poor_extraction(markdown_body):
                 try:
@@ -288,6 +351,26 @@ def main():
                         markdown_body = rendered_markdown
                 except Exception:
                     pass
+
+            if looks_like_poor_extraction(markdown_body) or is_anti_bot_page(markdown_body):
+                for alt_url in get_alternative_urls(url):
+                    try:
+                        alt_raw = web_fetch_html(alt_url)
+                        alt_md = extract_article_markdown(alt_raw)
+                        if looks_like_poor_extraction(alt_md):
+                            try:
+                                alt_raw_r = web_fetch_rendered_html(alt_url)
+                                alt_md_r = extract_article_markdown(alt_raw_r)
+                                if len(alt_md_r) > len(alt_md) * 1.2:
+                                    alt_md = alt_md_r
+                            except Exception:
+                                pass
+                        if len(alt_md) > max(1200, len(markdown_body) * 1.3) and not is_anti_bot_page(alt_md):
+                            markdown_body = alt_md
+                            source_url_used = alt_url
+                            break
+                    except Exception:
+                        continue
 
             stem = f"{date}-{sanitize_filename(title)}"
 
@@ -310,7 +393,7 @@ def main():
 
             with open(summary_path, "w", encoding="utf-8") as f:
                 f.write(
-                    f"---\nsource_url: \"{url}\"\ntitle: \"{title}\"\ncaptured_at: \"{date}\"\ntype: \"article-summary\"\n---\n\n"
+                    f"---\nsource_url: \"{source_url_used}\"\noriginal_url: \"{url}\"\ntitle: \"{title}\"\ncaptured_at: \"{date}\"\ntype: \"article-summary\"\n---\n\n"
                     "# 要約\n\n## 3行サマリー\n"
                     + "\n".join([f"- {b}" for b in bullets])
                     + "\n\n## 重要ポイント\n- Realtime連携向けに保存\n\n## 次に読むべき人\n- 関連分野の実装担当\n"
@@ -318,7 +401,7 @@ def main():
 
             with open(ja_path, "w", encoding="utf-8") as f:
                 f.write(
-                    f"---\nsource_url: \"{url}\"\ntitle: \"{title}\"\ncaptured_at: \"{date}\"\ntype: \"article-ja\"\n"
+                    f"---\nsource_url: \"{source_url_used}\"\noriginal_url: \"{url}\"\ntitle: \"{title}\"\ncaptured_at: \"{date}\"\ntype: \"article-ja\"\n"
                     f"source_lang: \"{src_lang}\"\ntranslated_to_ja: {str(translated).lower()}\n---\n\n"
                     f"# {title}\n\n"
                     "## 本文（保存）\n\n"
@@ -328,6 +411,7 @@ def main():
             print(f"TITLE: {title}")
             print(f"COLLECTION: {coll}")
             print(f"CLASSIFICATION: {classification}")
+            print(f"SOURCE_URL_USED: {source_url_used}")
             print("SUMMARY:")
             for b in bullets:
                 print(f"- {b}")
