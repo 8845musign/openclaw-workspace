@@ -3,6 +3,7 @@ import html
 import json
 import os
 import re
+import subprocess
 import time
 from datetime import datetime, timezone
 from urllib.parse import quote
@@ -46,6 +47,21 @@ def web_fetch_html(url: str) -> str:
     req = Request(url, headers={"User-Agent": "Mozilla/5.0"})
     with urlopen(req, timeout=40) as r:
         return r.read().decode("utf-8", "replace")
+
+
+def web_fetch_rendered_html(url: str) -> str:
+    script = os.path.expanduser("~/.openclaw/workspace/scripts/fetch_rendered_html.mjs")
+    proc = subprocess.run(
+        ["node", script, url],
+        capture_output=True,
+        text=True,
+        timeout=55,
+        check=False,
+        env={**os.environ, "PW_TIMEOUT_MS": "35000"},
+    )
+    if proc.returncode != 0:
+        raise RuntimeError(f"playwright fetch failed: {proc.stderr[-400:]}")
+    return proc.stdout
 
 
 def extract_article_markdown(raw: str) -> str:
@@ -149,6 +165,14 @@ def cleanup_markdown(md_text: str) -> str:
     out = "\n".join(cleaned)
     out = re.sub(r"\n{3,}", "\n\n", out).strip()
     return out
+
+
+def looks_like_poor_extraction(md_text: str) -> bool:
+    if not md_text or len(md_text) < 900:
+        return True
+    head = md_text[:3000].lower()
+    noise_hits = sum(1 for w in ["sign in", "menu", "cookie", "privacy", "terms", "all rights reserved"] if w in head)
+    return noise_hits >= 3
 
 
 def detect_lang(text: str) -> str:
@@ -255,6 +279,16 @@ def main():
 
             raw = web_fetch_html(url)
             markdown_body = extract_article_markdown(raw)
+
+            if looks_like_poor_extraction(markdown_body):
+                try:
+                    rendered_raw = web_fetch_rendered_html(url)
+                    rendered_markdown = extract_article_markdown(rendered_raw)
+                    if len(rendered_markdown) > len(markdown_body) * 1.2:
+                        markdown_body = rendered_markdown
+                except Exception:
+                    pass
+
             stem = f"{date}-{sanitize_filename(title)}"
 
             summary_path = os.path.join(VAULT_ARTICLES, f"{stem}-summary.md")
