@@ -12,6 +12,7 @@ from urllib.request import Request, urlopen
 SECRETS_PATH = os.path.expanduser("~/.openclaw/secrets.json")
 STATE_PATH = os.path.expanduser("~/.openclaw/workspace/memory/raindrop-sync-state.json")
 PENDING_PATH = os.path.expanduser("~/.openclaw/workspace/memory/raindrop-obsidian-pending.json")
+AUTH_PROFILES_PATH = os.path.expanduser("~/.openclaw/agents/main/agent/auth-profiles.json")
 
 
 def now_ts() -> int:
@@ -62,12 +63,89 @@ def norm(s: str) -> str:
     return re.sub(r"\s+", " ", (s or "").strip().lower())
 
 
-def choose_collection(raindrop, collections):
-    # Keep existing assignment if present and not unsorted
-    current = (raindrop.get("collection") or {}).get("$id")
-    if current not in (None, -1):
-        return current, "already_assigned"
+def classify_with_llm(raindrop, collections):
+    profiles = load_json(AUTH_PROFILES_PATH, {}).get("profiles", {})
+    anthropic = profiles.get("anthropic:default") or {}
+    api_key = anthropic.get("key")
+    if not api_key:
+        raise RuntimeError("Anthropic API key not found")
 
+    available = []
+    collection_map = {}
+    for c in collections:
+        cid = c.get("_id")
+        title = c.get("title", "")
+        if cid is None or not title:
+            continue
+        available.append({"id": cid, "name": title})
+        collection_map[cid] = title
+
+    link = raindrop.get("link", "")
+    domain = urlparse(link).netloc or ""
+    tags = raindrop.get("tags") or []
+    prompt = (
+        "以下のブックマークを、利用可能なコレクションの中から最も適切な1つに分類してください。\n"
+        "合うものがなければ collection_id は -1 にしてください。\n"
+        "必ず JSON オブジェクトのみを返してください。余計な説明やコードブロックは禁止です。\n"
+        '形式: {"collection_id": <int>, "reason": "<brief reason>"}\n\n'
+        "ブックマーク情報:\n"
+        f"- title: {raindrop.get('title', '')}\n"
+        f"- url: {link}\n"
+        f"- domain: {domain}\n"
+        f"- tags: {json.dumps(tags, ensure_ascii=False)}\n\n"
+        "利用可能なコレクション:\n"
+        f"{json.dumps(available, ensure_ascii=False)}\n"
+    )
+
+    payload = {
+        "model": "claude-3-haiku-20240307",
+        "max_tokens": 150,
+        "temperature": 0,
+        "messages": [
+            {
+                "role": "user",
+                "content": prompt,
+            }
+        ],
+    }
+    req = Request(
+        "https://api.anthropic.com/v1/messages",
+        method="POST",
+        headers={
+            "x-api-key": api_key,
+            "anthropic-version": "2023-06-01",
+            "content-type": "application/json",
+        },
+        data=json.dumps(payload).encode("utf-8"),
+    )
+    with urlopen(req, timeout=10) as r:
+        response = json.loads(r.read().decode("utf-8"))
+
+    text_parts = []
+    for block in response.get("content", []):
+        if block.get("type") == "text":
+            text_parts.append(block.get("text", ""))
+    content = "\n".join(text_parts).strip()
+    if not content:
+        raise ValueError("Empty Anthropic response")
+
+    match = re.search(r"\{.*\}", content, re.DOTALL)
+    if not match:
+        raise ValueError("No JSON object found in Anthropic response")
+    parsed = json.loads(match.group(0))
+
+    collection_id = parsed.get("collection_id")
+    if not isinstance(collection_id, int):
+        raise ValueError("Invalid collection_id in Anthropic response")
+    if collection_id != -1 and collection_id not in collection_map:
+        raise ValueError("Unknown collection_id in Anthropic response")
+
+    if collection_id == -1:
+        return -1, "llm:no_match"
+    return collection_id, f"llm:{collection_map[collection_id]}"
+
+
+def fallback_choose_collection(raindrop, collections):
     title = norm(raindrop.get("title", ""))
     link = raindrop.get("link", "")
     domain = norm(urlparse(link).netloc)
@@ -82,8 +160,10 @@ def choose_collection(raindrop, collections):
         if cid in (None, -1) or not ctitle:
             continue
         score = 0
-        for token in re.split(r"[^a-z0-9ぁ-んァ-ヶ一-龠]+", ctitle):
-            if token and token in text:
+        for token in re.split(r"[^a-z0-9ぁ-んァ-ヶー一-龠]+", ctitle):
+            if len(token) < 2:
+                continue
+            if token in text:
                 score += max(1, len(token))
         # heuristic boosts
         if any(x in ctitle for x in ["video", "動画", "youtube"]) and "youtube" in domain:
@@ -108,6 +188,19 @@ def choose_collection(raindrop, collections):
 
     # Last fallback: keep unsorted
     return -1, "no_match"
+
+
+def choose_collection(raindrop, collections):
+    # Keep existing assignment if present and not unsorted
+    current = (raindrop.get("collection") or {}).get("$id")
+    if current not in (None, -1):
+        return current, "already_assigned"
+
+    try:
+        return classify_with_llm(raindrop, collections)
+    except Exception:
+        collection_id, reason = fallback_choose_collection(raindrop, collections)
+        return collection_id, f"heuristic:{reason}"
 
 
 def main():
