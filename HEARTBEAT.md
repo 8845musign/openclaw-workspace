@@ -25,10 +25,17 @@
 - Else if useful web recommendations exist: send up to 3 bullet recommendations (title + one-line why + URL).
 - Else if there are `med` events and last digest was >12h ago: send one short digest.
 - Else: 猫の近況を1行つぶやく（軽いひとこと）。
+- **Always-send rule:** 上記のどの分岐でも、heartbeat実行ごとに必ず最低1メッセージを送る（`HEARTBEAT_OK`のみで終了しない）。
+
+## Delivery
+- Heartbeat通知は **Slack DM にも送る**。
+- Slack DMセッションキー: `agent:main:slack:direct:u08t8s3bbfx`
+- `sessions_send` で同じ内容を送ること。
+- webchatでの返答も通常通り行う（両方に届ける）。
 
 ## Quiet hours
-- Between 23:00-08:00 JST, only notify for high/action-needed items.
-- During quiet hours, skip recommendations/chit-chat unless explicitly requested.
+- Between 23:00-08:00 JST, high/action-needed itemsを優先。
+- ただし Always-send rule を優先し、quiet hoursでも最低1行の短い近況は送る（通知を完全に止めない）。
 
 ## Style
 - Keep notifications short, concrete, and non-spammy.
