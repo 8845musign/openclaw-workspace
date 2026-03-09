@@ -1,211 +1,27 @@
-{"ts": "2026-03-03T15:48:22.147500+09:00", "source": "chat", "summary": "Recent chat: user continues OpenClaw PoC; value noted in easy scripting/automation, pain noted in heavy data integration.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-03T15:48:22.147500+09:00", "source": "mail", "summary": "IMAP incremental check: 2 new emails (UID 32-33), 0 actionable.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-03T15:48:22.147500+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-03T16:18:40.237158+09:00", "source": "chat", "summary": "Recent chat: discussed heartbeat/MEMORY運用を整備。ユーザーはOpenClaw実証実験を継続中で、スクリプト実装/自動化の手軽さに価値、データ連携の重さが課題。", "importance": "med", "action_needed": false}
-{"ts": "2026-03-03T16:18:40.237158+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-03T16:18:40.237158+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-03T16:47:56.287331+09:00", "source": "chat", "summary": "No notable new chat delta since last heartbeat cursor.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-03T16:47:56.287331+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-03T16:47:56.287331+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-03T17:17:56.439347+09:00", "source": "chat", "summary": "No notable new chat delta requiring action since last heartbeat check.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-03T17:17:56.439347+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-03T17:17:56.439347+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-03T17:47:56.070170+09:00", "source": "chat", "summary": "No significant new chat delta requiring notification.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-03T17:47:56.070170+09:00", "source": "mail", "summary": "IMAP incremental check: 4 new emails, 0 actionable.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-03T17:47:56.070170+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-03T19:18:54.065547+09:00", "source": "chat", "summary": "Recent chat: user asked for today's mail overview and confirmed no urgent-notification expectation; no action requested beyond summary.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-03T19:18:54.065547+09:00", "source": "mail", "summary": "IMAP incremental check: 9 new emails since last UID 37 (up to UID 46), mostly GitHub PR updates and event/promotional notices; 0 clearly actionable/urgent.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-03T19:18:54.065547+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-03T19:47:00+09:00", "source": "chat", "summary": "Recent chat delta: user requested AI news and NVIDIA inference trend deep-dive; informational exchange completed, no follow-up action requested.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-03T19:47:00+09:00", "source": "mail", "summary": "IMAP incremental check skipped (no mailbox task runner invoked in this heartbeat).", "importance": "low", "action_needed": false}
-{"ts": "2026-03-03T19:47:00+09:00", "source": "calendar", "summary": "ICS incremental check skipped (sources/config not available in this heartbeat context).", "importance": "low", "action_needed": false}
-{"ts": "2026-03-03T20:17:00+09:00", "source": "chat", "summary": "Recent chat delta: user requested Raindrop cron notification format fixes (Japanese summaries + classification field should reflect AI-assigned result after unsorted classification). Changes were applied and confirmed.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-03T20:17:00+09:00", "source": "mail", "summary": "IMAP incremental check skipped (no mailbox task runner invoked in this heartbeat).", "importance": "low", "action_needed": false}
-{"ts": "2026-03-03T20:17:00+09:00", "source": "calendar", "summary": "ICS incremental check skipped (sources/config not available in this heartbeat context).", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T00:25:00+09:00", "source": "chat", "summary": "Recent chat delta: wrapped up Raindrop cron notification fixes and completed daily summary/memory update reminders; no new urgent action requested.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T00:25:00+09:00", "source": "mail", "summary": "IMAP incremental check skipped (mail monitor runner/config not available in this heartbeat execution context).", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T00:25:00+09:00", "source": "calendar", "summary": "ICS incremental check skipped (sources/config not available in this heartbeat context).", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T00:56:20+09:00", "source": "chat", "summary": "No notable new chat delta requiring action since last heartbeat cursor.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T00:56:20+09:00", "source": "mail", "summary": "IMAP incremental check skipped (mail monitor runner/config not available in this heartbeat execution context).", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T00:56:20+09:00", "source": "calendar", "summary": "ICS incremental check skipped (sources/config not available in this heartbeat context).", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T01:26:46+09:00", "source": "chat", "summary": "Chat delta since last cursor: no new actionable user request.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T01:26:46+09:00", "source": "mail", "summary": "IMAP incremental check: 1 new email (UID 50), no actionable items.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T01:26:46+09:00", "source": "calendar", "summary": "ICS sources not configured; calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T01:56:52+09:00", "source": "chat", "summary": "Chat delta since last cursor: no new actionable user request.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T01:56:52+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T01:56:52+09:00", "source": "calendar", "summary": "ICS sources not configured; calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T02:25:00+09:00", "source": "chat", "summary": "Chat delta since last cursor: heartbeat ping only; no new actionable user request.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T02:25:00+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable (last UID 50).", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T02:25:00+09:00", "source": "calendar", "summary": "ICS sources config not found (skills/ics-calendar-reader/references/ics-sources.json); calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T02:56:54.167932+09:00", "source": "chat", "summary": "Recent chat delta since last cursor: no new actionable user messages.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T02:56:54.167932+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T02:56:54.167932+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T03:26:33+09:00", "source": "chat", "summary": "Chat delta since last cursor: heartbeat ping only; no new actionable user request.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T03:26:33+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable (last UID 50).", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T03:26:33+09:00", "source": "calendar", "summary": "ICS sources config not found (skills/ics-calendar-reader/references/ics-sources.json); calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T03:55:00+09:00", "source": "chat", "summary": "Chat delta since last cursor: heartbeat ping only; no new actionable user request.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T03:55:00+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable (last UID 50).", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T03:55:00+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T04:25:00+09:00", "source": "chat", "summary": "Chat delta since last cursor: heartbeat ping only; no new actionable user request.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T04:25:00+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable (last UID 50).", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T04:25:00+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T04:55:00+09:00", "source": "chat", "summary": "Chat delta since last cursor: heartbeat ping only; no new actionable user request.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T04:55:00+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable (last UID 50).", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T04:55:00+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T05:25:00+09:00", "source": "chat", "summary": "Chat delta since last cursor: heartbeat ping only; no new actionable user request.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T05:25:00+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable (last UID 50).", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T05:25:00+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T05:55:00+09:00", "source": "chat", "summary": "Chat delta since last cursor: heartbeat ping only; no new actionable user request.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T05:55:00+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable (last UID 50).", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T05:55:00+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T06:25:00+09:00", "source": "chat", "summary": "Chat delta since last cursor: heartbeat ping only; no new actionable user request.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T06:25:00+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable (last UID 50).", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T06:25:00+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T06:55:00+09:00", "source": "chat", "summary": "Chat delta since last cursor: heartbeat ping only; no new actionable user request.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T06:55:00+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable (last UID 50).", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T06:55:00+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T07:25:00+09:00", "source": "chat", "summary": "Chat delta since last cursor: heartbeat ping only; no new actionable user request.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T07:25:00+09:00", "source": "mail", "summary": "IMAP incremental check: 1 new email (UID 51), 0 actionable.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T07:25:00+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T07:31:00+09:00", "source": "chat", "summary": "Chat delta since last cursor: weather reminder handled and delivered; no further actionable user request.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T07:31:00+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable (last UID 51).", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T07:31:00+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T08:01:00+09:00", "source": "chat", "summary": "Chat delta since last cursor: heartbeat ping only; no new actionable user request.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T08:01:00+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable (last UID 51).", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T08:01:00+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T08:31:00+09:00", "source": "chat", "summary": "Chat delta since last cursor: heartbeat check only; no new actionable user request.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T08:31:00+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable (last UID 51).", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T08:31:00+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T09:31:00+09:00", "source": "chat", "summary": "Chat delta since last cursor: heartbeat/scheduled checks only; no new actionable user request.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T09:31:00+09:00", "source": "mail", "summary": "IMAP incremental check: 3 new emails, 0 actionable (last UID 56).", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T09:31:00+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T10:01:00+09:00", "source": "chat", "summary": "Chat delta since last cursor: heartbeat ping only; no new actionable user request.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T10:01:00+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable (last UID 56).", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T10:01:00+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T10:30:00+09:00", "source": "chat", "summary": "Chat delta: user reported missing cron DM deliveries; verified run-level statuses and fixed by recreating 4 jobs as isolated+announce (Slack DM delivery enabled).", "importance": "med", "action_needed": false}
-{"ts": "2026-03-04T10:30:00+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable (last UID 56).", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T10:30:00+09:00", "source": "calendar", "summary": "ICS sources config not found (skills/ics-calendar-reader/references/ics-sources.json); calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T11:00:00+09:00", "source": "chat", "summary": "Chat delta since last cursor: heartbeat poll only; no new actionable user request.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T11:00:00+09:00", "source": "mail", "summary": "IMAP incremental check: 0 new emails, 0 actionable (last UID 56).", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T11:00:00+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T11:31:23+09:00", "source": "chat", "summary": "11:00以降のチャット差分: skill/cron構成の説明を更新。OS cron 2本 + OpenClaw cron 9本（合計11本）を明確化。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T11:31:23+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着1件（UID 57）だが要対応判定なし。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T11:31:23+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置のためカレンダー差分チェックは未実施。", "importance": "low", "action_needed": false}
-{"ts":"2026-03-04T12:00:00+09:00","source":"chat","summary":"11:31以降のチャット差分: ユーザー要望に応じてskill/cronの詳細説明を拡張。OS cron 2本とOpenClaw cron 9本の内訳を明確化。","importance":"low","action_needed":false}
-{"ts":"2026-03-04T12:00:00+09:00","source":"mail","summary":"IMAP差分状態確認: last_seen_uid=57のまま、新規要対応メールなし。","importance":"low","action_needed":false}
-{"ts":"2026-03-04T12:00:00+09:00","source":"calendar","summary":"ICSソース設定ファイル未配置のためカレンダー差分チェックは未実施。","importance":"low","action_needed":false}
-{"ts": "2026-03-04T12:30:00+09:00", "source": "mail", "summary": "新着メール1件を検知（UID 58）。要対応判定は0件。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T12:30:00+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置のためカレンダー差分チェックをスキップ。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T13:01:33+09:00", "source": "chat", "summary": "前回チェック以降、新規の要対応チャットイベントなし（heartbeatポーリングのみ）。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T13:01:33+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着0件 / 要対応0件（last_seen_uid=59）。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T13:01:33+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置のためカレンダー差分チェックをスキップ。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T13:31:22+09:00", "source": "mail", "summary": "新着メール5件（要対応なし）", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T14:00:00+09:00", "source": "chat", "summary": "Recent chat delta: documented full inventory of OS cron(2) + OpenClaw cron(9) with purposes.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T14:00:00+09:00", "source": "mail", "summary": "IMAP incremental check: new_count=0, actionable_count=0, last_seen_uid=66.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T14:00:00+09:00", "source": "calendar", "summary": "ICS source config missing; calendar delta check skipped.", "importance": "med", "action_needed": false}
-{"ts": "2026-03-04T14:30:00+09:00", "source": "mail", "summary": "IMAP incremental check: 1 new mail (UID 67), actionable=0.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T14:30:00+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T14:30:00+09:00", "source": "chat", "summary": "No high-priority chat delta requiring proactive notification since last cursor.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T15:01:53+09:00", "source": "chat", "summary": "前回チェック以降、運用説明（skill/cron詳細化）を実施。緊急対応なし。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T15:01:53+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着0件、要対応0件。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T15:01:53+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置のためカレンダー差分なし。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T15:31:43+09:00", "source": "chat", "summary": "ひろきがOpenAI Realtime APIで会話中webサーチを挟む実験を開始予定（進捗共有）。", "importance": "med", "action_needed": false}
-{"ts": "2026-03-04T15:31:43+09:00", "source": "calendar", "summary": "ICSカレンダーソース未設定（ics-sources.json不在）のため更新差分チェックは未実施。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T16:01:28+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着0件、要対応0件（last_seen_uid=69）", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T16:01:28+09:00", "source": "calendar", "summary": "ICSソース設定未配置のためカレンダー差分チェックをスキップ", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T16:01:28+09:00", "source": "chat", "summary": "前回カーソル以降の重要な新規差分なし", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T16:31:21+09:00", "source": "chat", "summary": "前回カーソル以降、要通知の新規チャット差分なし。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T16:31:21+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着1件（UID 70）、要対応0件。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T16:31:21+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置のためカレンダー差分チェックをスキップ。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T17:01:32+09:00", "source": "mail", "summary": "IMAP incremental check: new_count=0, actionable_count=0", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T17:01:32+09:00", "source": "calendar", "summary": "ICS source config missing (skills/ics-calendar-reader/references/ics-sources.json)", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T17:31:26+09:00", "source": "chat", "summary": "前回カーソル以降の会話差分なし", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T17:31:26+09:00", "source": "mail", "summary": "IMAP新着なし（new_count=0, actionable_count=0）", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T17:31:26+09:00", "source": "calendar", "summary": "ICSソース未設定のため差分取得スキップ", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T18:00:00+09:00", "source": "chat", "summary": "前回チェック以降は運用ノイズ中心で、要対応の新規会話イベントなし。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T18:00:00+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着0件、要対応0件（last_seen_uid=72）。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T18:00:00+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置のため、カレンダー差分チェックをスキップ。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T18:31:26+09:00", "source": "chat", "summary": "前回カーソル以降、要通知の新規チャット差分なし。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T18:31:26+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着0件、要対応0件（last_seen_uid=72）。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T18:31:26+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置のため、カレンダー差分チェックをスキップ。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T19:01:26+09:00", "source": "mail", "summary": "IMAP incremental check: 新着メールなし（actionable 0件）", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T19:01:26+09:00", "source": "calendar", "summary": "ICS source config未配置のためカレンダー差分チェックをスキップ", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T19:31:15+09:00", "source": "mail", "summary": "新着メール2件（要対応0件）", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T19:31:15+09:00", "source": "calendar", "summary": "ICSソース設定未検出のためカレンダー差分チェックなし", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T20:01:11+09:00", "source": "chat", "summary": "前回カーソル以降、要通知の新規チャット差分なし（heartbeatポーリングのみ）。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T20:01:11+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着0件、要対応0件（last_seen_uid=75）。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T20:01:11+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置のため、カレンダー差分チェックをスキップ。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T20:31:36+09:00", "source": "chat", "summary": "20:01以降は定期チェックイン後にheartbeat要求のみ。ユーザー起点の新規依頼なし。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T20:31:36+09:00", "source": "mail", "summary": "IMAP新着1件（UID 76）。actionable判定0件のため即応不要。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T20:31:36+09:00", "source": "calendar", "summary": "ICS設定ファイル未配置（ics-sources.jsonなし）のため差分取得スキップ。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T21:01:14+09:00", "source": "chat", "summary": "20:31以降は雑談チェックイン後、heartbeat要求のみ。新規の要対応チャット差分なし。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T21:01:14+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着0件、要対応0件（last_seen_uid=76）。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T21:01:14+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置（skills/ics-calendar-reader/references/ics-sources.json なし）のため差分チェックをスキップ。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T22:00:00+09:00", "source": "chat", "summary": "21:30以降は22:00定時の会話要約送信とheartbeat要求のみ。新規の要対応チャット差分なし。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T22:00:00+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着0件、要対応0件（last_seen_uid=77）。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T22:00:00+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置（skills/ics-calendar-reader/references/ics-sources.jsonなし）のため差分チェックをスキップ。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T22:31:30+09:00", "source": "mail", "summary": "IMAP incremental check: 新着なし (UID 77のまま)", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T22:31:30+09:00", "source": "calendar", "summary": "ICS sources config missing; calendar delta check skipped", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T23:01:43+09:00", "source": "chat", "summary": "前回チェック以降の重要な会話差分なし", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T23:01:43+09:00", "source": "mail", "summary": "IMAP差分チェック実施: 新着0件、要対応0件", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T23:01:43+09:00", "source": "calendar", "summary": "ICSソース未設定のため差分チェック対象なし", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T23:31:25+09:00", "source": "chat", "summary": "No notable chat delta since last cursor.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T23:31:25+09:00", "source": "mail", "summary": "1 new email detected (UID 78), classified non-actionable.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-04T23:31:25+09:00", "source": "calendar", "summary": "ICS source config missing; calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T00:01:23+09:00", "source": "chat", "summary": "前回カーソル以降、要通知の新規チャット差分なし", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T00:01:23+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着0件（要対応0件）", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T00:01:23+09:00", "source": "calendar", "summary": "ICSソース未設定（ics-sources.jsonなし）のため差分取得スキップ", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T00:31:33+09:00", "source": "chat", "summary": "No significant new chat delta since last cursor", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T00:31:33+09:00", "source": "mail", "summary": "IMAP incremental check: new_count=0 actionable_count=0", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T00:31:33+09:00", "source": "calendar", "summary": "ICS sources config missing; calendar delta check skipped", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T01:01:24+09:00", "source": "chat", "summary": "No notable new chat delta since last cursor.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T01:01:24+09:00", "source": "mail", "summary": "IMAP incremental check: new_count=0, actionable_count=0.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T01:01:24+09:00", "source": "calendar", "summary": "ICS sources config missing; calendar delta check skipped.", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T01:31:40.817388+09:00", "source": "chat", "summary": "No new chat delta detected since 2026-03-05T01:01:24+09:00", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T01:31:40.817388+09:00", "source": "mail", "summary": "IMAP incremental check skipped: scripts/imap_monitor.py not found; last_seen_uid remains 78", "importance": "med", "action_needed": false}
-{"ts": "2026-03-05T01:31:40.817388+09:00", "source": "calendar", "summary": "ICS calendar check skipped: skills/ics-calendar-reader/references/ics-sources.json is missing", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T02:31:37.338518+09:00", "source": "chat", "summary": "新規の実務チャット差分なし（heartbeat実行のみ）", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T02:31:37.338518+09:00", "source": "mail", "summary": "新着メール1件（非アクション）: Apollo GraphQL「How Wayfair Ships Faster with a Graph That Scales」", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T02:31:37.338518+09:00", "source": "calendar", "summary": "ICSソース未設定のためカレンダー差分チェック未実施", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T03:01:07+09:00", "source": "chat", "summary": "新規の実務チャット差分なし（heartbeat実行のみ）", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T03:01:07+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着0件、要対応0件（last_seen_uid=79）", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T03:01:07+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置（skills/ics-calendar-reader/references/ics-sources.json なし）のため差分チェックをスキップ", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T03:31:31+09:00", "source": "chat", "summary": "前回チェック以降、要通知の会話更新なし。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T03:31:31+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着0件、要対応0件（last_seen_uid=79）。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T03:31:31+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置のため、カレンダー差分は未取得。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T04:01:25+09:00", "source": "chat", "summary": "前回チェック以降、heartbeat要求のみで要通知の新規チャット差分なし。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T04:01:25+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着0件、要対応0件（last_seen_uid=79）。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T04:01:25+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置（skills/ics-calendar-reader/references/ics-sources.jsonなし）のため差分チェックをスキップ。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T04:30:55+09:00", "source": "chat", "summary": "前回チェック以降、heartbeat要求のみで要通知の新規チャット差分なし。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T04:30:55+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着0件、要対応0件（last_seen_uid=79）。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T04:30:55+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置（skills/ics-calendar-reader/references/ics-sources.jsonなし）のため差分チェックをスキップ。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T05:01:05+09:00", "source": "chat", "summary": "前回チェック以降、heartbeat要求のみで要通知の新規チャット差分なし。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T05:01:05+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着0件、要対応0件（last_seen_uid=79）。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T05:01:05+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置（skills/ics-calendar-reader/references/ics-sources.jsonなし）のため差分チェックをスキップ。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T05:31:09+09:00", "source": "chat", "summary": "前回チェック以降、heartbeat要求のみで要通知の新規チャット差分なし。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T05:31:09+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着0件、要対応0件（last_seen_uid=79）。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T05:31:09+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置（skills/ics-calendar-reader/references/ics-sources.jsonなし）のため差分チェックをスキップ。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T06:00:59+09:00", "source": "chat", "summary": "前回チェック以降、heartbeat要求のみで要通知の新規チャット差分なし。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T06:00:59+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着0件、要対応0件（last_seen_uid=79）。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T06:00:59+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置（skills/ics-calendar-reader/references/ics-sources.jsonなし）のため差分チェックをスキップ。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T06:30:59+09:00", "source": "chat", "summary": "前回チェック以降、heartbeat要求のみで要通知の新規チャット差分なし。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T06:30:59+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着1件（UID 80）、要対応0件。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T06:30:59+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置（skills/ics-calendar-reader/references/ics-sources.jsonなし）のため差分チェックをスキップ。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T07:01:04+09:00", "source": "chat", "summary": "前回チェック以降、要通知の会話更新なし。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T07:01:04+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着1件、要対応0件（last_seen_uid=81）。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T07:01:04+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置（skills/ics-calendar-reader/references/ics-sources.jsonなし）のため差分チェックをスキップ。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T07:30:46+09:00", "source": "chat", "summary": "前回チェック以降、heartbeat要求のみで要通知の会話差分なし。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T07:30:46+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着0件、要対応0件（last_seen_uid=81）。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T07:30:46+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置（skills/ics-calendar-reader/references/ics-sources.json なし）のため差分チェックをスキップ。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T07:31:15+09:00", "source": "chat", "summary": "前回チェック以降、要通知の新規チャット差分なし（heartbeat要求のみ）。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T07:31:15+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着0件、要対応0件（last_seen_uid=81）。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T07:31:15+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置（skills/ics-calendar-reader/references/ics-sources.jsonなし）のため差分チェックをスキップ。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T08:01:18+09:00", "source": "chat", "summary": "前回チェック以降、要通知の新規チャット差分なし（heartbeat要求のみ）。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T08:01:18+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着0件、要対応0件（last_seen_uid=82）。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T08:01:18+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置（skills/ics-calendar-reader/references/ics-sources.json なし）のため差分チェックをスキップ。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T08:31:18+09:00", "source": "chat", "summary": "前回チェック以降、要通知の新規チャット差分なし（heartbeat実行のみ）。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T08:31:18+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着0件、要対応0件（last_seen_uid=82）。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T08:31:18+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置（skills/ics-calendar-reader/references/ics-sources.jsonなし）のため差分チェックをスキップ。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T09:31:00+09:00", "source": "chat", "summary": "前回チェック以降、heartbeat要求のみで要通知の新規チャット差分なし。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T09:31:00+09:00", "source": "mail", "summary": "IMAP差分チェック: 新着2件（うち1件は販促系で要対応性低）。緊急/要返信メールなし（last_seen_uid=85）。", "importance": "low", "action_needed": false}
-{"ts": "2026-03-05T09:31:00+09:00", "source": "calendar", "summary": "ICSソース設定ファイル未配置（skills/ics-calendar-reader/references/ics-sources.jsonなし）のため差分チェックをスキップ。", "importance": "low", "action_needed": false}
+{"ts":"2026-03-05T13:01:00+09:00","source":"chat","summary":"No new chat deltas since last_chat_cursor.","importance":"low","action_needed":false}
+{"ts":"2026-03-05T13:01:00+09:00","source":"mail","summary":"No new mail observed (last_mail_uid=96).","importance":"low","action_needed":false}
+{"ts":"2026-03-05T13:01:00+09:00","source":"calendar","summary":"ICS calendar not configured (last_calendar_hash=NO_CONFIG).","importance":"low","action_needed":false}
+{"ts": "2026-03-05T13:31:00+09:00", "source": "chat", "summary": "Slack DM対応で渋谷桜丘/南口の8人ランチ候補を予算1,500円前後・非チェーン優先で再選定。重複候補の修正要望あり。", "importance": "med", "action_needed": false}
+{"ts": "2026-03-05T13:31:00+09:00", "source": "mail", "summary": "IMAP増分チェック: 新着2件（UID 97-98）、要返信判定0件。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-05T13:31:00+09:00", "source": "calendar", "summary": "今後14日で予定3件を検出。新ハッシュを計算（前回NO_CONFIGから更新）。直近の緊急予定なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-05T13:31:00+09:00", "source": "web", "summary": "桜丘ランチ検索で主要グルメディレクトリ（HotPepper/食べログ/Retty）を更新確認。追加の高シグナル公式情報は限定的。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-05T14:01:00+09:00", "source": "chat", "summary": "No new chat deltas since last_chat_cursor.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-05T14:01:00+09:00", "source": "mail", "summary": "No new mail observed (last_mail_uid=98).", "importance": "low", "action_needed": false}
+{"ts": "2026-03-05T14:01:00+09:00", "source": "calendar", "summary": "No calendar delta detected since last check.", "importance": "low", "action_needed": false}
+{"ts":"2026-03-05T14:31:00+09:00","source":"chat","summary":"Slack DMで渋谷桜丘/南口の8人ランチ候補を再探索。条件は非チェーン・1,500円前後・重複排除。","importance":"med","action_needed":false}
+{"ts":"2026-03-05T14:31:00+09:00","source":"mail","summary":"No new mail observed (last_mail_uid=98).","importance":"low","action_needed":false}
+{"ts":"2026-03-05T14:31:00+09:00","source":"calendar","summary":"No calendar delta detected since last check.","importance":"low","action_needed":false}
+{"ts":"2026-03-05T14:31:00+09:00","source":"web","summary":"関連キーワードで再検索し、桜丘候補の詳細確認リンク（ミラフローレス/魚秀/道玄坂漁/旬彩料理てん）を収集。","importance":"low","action_needed":false}
+{"ts":"2026-03-05T15:31:00+09:00","source":"chat","summary":"No new chat deltas since last_chat_cursor.","importance":"low","action_needed":false}
+{"ts":"2026-03-05T15:31:00+09:00","source":"mail","summary":"No new mail observed (last_mail_uid=98).","importance":"low","action_needed":false}
+{"ts":"2026-03-05T15:31:00+09:00","source":"calendar","summary":"No calendar delta detected since last check.","importance":"low","action_needed":false}
+{"ts":"2026-03-05T16:31:00+09:00","source":"chat","summary":"No new chat deltas since last_chat_cursor.","importance":"low","action_needed":false}
+{"ts":"2026-03-05T16:31:00+09:00","source":"mail","summary":"No new mail observed (last_mail_uid=98).","importance":"low","action_needed":false}
+{"ts":"2026-03-05T16:31:00+09:00","source":"calendar","summary":"No calendar delta detected since last check.","importance":"low","action_needed":false}
+{"ts":"2026-03-05T18:01:00+09:00","source":"chat","summary":"No new chat deltas since last_chat_cursor.","importance":"low","action_needed":false}
+{"ts":"2026-03-05T18:01:00+09:00","source":"mail","summary":"No new mail observed (last_mail_uid=98).","importance":"low","action_needed":false}
+{"ts":"2026-03-05T18:01:00+09:00","source":"calendar","summary":"No calendar delta detected since last check.","importance":"low","action_needed":false}
+{"ts":"2026-03-05T18:31:00+09:00","source":"chat","summary":"No new chat deltas since last_chat_cursor.","importance":"low","action_needed":false}
+{"ts":"2026-03-05T18:31:00+09:00","source":"mail","summary":"No new mail observed (last_mail_uid=98).","importance":"low","action_needed":false}
+{"ts":"2026-03-05T18:31:00+09:00","source":"calendar","summary":"No calendar delta detected since last check.","importance":"low","action_needed":false}
+{"ts": "2026-03-09T01:42:15.073827+00:00", "source": "chat", "summary": "OpenClaw 2026.3.2→3.7 変更点の要約と現config影響確認を実施", "importance": "low", "action_needed": false}
