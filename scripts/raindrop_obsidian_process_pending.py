@@ -10,6 +10,9 @@ from urllib.parse import quote
 from urllib.request import Request, urlopen
 from urllib.error import HTTPError
 
+OPENCLAW_BIN = os.path.expanduser("~/.local/share/mise/installs/node/24.13.1/bin/openclaw")
+MAX_LLM_SOURCE_CHARS = 12000
+
 PENDING_PATH = os.path.expanduser("~/.openclaw/workspace/memory/raindrop-obsidian-pending.json")
 SECRETS_PATH = os.path.expanduser("~/.openclaw/secrets.json")
 VAULT_ARTICLES = os.path.expanduser("~/ドキュメント/openclaw/articles")
@@ -240,7 +243,7 @@ def detect_lang(text: str) -> str:
 
 
 def translate_to_japanese(text: str) -> str:
-    # Unofficial Google endpoint. If it fails, caller should fallback to original text.
+    # Backward-compatible fallback; primary path is llm_translate_and_summarize().
     chunks = []
     size = 1800
     for i in range(0, len(text), size):
@@ -286,6 +289,74 @@ def summarize(text: str):
     if len(picks) < 3:
         picks += ["(要約抽出が不十分なため本文確認推奨)"] * (3 - len(picks))
     return picks[:3]
+
+
+def llm_translate_and_summarize(title: str, url: str, source_text: str) -> tuple[str, list[str], bool]:
+    text = (source_text or "").strip()
+    if not text:
+        raise ValueError("Empty source_text")
+
+    clipped = text[:MAX_LLM_SOURCE_CHARS]
+    prompt = (
+        "以下の本文を処理し、JSONのみ返してください。説明文は禁止。\\n"
+        "要件:\\n"
+        "1) 本文が日本語以外なら自然な日本語へ翻訳し、本文が日本語ならそのまま返す\\n"
+        "2) 日本語で3行サマリーを作成（各行は簡潔な箇条書き1文）\\n"
+        "3) JSON形式は厳守\\n\\n"
+        "返却JSONスキーマ:\\n"
+        "{\\n"
+        "  \"ja_text\": \"string\",\\n"
+        "  \"bullets\": [\"string\", \"string\", \"string\"],\\n"
+        "  \"translated\": true/false\\n"
+        "}\\n\\n"
+        f"title: {title}\\n"
+        f"url: {url}\\n"
+        "本文:\\n"
+        f"{clipped}"
+    )
+
+    proc = subprocess.run(
+        [OPENCLAW_BIN, "agent", "--agent", "main", "--message", prompt, "--json"],
+        capture_output=True,
+        text=True,
+        timeout=90,
+        check=True,
+    )
+    data = json.loads(proc.stdout)
+    payloads = (((data or {}).get("result") or {}).get("payloads") or [])
+    text_out = ""
+    for p in payloads:
+        t = (p or {}).get("text")
+        if t:
+            text_out = t.strip()
+            break
+    if not text_out:
+        raise ValueError("No text payload from OpenClaw agent")
+
+    m = re.search(r"\{[\s\S]*\}", text_out)
+    if not m:
+        raise ValueError("No JSON object in LLM output")
+
+    parsed = json.loads(m.group(0))
+    ja_text = (parsed.get("ja_text") or "").strip()
+    bullets = parsed.get("bullets") or []
+    translated = bool(parsed.get("translated"))
+
+    if not ja_text:
+        raise ValueError("LLM output missing ja_text")
+
+    cleaned_bullets = []
+    for b in bullets:
+        if isinstance(b, str):
+            s = b.strip().lstrip("- ").strip()
+            if s:
+                cleaned_bullets.append(s)
+    if len(cleaned_bullets) < 3:
+        cleaned_bullets = summarize(ja_text)
+    else:
+        cleaned_bullets = cleaned_bullets[:3]
+
+    return ja_text, cleaned_bullets, translated
 
 
 def main():
@@ -380,16 +451,22 @@ def main():
             src_lang = detect_lang(markdown_body)
             ja_text = markdown_body
             translated = False
-            if src_lang != "ja":
-                try:
-                    ja_text = translate_to_japanese(markdown_body)
-                    translated = True
-                except Exception:
-                    ja_text = markdown_body
-                    translated = False
 
-            summary_source = ja_text if (src_lang == "ja" or translated) else markdown_body
-            bullets = summarize(summary_source)
+            try:
+                ja_text_llm, bullets_llm, translated_llm = llm_translate_and_summarize(title, source_url_used, markdown_body)
+                ja_text = ja_text_llm
+                bullets = bullets_llm
+                translated = translated_llm
+            except Exception:
+                if src_lang != "ja":
+                    try:
+                        ja_text = translate_to_japanese(markdown_body)
+                        translated = True
+                    except Exception:
+                        ja_text = markdown_body
+                        translated = False
+                summary_source = ja_text if (src_lang == "ja" or translated) else markdown_body
+                bullets = summarize(summary_source)
 
             with open(summary_path, "w", encoding="utf-8") as f:
                 f.write(
