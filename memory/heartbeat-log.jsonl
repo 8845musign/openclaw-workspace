@@ -25,3 +25,32 @@
 {"ts":"2026-03-05T18:31:00+09:00","source":"mail","summary":"No new mail observed (last_mail_uid=98).","importance":"low","action_needed":false}
 {"ts":"2026-03-05T18:31:00+09:00","source":"calendar","summary":"No calendar delta detected since last check.","importance":"low","action_needed":false}
 {"ts": "2026-03-09T01:42:15.073827+00:00", "source": "chat", "summary": "OpenClaw 2026.3.2→3.7 変更点の要約と現config影響確認を実施", "importance": "low", "action_needed": false}
+{"ts":"2026-03-09T12:27:00+09:00","source":"mail","summary":"新着メール6件。うち1件が要対応候補（TOBU POINT春の大還元祭エントリー案内）","importance":"high","action_needed":true}
+{"ts":"2026-03-09T12:57:00+09:00","source":"mail","summary":"新着メールなし","importance":"low","action_needed":false}
+{"ts":"2026-03-09T14:03:00+09:00","source":"mail","summary":"新着メール2件（要対応なし）","importance":"low","action_needed":false}
+{"ts":"2026-03-09T14:33:00+09:00","source":"mail","summary":"新着メール1件（要対応なし）","importance":"low","action_needed":false}
+{"ts":"2026-03-09T15:03:00+09:00","source":"mail","summary":"新着メールなし","importance":"low","action_needed":false}
+{"ts":"2026-03-09T16:03:00+09:00","source":"mail","summary":"新着メールなし","importance":"low","action_needed":false}
+{"ts":"2026-03-09T16:33:00+09:00","source":"mail","summary":"新着メール2件（アクション不要）","importance":"low","action_needed":false}
+{"ts":"2026-03-09T17:03:00+09:00","source":"mail","summary":"新着メールなし","importance":"low","action_needed":false}
+{"ts":"2026-03-09T17:33:00+09:00","source":"mail","summary":"新着メールなし","importance":"low","action_needed":false}
+{"ts":"2026-03-09T18:03:00+09:00","source":"mail","summary":"新着メール1件（非アクション）","importance":"low","action_needed":false}
+{"ts":"2026-03-09T18:33:00+09:00","source":"mail","summary":"新着メールなし","importance":"low","action_needed":false}
+{"ts":"2026-03-09T19:03:00+09:00","source":"mail","summary":"新着メール1件（非アクション）","importance":"low","action_needed":false}
+{"ts":"2026-03-09T19:33:00+09:00","source":"mail","summary":"新着メール2件（非アクション）","importance":"low","action_needed":false}
+{"ts":"2026-03-09T20:31:00+09:00","source":"mail","summary":"新着メール1件（非アクション）","importance":"low","action_needed":false}
+{"ts":"2026-03-09T21:01:00+09:00","source":"mail","summary":"新着メールなし","importance":"low","action_needed":false}
+{"ts": "2026-03-10T04:00:00+09:00", "source": "chat", "summary": "新規差分はheartbeatトリガーのみ（対応待ちタスクの増加なし）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T04:00:00+09:00", "source": "web", "summary": "quiet hoursのため追加Web探索は見送り（高優先イベントなし）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T04:32:00+09:00", "source": "chat", "summary": "前回04:00以降の新規差分はheartbeat呼び出しのみ。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T04:32:00+09:00", "source": "mail", "summary": "増分メール確認の更新なし（last_mail_uid=230のまま）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T04:32:00+09:00", "source": "calendar", "summary": "カレンダーハッシュ変化なし。直近の新規/更新予定なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T04:32:00+09:00", "source": "web", "summary": "関連トピックの高シグナル新着推薦は見つからず。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T05:02:00+09:00", "source": "chat", "summary": "04:32以降の新規差分はheartbeat応答のみ。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T05:02:00+09:00", "source": "mail", "summary": "新着メール更新なし（last_mail_uid=230）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T05:02:00+09:00", "source": "calendar", "summary": "カレンダー差分なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T05:02:00+09:00", "source": "web", "summary": "関連キーワードの有意な新規推薦なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T05:32:00+09:00", "source": "chat", "summary": "05:02以降の差分はheartbeat呼び出しのみ。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T05:32:00+09:00", "source": "mail", "summary": "新着メール増分なし（last_mail_uid=230）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T05:32:00+09:00", "source": "calendar", "summary": "予定更新なし（hash不変）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T05:32:00+09:00", "source": "web", "summary": "関連キーワードでの新規高シグナル情報なし。", "importance": "low", "action_needed": false}
