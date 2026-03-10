@@ -244,3 +244,7 @@
 {"ts": "2026-03-11T00:00:00+09:00", "source": "mail", "summary": "新着メール増分なし（last_mail_uid=264）。", "importance": "low", "action_needed": false}
 {"ts": "2026-03-11T00:00:00+09:00", "source": "calendar", "summary": "カレンダー更新なし（hash不変）。", "importance": "low", "action_needed": false}
 {"ts": "2026-03-11T00:00:00+09:00", "source": "web", "summary": "関連トピック（DNS/リトライ設計）で追加の高シグナル新着はなし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-11T00:30:00+09:00", "source": "chat", "summary": "00:00以降の新規差分はheartbeat実行と翻訳要約タスクのみ。高優先イベントなし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-11T00:30:00+09:00", "source": "mail", "summary": "新着メール増分なし（last_mail_uid=264）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-11T00:30:00+09:00", "source": "calendar", "summary": "カレンダー更新なし（hash不変）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-11T00:30:00+09:00", "source": "web", "summary": "関連トピックの新規高シグナル情報なし。", "importance": "low", "action_needed": false}
