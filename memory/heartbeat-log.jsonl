@@ -236,3 +236,11 @@
 {"ts": "2026-03-10T23:21:00+09:00", "source": "mail", "summary": "新着メール増分なし（last_mail_uid=259）。", "importance": "low", "action_needed": false}
 {"ts": "2026-03-10T23:21:00+09:00", "source": "calendar", "summary": "カレンダー更新なし（hash不変）。", "importance": "low", "action_needed": false}
 {"ts": "2026-03-10T23:21:00+09:00", "source": "web", "summary": "関連トピックの新規高シグナル情報なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T23:34:00+09:00", "source": "chat", "summary": "23:21以降の新規差分は今回のheartbeat実行依頼のみ。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T23:34:00+09:00", "source": "mail", "summary": "IMAP増分チェック: 新着0件（actionable 0件, last_seen_uid=264）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T23:34:00+09:00", "source": "calendar", "summary": "前回チェック以降のカレンダー差分情報はなし（last_calendar_hash据え置き）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T23:34:00+09:00", "source": "web", "summary": "関連キーワード（heartbeat運用/IMAP増分監視）で確認したが、高シグナルの新規推薦は見当たらず。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-11T00:00:00+09:00", "source": "chat", "summary": "23:34以降の新規差分はheartbeat実行と日次エラーレビュー対応のみ。高優先の新規アラートなし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-11T00:00:00+09:00", "source": "mail", "summary": "新着メール増分なし（last_mail_uid=264）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-11T00:00:00+09:00", "source": "calendar", "summary": "カレンダー更新なし（hash不変）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-11T00:00:00+09:00", "source": "web", "summary": "関連トピック（DNS/リトライ設計）で追加の高シグナル新着はなし。", "importance": "low", "action_needed": false}
