@@ -110,3 +110,26 @@
 {"ts": "2026-03-10T13:31:00+09:00", "source": "mail", "summary": "新着メール増分なし（last_mail_uid=230）。", "importance": "low", "action_needed": false}
 {"ts": "2026-03-10T13:31:00+09:00", "source": "calendar", "summary": "カレンダー更新なし（hash不変）。", "importance": "low", "action_needed": false}
 {"ts": "2026-03-10T13:31:00+09:00", "source": "web", "summary": "関連トピックの新規高シグナル情報なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T14:01:00+09:00", "source": "chat", "summary": "13:31以降の新規差分はheartbeat実行のみ。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T14:01:00+09:00", "source": "mail", "summary": "新着メール増分なし（last_mail_uid=230）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T14:01:00+09:00", "source": "calendar", "summary": "カレンダー更新なし（hash不変）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T14:01:00+09:00", "source": "web", "summary": "関連トピックの新規高シグナル情報なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T14:05:43+09:00", "source": "chat", "summary": "Heartbeat poll received; no new actionable chat delta since last cursor.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T14:05:43+09:00", "source": "mail", "summary": "IMAP incremental check complete: new_count=0, actionable_count=0 (last_seen_uid=245).", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T14:05:43+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar incremental check skipped.", "importance": "med", "action_needed": false}
+{"ts": "2026-03-10T14:20:39+09:00", "source": "chat", "summary": "Heartbeat poll received; no new actionable chat delta since last cursor.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T14:20:39+09:00", "source": "mail", "summary": "IMAP incremental check: new_count=0, actionable_count=0 (last_seen_uid=245).", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T14:20:39+09:00", "source": "calendar", "summary": "ICS sources config not found; calendar incremental check skipped.", "importance": "med", "action_needed": false}
+{"ts": "2026-03-10T14:20:39+09:00", "source": "web", "summary": "Topical web scan yielded no high-signal additions worth alerting.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T14:22:00+09:00", "source": "chat", "summary": "14:20以降の差分はheartbeat配信確認と進捗確認のみ。重要アクション追加なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T14:22:00+09:00", "source": "mail", "summary": "増分チェックベースで新着0件・要対応0件（last_mail_uid=245維持）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T14:22:00+09:00", "source": "calendar", "summary": "カレンダー差分検知なし（last_calendar_hash据え置き）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T14:22:00+09:00", "source": "web", "summary": "関連トピックの有意な新規推薦なし。", "importance": "low", "action_needed": false}
+{"ts":"2026-03-10T14:34:00+09:00","source":"chat","summary":"14:22以降の新規差分はheartbeat実行依頼のみ。重要アクション追加なし。","importance":"low","action_needed":false}
+{"ts":"2026-03-10T14:34:00+09:00","source":"mail","summary":"IMAP増分チェックで新着2件（UID 246-247）、要対応判定0件。","importance":"low","action_needed":false}
+{"ts":"2026-03-10T14:34:00+09:00","source":"calendar","summary":"ICSソース設定ファイル未検出のためカレンダー増分チェックをスキップ。","importance":"med","action_needed":false}
+{"ts":"2026-03-10T14:34:00+09:00","source":"web","summary":"関連キーワード（IMAP増分監視/メール要対応判定）で確認したが、高シグナルの新規推薦はなし。","importance":"low","action_needed":false}
+{"ts": "2026-03-10T14:52:00+09:00", "source": "chat", "summary": "14:34以降の新規差分はheartbeat実行のみ。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T14:52:00+09:00", "source": "mail", "summary": "新着メール増分なし（last_mail_uid=247）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T14:52:00+09:00", "source": "calendar", "summary": "カレンダー更新なし（hash不変）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T14:52:00+09:00", "source": "web", "summary": "関連トピックの新規高シグナル情報なし。", "importance": "low", "action_needed": false}
