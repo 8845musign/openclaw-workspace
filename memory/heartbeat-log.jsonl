@@ -168,3 +168,11 @@
 {"ts": "2026-03-10T16:51:00+09:00", "source": "mail", "summary": "新着メール増分なし（last_mail_uid=253）。", "importance": "low", "action_needed": false}
 {"ts": "2026-03-10T16:51:00+09:00", "source": "calendar", "summary": "カレンダー更新なし（hash不変）。", "importance": "low", "action_needed": false}
 {"ts": "2026-03-10T16:51:00+09:00", "source": "web", "summary": "関連トピックの新規高シグナル情報なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T17:04:00+09:00", "source": "chat", "summary": "16:51以降の新規差分はheartbeat実行依頼のみ。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T17:04:00+09:00", "source": "mail", "summary": "IMAP増分チェック: 新着0件（actionable 0件, last_seen_uid=253）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T17:04:00+09:00", "source": "calendar", "summary": "ICS再取得でハッシュ更新を検知。今後7日: Family予定2件（3/15 09:00 だいふく移動、09:30 だいふく健康診断）。", "importance": "med", "action_needed": false}
+{"ts": "2026-03-10T17:04:00+09:00", "source": "web", "summary": "関連キーワード（猫の予防ケア/ICS運用）で軽量検索したが、高シグナル新規リンクは抽出できず。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T17:21:00+09:00", "source": "chat", "summary": "17:04以降の新規差分はheartbeat実行のみ。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T17:21:00+09:00", "source": "mail", "summary": "新着メール増分なし（last_mail_uid=253）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T17:21:00+09:00", "source": "calendar", "summary": "カレンダー更新なし（hash不変）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T17:21:00+09:00", "source": "web", "summary": "関連トピックの新規高シグナル情報なし。", "importance": "low", "action_needed": false}
