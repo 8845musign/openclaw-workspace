@@ -176,3 +176,11 @@
 {"ts": "2026-03-10T17:21:00+09:00", "source": "mail", "summary": "新着メール増分なし（last_mail_uid=253）。", "importance": "low", "action_needed": false}
 {"ts": "2026-03-10T17:21:00+09:00", "source": "calendar", "summary": "カレンダー更新なし（hash不変）。", "importance": "low", "action_needed": false}
 {"ts": "2026-03-10T17:21:00+09:00", "source": "web", "summary": "関連トピックの新規高シグナル情報なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T17:34:00+09:00", "source": "chat", "summary": "17:21以降の差分: OpenClawで『特定cronだけLINE配信できるか』『1インスタンスで複数agentを動かせるか』の確認があった。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T17:34:00+09:00", "source": "mail", "summary": "新着1件（uid=254）。『【明日は3.11】実は知らないことだらけ。「ペット防災対策」みんなのリアルな現状は？』は件名が問いかけで返信要否を確認したい。", "importance": "high", "action_needed": true}
+{"ts": "2026-03-10T17:34:00+09:00", "source": "calendar", "summary": "ICS更新あり。今週の新規/更新候補: 3/15 Family『だいふく移動』『だいふく健康診断』を検知。", "importance": "med", "action_needed": false}
+{"ts": "2026-03-10T17:34:00+09:00", "source": "web", "summary": "関連キーワードで高シグナルな新規記事は見当たらず、今回は公式ドキュメント追跡を継続。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T17:51:00+09:00", "source": "chat", "summary": "17:34以降の新規差分はheartbeat実行のみ。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T17:51:00+09:00", "source": "mail", "summary": "新着メール増分なし（last_mail_uid=254）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T17:51:00+09:00", "source": "calendar", "summary": "カレンダー更新なし（hash不変）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T17:51:00+09:00", "source": "web", "summary": "関連トピックの新規高シグナル情報なし。", "importance": "low", "action_needed": false}
