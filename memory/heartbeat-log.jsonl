@@ -161,3 +161,10 @@
 {"ts": "2026-03-10T16:21:00+09:00", "source": "mail", "summary": "新着メール増分なし（last_mail_uid=252）。", "importance": "low", "action_needed": false}
 {"ts": "2026-03-10T16:21:00+09:00", "source": "calendar", "summary": "カレンダー更新なし（hash不変）。", "importance": "low", "action_needed": false}
 {"ts": "2026-03-10T16:21:00+09:00", "source": "web", "summary": "関連トピックの新規高シグナル情報なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T16:35:57+09:00", "source": "chat", "summary": "前回(16:21)以降の新規会話はheartbeat実行のみ", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T16:35:57+09:00", "source": "mail", "summary": "新着メール1件（朝日新聞社: プライバシーポリシー改定通知）。要返信なし", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T16:35:57+09:00", "source": "calendar", "summary": "直近7日で新規検出イベント2件（Family: だいふく移動/健康診断 3/15）", "importance": "med", "action_needed": false}
+{"ts": "2026-03-10T16:51:00+09:00", "source": "chat", "summary": "16:35以降の新規差分はheartbeat実行のみ。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T16:51:00+09:00", "source": "mail", "summary": "新着メール増分なし（last_mail_uid=253）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T16:51:00+09:00", "source": "calendar", "summary": "カレンダー更新なし（hash不変）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T16:51:00+09:00", "source": "web", "summary": "関連トピックの新規高シグナル情報なし。", "importance": "low", "action_needed": false}
