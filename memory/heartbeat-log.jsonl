@@ -133,3 +133,23 @@
 {"ts": "2026-03-10T14:52:00+09:00", "source": "mail", "summary": "新着メール増分なし（last_mail_uid=247）。", "importance": "low", "action_needed": false}
 {"ts": "2026-03-10T14:52:00+09:00", "source": "calendar", "summary": "カレンダー更新なし（hash不変）。", "importance": "low", "action_needed": false}
 {"ts": "2026-03-10T14:52:00+09:00", "source": "web", "summary": "関連トピックの新規高シグナル情報なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T15:04:00+09:00", "source": "chat", "summary": "14:52以降の新規差分はheartbeat実行依頼のみ。重要アクション追加なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T15:04:00+09:00", "source": "mail", "summary": "IMAP増分チェック結果: new_count=0, actionable_count=0, last_mail_uid=247（変化なし）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T15:04:00+09:00", "source": "calendar", "summary": "ICS sources設定ファイル未検出のため、カレンダー増分チェックをスキップ。", "importance": "med", "action_needed": false}
+{"ts": "2026-03-10T15:04:00+09:00", "source": "web", "summary": "トピック（IMAP増分監視/ICS設定）で軽量検索を試行したが、高シグナルの新規推薦は抽出できず。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T15:19:00+09:00", "source": "chat", "summary": "15:04以降の新規差分はheartbeat実行依頼のみ。重要アクション追加なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T15:19:00+09:00", "source": "mail", "summary": "前回増分チェック以降の更新情報なし（last_mail_uid=247を維持）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T15:19:00+09:00", "source": "calendar", "summary": "ICS設定差分情報なし（last_calendar_hash不変）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T15:19:00+09:00", "source": "web", "summary": "関連トピック（IMAP増分監視/ICS設定）で有意な新規推薦はなし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T15:21:00+09:00", "source": "chat", "summary": "直近差分はheartbeat処理のみ。新規の重要アクションなし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T15:21:00+09:00", "source": "mail", "summary": "前回チェック以降の増分変化なし（last_mail_uid=247据え置き）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T15:21:00+09:00", "source": "calendar", "summary": "ICSカレンダーの差分検知なし（hash不変）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T15:21:00+09:00", "source": "web", "summary": "関連トピックで有意な新規推薦なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T15:34:00+09:00", "source": "chat", "summary": "15:21以降の新規差分はheartbeat実行依頼のみ。重要アクション追加なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T15:34:00+09:00", "source": "mail", "summary": "IMAP増分チェックで新着2件（UID 248-249）、要対応判定0件。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T15:34:00+09:00", "source": "calendar", "summary": "ICSフィード内容のハッシュ更新を検知（新規/更新予定が発生した可能性）。", "importance": "med", "action_needed": false}
+{"ts": "2026-03-10T15:34:00+09:00", "source": "web", "summary": "関連トピック（IMAP増分監視/Google Calendar ICS運用）で参照価値の高い公式ドキュメントを2件抽出。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T15:51:00+09:00", "source": "chat", "summary": "15:34以降の新規差分はheartbeat実行のみ。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T15:51:00+09:00", "source": "mail", "summary": "新着メール増分なし（last_mail_uid=249）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T15:51:00+09:00", "source": "calendar", "summary": "カレンダー更新なし（hash不変）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T15:51:00+09:00", "source": "web", "summary": "関連トピックの新規高シグナル情報なし。", "importance": "low", "action_needed": false}
