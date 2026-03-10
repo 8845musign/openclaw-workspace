@@ -196,3 +196,15 @@
 {"ts": "2026-03-10T19:21:00+09:00", "source": "mail", "summary": "新着メール増分なし（last_mail_uid=254）。", "importance": "low", "action_needed": false}
 {"ts": "2026-03-10T19:21:00+09:00", "source": "calendar", "summary": "カレンダー更新なし（hash不変）。", "importance": "low", "action_needed": false}
 {"ts": "2026-03-10T19:21:00+09:00", "source": "web", "summary": "関連トピックの新規高シグナル情報なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T19:36:33+09:00", "source": "chat", "summary": "19:21以降の新規差分はheartbeat実行のみ。重要な新規依頼は未発生。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T19:36:33+09:00", "source": "mail", "summary": "IMAP増分チェックで新着1件（UID 259）、要対応判定0件。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T19:36:33+09:00", "source": "calendar", "summary": "ICS再取得でハッシュ更新（c33e…→c9c0…）。直近14日では3/15 Familyの2件＋3/20春分の日を確認。", "importance": "med", "action_needed": false}
+{"ts": "2026-03-10T19:36:33+09:00", "source": "web", "summary": "関連トピック（ペット防災/Google Calendar ICS）で公式情報3件を推薦候補として抽出。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T19:51:00+09:00", "source": "chat", "summary": "19:36以降の新規差分はheartbeat実行のみ。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T19:51:00+09:00", "source": "mail", "summary": "新着メール増分なし（last_mail_uid=259）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T19:51:00+09:00", "source": "calendar", "summary": "カレンダー更新なし（hash不変）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T19:51:00+09:00", "source": "web", "summary": "関連トピックの新規高シグナル情報なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T20:21:00+09:00", "source": "chat", "summary": "19:51以降の新規差分はheartbeat実行のみ。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T20:21:00+09:00", "source": "mail", "summary": "新着メール増分なし（last_mail_uid=259）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T20:21:00+09:00", "source": "calendar", "summary": "カレンダー更新なし（hash不変）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T20:21:00+09:00", "source": "web", "summary": "関連トピックの新規高シグナル情報なし。", "importance": "low", "action_needed": false}
