@@ -153,3 +153,11 @@
 {"ts": "2026-03-10T15:51:00+09:00", "source": "mail", "summary": "新着メール増分なし（last_mail_uid=249）。", "importance": "low", "action_needed": false}
 {"ts": "2026-03-10T15:51:00+09:00", "source": "calendar", "summary": "カレンダー更新なし（hash不変）。", "importance": "low", "action_needed": false}
 {"ts": "2026-03-10T15:51:00+09:00", "source": "web", "summary": "関連トピックの新規高シグナル情報なし。", "importance": "low", "action_needed": false}
+{"ts":"2026-03-10T16:05:53+09:00","source":"chat","summary":"前回カーソル以降の実質的な新規チャット差分なし（heartbeat実行のみ）","importance":"low","action_needed":false}
+{"ts":"2026-03-10T16:05:53+09:00","source":"mail","summary":"IMAP増分チェック: 新着0件（actionable 0件, last_seen_uid=252）","importance":"low","action_needed":false}
+{"ts":"2026-03-10T16:05:53+09:00","source":"calendar","summary":"今後7日: Family予定2件（3/15 09:00 だいふく移動、09:30 だいふく健康診断）を検出。カレンダーハッシュ更新あり","importance":"med","action_needed":false}
+{"ts":"2026-03-10T16:05:53+09:00","source":"web","summary":"関連リンク候補: AAFP/AAHA feline preventive guidelines, RFC 3501, Google Calendar ICS docs","importance":"low","action_needed":false}
+{"ts": "2026-03-10T16:21:00+09:00", "source": "chat", "summary": "16:05以降の新規差分はheartbeat実行のみ。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T16:21:00+09:00", "source": "mail", "summary": "新着メール増分なし（last_mail_uid=252）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T16:21:00+09:00", "source": "calendar", "summary": "カレンダー更新なし（hash不変）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-10T16:21:00+09:00", "source": "web", "summary": "関連トピックの新規高シグナル情報なし。", "importance": "low", "action_needed": false}
