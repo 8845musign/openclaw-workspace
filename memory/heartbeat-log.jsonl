@@ -407,3 +407,11 @@
 {"ts":"2026-03-11T17:31:00+09:00","source":"mail","summary":"IMAP増分の更新なし（last_mail_uid=282を維持）。","importance":"low","action_needed":false}
 {"ts":"2026-03-11T17:31:00+09:00","source":"calendar","summary":"カレンダー差分なし（last_calendar_hash=cc3a9c…を維持）。","importance":"low","action_needed":false}
 {"ts":"2026-03-11T17:31:00+09:00","source":"web","summary":"キーワード『IMAP incremental sync』『ICS delta hash』で軽量確認。新規高シグナル情報なし。","importance":"low","action_needed":false}
+{"ts": "2026-03-11T17:36:21.056943+09:00", "source": "chat", "summary": "Heartbeat poll received; no substantive new chat tasks since last cursor.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-11T17:36:21.056943+09:00", "source": "mail", "summary": "IMAP incremental check: new_count=0, actionable_count=0.", "importance": "low", "action_needed": false}
+{"ts": "2026-03-11T17:36:21.056943+09:00", "source": "calendar", "summary": "ICS hash updated; upcoming in 7d: 2 family events on 2026-03-15 morning.", "importance": "med", "action_needed": false}
+{"ts": "2026-03-11T17:36:21.056943+09:00", "source": "web", "summary": "Light web search run; no high-signal links passed quality filter.", "importance": "low", "action_needed": false}
+{"ts":"2026-03-11T18:01:00+09:00","source":"chat","summary":"17:36以降の新規差分はheartbeat実行依頼とSlack受領メッセージのみ。重要アクション追加なし。","importance":"low","action_needed":false}
+{"ts":"2026-03-11T18:01:00+09:00","source":"mail","summary":"IMAP増分の更新なし（last_mail_uid=287を維持）。","importance":"low","action_needed":false}
+{"ts":"2026-03-11T18:01:00+09:00","source":"calendar","summary":"カレンダー差分なし（last_calendar_hash=7cbaa7…を維持）。","importance":"low","action_needed":false}
+{"ts":"2026-03-11T18:01:00+09:00","source":"web","summary":"キーワード『IMAP incremental sync』『ICS family events』で軽量確認。新規高シグナル情報なし。","importance":"low","action_needed":false}
