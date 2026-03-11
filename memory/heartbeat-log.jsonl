@@ -347,3 +347,11 @@
 {"ts":"2026-03-11T11:31:00+09:00","source":"mail","summary":"IMAP増分の更新なし（last_mail_uid=271を維持）。","importance":"low","action_needed":false}
 {"ts":"2026-03-11T11:31:00+09:00","source":"calendar","summary":"カレンダー差分なし（last_calendar_hash=f13982…を維持）。","importance":"low","action_needed":false}
 {"ts":"2026-03-11T11:31:00+09:00","source":"web","summary":"キーワード『IMAP incremental sync』『heartbeat cadence』で軽量確認。新規高シグナル情報なし。","importance":"low","action_needed":false}
+{"ts": "2026-03-11T11:34:00+09:00", "source": "chat", "summary": "11:31以降の新規差分は今回のheartbeat実行依頼のみ。重要アクション追加なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-11T11:34:00+09:00", "source": "mail", "summary": "IMAP増分チェックで新着2件（UID 279-280）、要対応判定0件。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-11T11:34:00+09:00", "source": "calendar", "summary": "ICS再取得でハッシュ更新を検知（f13982…→cc3a9c…）。直近14日予定は3件（3/15 Family 2件、3/20 春分の日）。", "importance": "med", "action_needed": false}
+{"ts": "2026-03-11T11:34:00+09:00", "source": "web", "summary": "関連キーワード（IMAP増分監視/ICSカレンダー差分）で軽量確認。運用変更が必要な新規高シグナル情報なし。", "importance": "low", "action_needed": false}
+{"ts":"2026-03-11T12:01:00+09:00","source":"chat","summary":"11:34以降の新規差分はheartbeat実行依頼とSlack受領メッセージのみ。重要アクション追加なし。","importance":"low","action_needed":false}
+{"ts":"2026-03-11T12:01:00+09:00","source":"mail","summary":"IMAP増分の更新なし（last_mail_uid=280を維持）。","importance":"low","action_needed":false}
+{"ts":"2026-03-11T12:01:00+09:00","source":"calendar","summary":"カレンダー差分なし（last_calendar_hash=cc3a9c…を維持）。","importance":"low","action_needed":false}
+{"ts":"2026-03-11T12:01:00+09:00","source":"web","summary":"キーワード『IMAP incremental sync』『ICS delta hash』で軽量確認。新規高シグナル情報なし。","importance":"low","action_needed":false}
