@@ -466,3 +466,11 @@
 {"ts": "2026-03-11T23:09:00+09:00", "source": "web", "summary": "関連キーワード（JS/TSトレンド収集, Obsidian保存）で追加推薦は見送り。高シグナル新着なし。", "importance": "low", "action_needed": false}
 {"ts": "2026-03-11T23:30:06+09:00", "source": "chat", "summary": "日次エラーレビュー依頼を受領。raindrop-hourlyでDNS名前解決失敗が再発（6行）。", "importance": "high", "action_needed": true}
 {"ts": "2026-03-11T23:30:06+09:00", "source": "web", "summary": "既知方針（timeout/指数バックオフ/劣化運転）に沿った修正優先度を提示。明日再発確認をアクション化。", "importance": "med", "action_needed": true}
+{"ts": "2026-03-11T23:35:55+09:00", "source": "chat", "summary": "23:30以降の新規差分はheartbeat実行依頼のみ。新規の要対応チャットなし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-11T23:35:55+09:00", "source": "mail", "summary": "IMAP増分チェック: 新着4件（UID 292-295）、要対応判定0件。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-11T23:35:55+09:00", "source": "calendar", "summary": "ICS再取得でハッシュ更新を検知。今後7日予定は2件（既知の家族予定）。", "importance": "med", "action_needed": false}
+{"ts": "2026-03-11T23:35:55+09:00", "source": "web", "summary": "関連キーワード（DNS名前解決失敗/IMAP増分監視）で軽量検索を試行したが、新規高シグナル情報は抽出なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T00:01:00+09:00", "source": "chat", "summary": "23:35以降の新規差分はSlack側のレビュー確認メッセージと今回のheartbeat実行依頼のみ。新規要対応なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T00:01:00+09:00", "source": "mail", "summary": "このheartbeatでは追加の増分メール変化なし（last_mail_uid=295を維持）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T00:01:00+09:00", "source": "calendar", "summary": "このheartbeatではカレンダー差分検知なし（last_calendar_hashを維持）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T00:01:00+09:00", "source": "web", "summary": "キーワード『raindrop DNS retry』『IMAP incremental check』で軽量確認し、新規高シグナル推薦はなし。", "importance": "low", "action_needed": false}
