@@ -532,3 +532,7 @@
 {"ts": "2026-03-12T06:09:07+09:00", "source": "calendar", "summary": "3/15(日) Family予定2件を検出（だいふく移動/健康診断）", "importance": "med", "action_needed": false}
 {"ts": "2026-03-12T06:09:07+09:00", "source": "chat", "summary": "前回チェック以降の新規チャット差分は軽微（要対応なし）", "importance": "low", "action_needed": false}
 {"ts": "2026-03-12T06:09:07+09:00", "source": "web", "summary": "キーワード検索を試行したが取得失敗（403）", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T06:37:31+09:00", "source": "mail", "summary": "新着メール1件（非actionable）", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T06:37:31+09:00", "source": "calendar", "summary": "今後7日で既知のFamily予定2件を再確認（新規重要変更なし）", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T06:37:31+09:00", "source": "chat", "summary": "前回以降のチャット差分は方針確認のみ", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T06:37:31+09:00", "source": "web", "summary": "軽量Web確認は403で取得失敗（再試行予定）", "importance": "low", "action_needed": false}
