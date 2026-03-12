@@ -555,3 +555,10 @@
 {"ts": "2026-03-12T09:07:17+09:00", "source": "mail", "summary": "新着メール2件（いずれも非actionable）", "importance": "low", "action_needed": false}
 {"ts": "2026-03-12T09:07:17+09:00", "source": "calendar", "summary": "カレンダーハッシュ更新、直近の高優先新規イベントなし", "importance": "low", "action_needed": false}
 {"ts": "2026-03-12T09:07:17+09:00", "source": "web", "summary": "実用リンク2件取得（Calendar API errors / datetime docs）", "importance": "med", "action_needed": false}
+{"ts": "2026-03-12T09:36:21+09:00", "source": "chat", "summary": "No new chat deltas since last_chat_cursor (09:07 JST).", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T09:36:21+09:00", "source": "mail", "summary": "IMAP増分チェック: 新着1件（UID 303）、要対応判定0件。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T09:36:21+09:00", "source": "calendar", "summary": "ICS更新を検知（hash changed）。今後14日: 3/15 09:00 だいふく移動, 3/15 09:30 だいふく健康診断, 3/20 春分の日。", "importance": "med", "action_needed": false}
+{"ts": "2026-03-12T09:36:21+09:00", "source": "web", "summary": "高シグナル参照を2件抽出（Python imaplib docs / RFC 5545 recurrence）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T09:37:04+09:00", "source": "mail", "summary": "新着メールなし（UID 303維持）", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T09:37:04+09:00", "source": "calendar", "summary": "カレンダーハッシュ更新、直近で要対応の新規イベントなし", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T09:37:04+09:00", "source": "web", "summary": "実用リンク2件取得（Calendar API quota / hashlib docs）", "importance": "med", "action_needed": false}
