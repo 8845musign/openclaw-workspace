@@ -727,3 +727,7 @@
 {"ts": 1773342000, "source": "mail", "summary": "IMAP差分で新着2件（uid 328-329）を確認。いずれも通知系で要返信なし。", "importance": "low", "action_needed": false}
 {"ts": 1773342000, "source": "calendar", "summary": "ICSフィードの内容ハッシュが更新（新hash: d14434d3…）。直近で即対応が必要な予定は未検出。", "importance": "med", "action_needed": false}
 {"ts": 1773342000, "source": "web", "summary": "トピックキーワード（heartbeat/IMAP/ICS）で軽量検索を試行したが有意な結果を取得できず、今回は推薦リンクなし。", "importance": "low", "action_needed": false}
+{"ts": 1773343800, "source": "chat", "summary": "前回チェック以降は待機連絡とheartbeat依頼のみ。新規の要対応タスクなし。", "importance": "low", "action_needed": false}
+{"ts": 1773343800, "source": "mail", "summary": "IMAP差分確認（uid>329）で新着0件。追跡中の要返信メール増加なし。", "importance": "low", "action_needed": false}
+{"ts": 1773343800, "source": "calendar", "summary": "ICS内容ハッシュ更新（e10b2874…）を検知。直近で緊急対応が必要な予定は未検出。", "importance": "med", "action_needed": false}
+{"ts": 1773343800, "source": "web", "summary": "キーワード（iCalendar/IMAP/OpenClaw）で軽量検索を実行したが有意な新規リンク取得なし。", "importance": "low", "action_needed": false}
