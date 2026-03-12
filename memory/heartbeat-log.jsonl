@@ -568,3 +568,12 @@
 {"ts": "2026-03-12T10:37:05+09:00", "source": "mail", "summary": "新着メールなし（UID 305維持）", "importance": "low", "action_needed": false}
 {"ts": "2026-03-12T10:37:05+09:00", "source": "calendar", "summary": "カレンダーハッシュ更新、直近で要対応の新規イベントなし", "importance": "low", "action_needed": false}
 {"ts": "2026-03-12T10:37:05+09:00", "source": "web", "summary": "実用リンク2件取得（Calendar API performance / json docs）", "importance": "med", "action_needed": false}
+{"ts": 1773281213, "source": "chat", "summary": "チャット差分: 英文記事の日本語化+3行要約を処理（緊急対応なし）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T11:35:39+09:00", "source": "chat", "summary": "チャット差分: Amazon障害記事の日本語要約共有（AI支援変更のシニア承認必須化が主題）。新規タスク化はなし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T11:35:39+09:00", "source": "mail", "summary": "IMAP増分チェック: 新着2件（UID 306-307）。うち1件が要対応候補（件名が問いかけ: 住宅案内メール）。", "importance": "high", "action_needed": true}
+{"ts": "2026-03-12T11:35:39+09:00", "source": "calendar", "summary": "ICS更新を検知（hash=0c308ba1…）。今後14日で予定3件（3/15 だいふく移動・健康診断、3/20 春分の日）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T11:35:39+09:00", "source": "web", "summary": "関連キーワード（AI-assisted code review policy / IMAP incremental check）で軽量確認。今回は追加推薦に値する新規高シグナル情報なし。", "importance": "low", "action_needed": false}
+{"ts":"2026-03-12T11:36:00+09:00","source":"chat","summary":"11:35以降の新規差分は今回のheartbeat実行依頼のみ。新規要対応タスクなし。","importance":"low","action_needed":false}
+{"ts":"2026-03-12T11:36:00+09:00","source":"mail","summary":"IMAP増分状態は前回から変化なし（last_mail_uid=307維持）。","importance":"low","action_needed":false}
+{"ts":"2026-03-12T11:36:00+09:00","source":"calendar","summary":"カレンダー差分は前回から変化なし（last_calendar_hash=0c308ba1…維持）。","importance":"low","action_needed":false}
+{"ts":"2026-03-12T11:36:00+09:00","source":"web","summary":"関連キーワード（heartbeat運用）で追加推薦に値する新規高シグナル情報なし。","importance":"low","action_needed":false}
