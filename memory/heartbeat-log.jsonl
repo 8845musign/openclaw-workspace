@@ -739,3 +739,11 @@
 {"ts": 1773347400, "source": "mail", "summary": "IMAP差分確認（uid>329）で新着0件。要対応メールなし。", "importance": "low", "action_needed": false}
 {"ts": 1773347400, "source": "calendar", "summary": "ICSハッシュ更新（f897d861…）を検知。直近で緊急対応が必要な予定変更は未検出。", "importance": "med", "action_needed": false}
 {"ts": 1773347400, "source": "web", "summary": "キーワード（RFC5545/IMAP UID/OpenClaw heartbeat）で軽量検索したが有意な新規リンクなし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-13T05:34:00+09:00", "source": "chat", "summary": "05:30以降の新規チャット差分は今回のheartbeat実行依頼のみ。新規要対応タスクなし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-13T05:34:00+09:00", "source": "mail", "summary": "IMAP増分チェック: 新着0件（last_mail_uid=329維持）、要返信判定0件。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-13T05:34:00+09:00", "source": "calendar", "summary": "ICSハッシュ更新を検知。今後14日予定は4件（3/15 Family 2件、3/20 春分の日、3/27 沖縄旅行）。", "importance": "med", "action_needed": false}
+{"ts": "2026-03-13T05:34:00+09:00", "source": "web", "summary": "キーワード（猫 健康診断 持ち物 / Google Calendar ICS update / IMAP UID incremental）で軽量検索を試行したが、高シグナル新規リンクは抽出できず。", "importance": "low", "action_needed": false}
+{"ts": 1773349200, "source": "chat", "summary": "直近差分はheartbeat応答のみ。要対応の新規タスクなし。", "importance": "low", "action_needed": false}
+{"ts": 1773349200, "source": "mail", "summary": "IMAP差分（uid>329）新着0件。返信/確認が必要なメールなし。", "importance": "low", "action_needed": false}
+{"ts": 1773349200, "source": "calendar", "summary": "ICSハッシュ更新（e7e3b787…）を検知。直近で緊急対応の予定変更は未検出。", "importance": "med", "action_needed": false}
+{"ts": 1773349200, "source": "web", "summary": "キーワード（VALARM/IMAP UID/OpenClaw）で軽量検索したが高シグナル結果なし。", "importance": "low", "action_needed": false}
