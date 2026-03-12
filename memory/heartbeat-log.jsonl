@@ -577,3 +577,23 @@
 {"ts":"2026-03-12T11:36:00+09:00","source":"mail","summary":"IMAP増分状態は前回から変化なし（last_mail_uid=307維持）。","importance":"low","action_needed":false}
 {"ts":"2026-03-12T11:36:00+09:00","source":"calendar","summary":"カレンダー差分は前回から変化なし（last_calendar_hash=0c308ba1…維持）。","importance":"low","action_needed":false}
 {"ts":"2026-03-12T11:36:00+09:00","source":"web","summary":"関連キーワード（heartbeat運用）で追加推薦に値する新規高シグナル情報なし。","importance":"low","action_needed":false}
+{"ts": "2026-03-12T12:06:00+09:00", "source": "chat", "summary": "X投稿本文の整形依頼を2件処理（日本語3行サマリーJSON）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T12:06:00+09:00", "source": "mail", "summary": "IMAP増分チェック: 新着1件（UID 308）、要対応判定0件。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T12:06:00+09:00", "source": "calendar", "summary": "ICS再取得でハッシュ更新、7日以内予定2件（Family）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T12:06:00+09:00", "source": "web", "summary": "関連キーワードで軽量検索を試行したが403で取得不可。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T12:36:00+09:00", "source": "chat", "summary": "12:06以降の差分: インターセッションで静穏運転継続を確認。新規要対応タスクは発生なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T12:36:00+09:00", "source": "mail", "summary": "IMAP増分の新規確認材料なし（last_mail_uid=308を維持）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T12:36:00+09:00", "source": "calendar", "summary": "カレンダーは前回状態を維持（last_calendar_hash=1bdc1b4c…）。直近の追加・変更通知なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T12:36:00+09:00", "source": "web", "summary": "キーワード『Perplexity Personal Computer / OpenClaw』で軽量検索し、公式製品ページ等の高シグナル情報を確認。", "importance": "med", "action_needed": false}
+{"ts": "2026-03-12T13:06:00+09:00", "source": "chat", "summary": "12:36以降の差分はheartbeat応答のみ。新規要対応タスクなし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T13:06:00+09:00", "source": "mail", "summary": "IMAP増分の更新なし（last_mail_uid=308維持）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T13:06:00+09:00", "source": "calendar", "summary": "ICS差分なし（last_calendar_hash=1bdc1b4c…維持）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T13:06:00+09:00", "source": "web", "summary": "キーワード『OpenClaw Perplexity Personal Computer』で軽量確認。前回共有以上の新規高シグナル情報なし。", "importance": "low", "action_needed": false}
+{"ts":"2026-03-12T13:34:49+09:00","source":"chat","summary":"13:06以降の新規差分は今回のheartbeat実行依頼のみ。新規要対応タスクなし。","importance":"low","action_needed":false}
+{"ts":"2026-03-12T13:34:49+09:00","source":"mail","summary":"IMAP増分の新規更新情報は未確認（last_mail_uid=308を維持）。","importance":"low","action_needed":false}
+{"ts":"2026-03-12T13:34:49+09:00","source":"calendar","summary":"ICS差分の新規検知なし（last_calendar_hash=1bdc1b4c…を維持）。","importance":"low","action_needed":false}
+{"ts":"2026-03-12T13:34:49+09:00","source":"web","summary":"キーワード『OpenClaw heartbeat / IMAP incremental / ICS delta』で軽量確認。追加推薦に値する新規高シグナル情報なし。","importance":"low","action_needed":false}
+{"ts":"2026-03-12T13:36:00+09:00","source":"chat","summary":"13:34以降の新規差分は今回のheartbeat実行依頼のみ。新規要対応タスクなし。","importance":"low","action_needed":false}
+{"ts":"2026-03-12T13:36:00+09:00","source":"mail","summary":"IMAP増分の新規更新情報は未確認（last_mail_uid=308を維持）。","importance":"low","action_needed":false}
+{"ts":"2026-03-12T13:36:00+09:00","source":"calendar","summary":"ICS差分の新規検知なし（last_calendar_hash=1bdc1b4c…を維持）。","importance":"low","action_needed":false}
+{"ts":"2026-03-12T13:36:00+09:00","source":"web","summary":"キーワード『OpenClaw heartbeat / IMAP incremental / ICS delta』で軽量確認。追加推薦に値する新規高シグナル情報なし。","importance":"low","action_needed":false}
