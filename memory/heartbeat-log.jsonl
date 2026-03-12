@@ -609,3 +609,23 @@
 {"ts": "2026-03-12T15:06:00+09:00", "source": "mail", "summary": "IMAP増分の新規更新情報は未確認（last_mail_uid=308を維持）。", "importance": "low", "action_needed": false}
 {"ts": "2026-03-12T15:06:00+09:00", "source": "calendar", "summary": "ICS差分の新規検知なし（last_calendar_hash=1bdc1b4c…を維持）。", "importance": "low", "action_needed": false}
 {"ts": "2026-03-12T15:06:00+09:00", "source": "web", "summary": "キーワード『heartbeat 静穏運転 / IMAP incremental / ICS delta』で軽量確認。追加推薦に値する新規高シグナル情報なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T15:36:21+09:00", "source": "chat", "summary": "前回チェック以降のチャット差分はheartbeat実行のみ。新規タスク増加なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T15:36:21+09:00", "source": "mail", "summary": "IMAP増分チェックで新着7件（UID 309-315）。要返信判定は0件。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T15:36:21+09:00", "source": "calendar", "summary": "今後14日で予定3件を検出。3/15にFamily予定2件（だいふく移動・健康診断）、3/20に春分の日。", "importance": "high", "action_needed": true}
+{"ts": "2026-03-12T15:36:21+09:00", "source": "web", "summary": "関連キーワード（猫 健康診断 事前準備）で高シグナル情報を選定、実行通知に1件反映。", "importance": "med", "action_needed": false}
+{"ts": "2026-03-12T15:37:17+09:00", "source": "chat", "summary": "前回チェック以降のチャット差分はheartbeat実行依頼のみ。新規要対応タスクなし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T15:37:17+09:00", "source": "mail", "summary": "IMAP増分の新規更新情報は未確認（last_mail_uid=315を維持）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T15:37:17+09:00", "source": "calendar", "summary": "3/15のFamily予定2件（だいふく移動・健康診断）は継続して要確認。", "importance": "high", "action_needed": true}
+{"ts": "2026-03-12T15:37:17+09:00", "source": "web", "summary": "追加推薦に値する新規高シグナル情報なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T16:07:11+09:00", "source": "chat", "summary": "前回チェック以降の新規差分はheartbeat実行依頼とSlack受領メッセージのみ。新規要対応タスクなし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T16:07:11+09:00", "source": "mail", "summary": "IMAP増分の新規更新情報は未確認（last_mail_uid=315を維持）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T16:07:11+09:00", "source": "calendar", "summary": "直近の予定セットは変化なし（3/15 Family 2件、3/20 春分の日）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T16:07:11+09:00", "source": "web", "summary": "関連キーワード（heartbeat 静穏運転 / IMAP incremental / ICS delta）で軽量確認。追加推薦に値する新規高シグナル情報なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T16:36:56+09:00", "source": "chat", "summary": "16:07以降の新規差分はheartbeat実行依頼のみ。新規要対応タスクなし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T16:36:56+09:00", "source": "mail", "summary": "IMAP増分の新規更新情報は未確認（last_mail_uid=315を維持）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T16:36:56+09:00", "source": "calendar", "summary": "直近の予定セットは変化なし（3/15 Family 2件、3/20 春分の日）。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T16:36:56+09:00", "source": "web", "summary": "関連キーワード（heartbeat 静穏運転 / IMAP incremental / ICS delta）で軽量確認。追加推薦に値する新規高シグナル情報なし。", "importance": "low", "action_needed": false}
+{"ts":"2026-03-12T17:07:21+09:00","source":"chat","summary":"16:36以降の新規差分は今回のheartbeat実行依頼のみ。新規要対応タスクなし。","importance":"low","action_needed":false}
+{"ts":"2026-03-12T17:07:21+09:00","source":"mail","summary":"IMAP状態を確認（last_seen_uid=315）。前回以降の新着増分は未検知。","importance":"low","action_needed":false}
+{"ts":"2026-03-12T17:07:21+09:00","source":"calendar","summary":"直近予定セットは変化なし（3/15 Family 2件、3/20 春分の日）。","importance":"low","action_needed":false}
+{"ts":"2026-03-12T17:07:21+09:00","source":"web","summary":"関連キーワード（IMAP incremental / ICS delta / heartbeat運用）を軽量確認。追加推薦に値する新規高シグナル情報なし。","importance":"low","action_needed":false}
