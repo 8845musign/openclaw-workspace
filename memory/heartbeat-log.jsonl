@@ -667,3 +667,14 @@
 {"ts": "2026-03-12T21:32:20+09:00", "source": "mail", "summary": "IMAP増分チェックで新着5件（UID 322-326）を検知。要返信判定は0件。", "importance": "low", "action_needed": false}
 {"ts": "2026-03-12T21:32:20+09:00", "source": "calendar", "summary": "今後14日の予定3件を再確認（3/15 Family 2件、3/20 春分の日）。新規/更新イベントなし。", "importance": "low", "action_needed": false}
 {"ts": "2026-03-12T21:32:20+09:00", "source": "web", "summary": "キーワード（猫 健康診断 準備 / IMAP incremental / ICS delta）で軽量確認。追加推薦に値する新規高シグナル情報なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T21:35:45+09:00", "source": "chat", "summary": "21:32以降の差分は今回のheartbeat実行依頼のみ。新規要対応タスクなし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T21:35:45+09:00", "source": "mail", "summary": "IMAP増分チェックで新着0件（last_mail_uid=326維持）。要返信メールなし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T21:35:45+09:00", "source": "calendar", "summary": "今後14日の予定は3件（3/15 Family 2件、3/20 春分の日）で変化なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T21:35:45+09:00", "source": "web", "summary": "キーワード（猫 健康診断 持ち物 / IMAP incremental / ICS delta）で軽量検索を試行。新規高シグナル推薦は追加なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T22:00:00+09:00", "source": "chat", "summary": "Slack側の直近差分は「3/15朝の2件を継続監視、変化時は即共有」で一貫。新規アクション追加なし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T22:00:00+09:00", "source": "mail", "summary": "このheartbeatでは新着メール差分を確認できる追加シグナルなし。", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T22:00:00+09:00", "source": "calendar", "summary": "このheartbeatではカレンダー更新の追加シグナルなし（3/15朝の監視継続方針）。", "importance": "low", "action_needed": false}
+{"ts":"2026-03-12T22:30:00+09:00","source":"chat","summary":"22:00以降の新規差分は今回のheartbeat実行依頼のみ。新規要対応タスクなし。","importance":"low","action_needed":false}
+{"ts":"2026-03-12T22:30:00+09:00","source":"mail","summary":"前回確認以降の新着・要対応メールの追加シグナルなし（last_mail_uid=326維持）。","importance":"low","action_needed":false}
+{"ts":"2026-03-12T22:30:00+09:00","source":"calendar","summary":"直近予定セットは変化なし（3/15 Family 2件、3/20 春分の日）。","importance":"low","action_needed":false}
+{"ts":"2026-03-12T22:30:00+09:00","source":"web","summary":"関連キーワード（猫 健康診断 準備 / IMAP incremental / ICS delta）での追加推薦に値する新規高シグナル情報なし。","importance":"low","action_needed":false}
