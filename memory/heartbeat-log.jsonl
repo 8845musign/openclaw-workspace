@@ -706,3 +706,11 @@
 {"ts":"2026-03-13T01:30:00+09:00","source":"mail","summary":"前回確認以降の新着・要対応メールの追加シグナルなし（last_mail_uid=326維持）。","importance":"low","action_needed":false}
 {"ts":"2026-03-13T01:30:00+09:00","source":"calendar","summary":"直近予定セットは変化なし（3/15 Family 2件、3/20 春分の日）。","importance":"low","action_needed":false}
 {"ts":"2026-03-13T01:30:00+09:00","source":"web","summary":"関連キーワード（URLError DNS retry / 猫 健康診断 準備）で追加推薦に値する新規高シグナル情報なし。","importance":"low","action_needed":false}
+{"ts": 1773333373, "source": "chat", "summary": "heartbeat実行。直近差分は静穏監視継続（3/15朝の家族予定2件を注視）", "importance": "low", "action_needed": false}
+{"ts": 1773333373, "source": "mail", "summary": "IMAP新着1件（非アクション）; last_seen_uid=327", "importance": "low", "action_needed": false}
+{"ts": 1773333373, "source": "calendar", "summary": "今後7日イベント3件（3/15 家族予定2件, 3/20 春分の日）。前回からカレンダーハッシュ更新あり", "importance": "med", "action_needed": false}
+{"ts": 1773333373, "source": "web", "summary": "関連キーワードで軽量検索を試行したが高シグナル結果を抽出できず（今回は推薦なし）", "importance": "low", "action_needed": false}
+{"ts":"2026-03-13T02:00:00+09:00","source":"chat","summary":"01:36以降の新規差分は今回のheartbeat実行依頼のみ。静穏監視継続（3/15朝の2件注視）。","importance":"low","action_needed":false}
+{"ts":"2026-03-13T02:00:00+09:00","source":"mail","summary":"前回確認以降の新着・要対応メールの追加シグナルなし（last_mail_uid=327維持）。","importance":"low","action_needed":false}
+{"ts":"2026-03-13T02:00:00+09:00","source":"calendar","summary":"直近予定セットは変化なし（3/15 Family 2件、3/20 春分の日）。","importance":"low","action_needed":false}
+{"ts":"2026-03-13T02:00:00+09:00","source":"web","summary":"関連キーワード（URLError DNS retry / 猫 健康診断 準備）で追加推薦に値する新規高シグナル情報なし。","importance":"low","action_needed":false}
