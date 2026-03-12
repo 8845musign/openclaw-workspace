@@ -731,3 +731,7 @@
 {"ts": 1773343800, "source": "mail", "summary": "IMAP差分確認（uid>329）で新着0件。追跡中の要返信メール増加なし。", "importance": "low", "action_needed": false}
 {"ts": 1773343800, "source": "calendar", "summary": "ICS内容ハッシュ更新（e10b2874…）を検知。直近で緊急対応が必要な予定は未検出。", "importance": "med", "action_needed": false}
 {"ts": 1773343800, "source": "web", "summary": "キーワード（iCalendar/IMAP/OpenClaw）で軽量検索を実行したが有意な新規リンク取得なし。", "importance": "low", "action_needed": false}
+{"ts": 1773345600, "source": "chat", "summary": "前回からの差分はheartbeat応答のみ。新規依頼・未処理タスクなし。", "importance": "low", "action_needed": false}
+{"ts": 1773345600, "source": "mail", "summary": "IMAP差分（uid>329）を確認、新着0件。要返信案件なし。", "importance": "low", "action_needed": false}
+{"ts": 1773345600, "source": "calendar", "summary": "ICSハッシュ更新を検知（e935e531…）。直近で高優先の予定変化は未検出。", "importance": "med", "action_needed": false}
+{"ts": 1773345600, "source": "web", "summary": "キーワード（ICS/IMAP/OpenClaw）で軽量検索実施。高シグナル結果なし。", "importance": "low", "action_needed": false}
