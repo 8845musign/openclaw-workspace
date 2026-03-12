@@ -735,3 +735,7 @@
 {"ts": 1773345600, "source": "mail", "summary": "IMAP差分（uid>329）を確認、新着0件。要返信案件なし。", "importance": "low", "action_needed": false}
 {"ts": 1773345600, "source": "calendar", "summary": "ICSハッシュ更新を検知（e935e531…）。直近で高優先の予定変化は未検出。", "importance": "med", "action_needed": false}
 {"ts": 1773345600, "source": "web", "summary": "キーワード（ICS/IMAP/OpenClaw）で軽量検索実施。高シグナル結果なし。", "importance": "low", "action_needed": false}
+{"ts": 1773347400, "source": "chat", "summary": "前回以降はheartbeat往復のみ。新規タスク発生なし。", "importance": "low", "action_needed": false}
+{"ts": 1773347400, "source": "mail", "summary": "IMAP差分確認（uid>329）で新着0件。要対応メールなし。", "importance": "low", "action_needed": false}
+{"ts": 1773347400, "source": "calendar", "summary": "ICSハッシュ更新（f897d861…）を検知。直近で緊急対応が必要な予定変更は未検出。", "importance": "med", "action_needed": false}
+{"ts": 1773347400, "source": "web", "summary": "キーワード（RFC5545/IMAP UID/OpenClaw heartbeat）で軽量検索したが有意な新規リンクなし。", "importance": "low", "action_needed": false}
