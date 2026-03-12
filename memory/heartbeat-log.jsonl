@@ -562,3 +562,6 @@
 {"ts": "2026-03-12T09:37:04+09:00", "source": "mail", "summary": "新着メールなし（UID 303維持）", "importance": "low", "action_needed": false}
 {"ts": "2026-03-12T09:37:04+09:00", "source": "calendar", "summary": "カレンダーハッシュ更新、直近で要対応の新規イベントなし", "importance": "low", "action_needed": false}
 {"ts": "2026-03-12T09:37:04+09:00", "source": "web", "summary": "実用リンク2件取得（Calendar API quota / hashlib docs）", "importance": "med", "action_needed": false}
+{"ts": "2026-03-12T10:07:10+09:00", "source": "mail", "summary": "新着メール2件、うち1件actionable判定（ライフカード案内）", "importance": "high", "action_needed": true}
+{"ts": "2026-03-12T10:07:10+09:00", "source": "calendar", "summary": "カレンダーハッシュ更新、直近で要対応の新規予定なし", "importance": "low", "action_needed": false}
+{"ts": "2026-03-12T10:07:10+09:00", "source": "web", "summary": "実用リンク2件取得（Calendar sync guide / zoneinfo docs）", "importance": "med", "action_needed": false}
