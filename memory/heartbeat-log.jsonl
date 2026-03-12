@@ -723,3 +723,7 @@
 {"ts":"2026-03-13T03:30:00+09:00","source":"mail","summary":"前回確認以降の新着・要対応メールの追加シグナルなし（last_mail_uid=327維持）。","importance":"low","action_needed":false}
 {"ts":"2026-03-13T03:30:00+09:00","source":"calendar","summary":"直近予定セットは変化なし（3/15 Family 2件、3/20 春分の日）。","importance":"low","action_needed":false}
 {"ts":"2026-03-13T03:30:00+09:00","source":"web","summary":"関連キーワード（heartbeat 静穏運転 / 猫 健康診断 準備）で軽量確認し、追加推薦に値する新規高シグナル情報なし。","importance":"low","action_needed":false}
+{"ts": 1773342000, "source": "chat", "summary": "heartbeat poll受信。前回以降の新規チャット差分は定型チェック依頼のみ。", "importance": "low", "action_needed": false}
+{"ts": 1773342000, "source": "mail", "summary": "IMAP差分で新着2件（uid 328-329）を確認。いずれも通知系で要返信なし。", "importance": "low", "action_needed": false}
+{"ts": 1773342000, "source": "calendar", "summary": "ICSフィードの内容ハッシュが更新（新hash: d14434d3…）。直近で即対応が必要な予定は未検出。", "importance": "med", "action_needed": false}
+{"ts": 1773342000, "source": "web", "summary": "トピックキーワード（heartbeat/IMAP/ICS）で軽量検索を試行したが有意な結果を取得できず、今回は推薦リンクなし。", "importance": "low", "action_needed": false}
