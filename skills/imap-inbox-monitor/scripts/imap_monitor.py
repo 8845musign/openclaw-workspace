@@ -107,33 +107,6 @@ def fetch_message(imap: imaplib.IMAP4, uid: bytes) -> Dict[str, Any] | None:
     }
 
 
-def needs_action(m: Dict[str, Any]) -> Tuple[bool, str]:
-    text = f"{m.get('subject','')} {m.get('snippet','')}".lower()
-    from_text = (m.get("from") or "").lower()
-
-    action_keywords = [
-        "要返信", "要対応", "至急", "締切", "確認お願いします", "対応お願いします",
-        "action required", "urgent", "deadline", "please reply", "confirm", "invoice", "payment",
-        "verify", "security alert", "password", "failed", "suspended",
-    ]
-
-    no_action_senders = ["noreply", "no-reply", "do-not-reply"]
-
-    if any(x in from_text for x in no_action_senders):
-        if any(k in text for k in ["verify", "security alert", "password", "failed", "suspended"]):
-            return True, "セキュリティ系通知の可能性"
-        return False, "自動通知系"
-
-    for k in action_keywords:
-        if k in text:
-            return True, f"キーワード検知: {k}"
-
-    if "?" in (m.get("subject") or "") or "？" in (m.get("subject") or ""):
-        return True, "件名が問いかけ"
-
-    return False, "通常連絡"
-
-
 def append_memory(path: Path, records: List[Dict[str, Any]]) -> None:
     if not records:
         return
@@ -159,8 +132,7 @@ def run(args: argparse.Namespace) -> None:
             result = {
                 "mailbox": mailbox,
                 "new_count": 0,
-                "actionable_count": 0,
-                "actionable": [],
+                "messages": [],
                 "message": "新着メールはありません",
             }
             print(json.dumps(result, ensure_ascii=False, indent=2))
@@ -175,9 +147,6 @@ def run(args: argparse.Namespace) -> None:
         for uid in new_uids[-args.limit:]:
             m = fetch_message(imap, str(uid).encode())
             if m:
-                actionable, reason = needs_action(m)
-                m["actionable"] = actionable
-                m["action_reason"] = reason
                 m["checked_at"] = datetime.now(timezone.utc).isoformat()
                 fetched.append(m)
 
@@ -193,21 +162,21 @@ def run(args: argparse.Namespace) -> None:
             },
         )
 
-        actionable = [m for m in fetched if m.get("actionable")]
         result = {
             "mailbox": mailbox,
             "previous_last_seen_uid": last_seen_uid,
             "last_seen_uid": max_seen,
             "new_count": len(fetched),
-            "actionable_count": len(actionable),
-            "actionable": [
+            "messages": [
                 {
                     "uid": m["uid"],
+                    "date": m["date"],
                     "from": m["from"],
+                    "to": m["to"],
                     "subject": m["subject"],
-                    "reason": m["action_reason"],
+                    "snippet": m["snippet"],
                 }
-                for m in actionable
+                for m in fetched
             ],
         }
         print(json.dumps(result, ensure_ascii=False, indent=2))

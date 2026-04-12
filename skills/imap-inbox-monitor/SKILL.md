@@ -1,6 +1,6 @@
 ---
 name: imap-inbox-monitor
-description: Monitor IMAP inbox incrementally for new mail only, store per-mail summaries, and report actionable items in chat. Use when the user wants a recurring or on-demand mail check workflow that (1) fetches only messages newer than the previous run, (2) remembers summaries, and (3) alerts on emails likely needing response.
+description: Monitor IMAP inbox incrementally for new mail only, store per-mail summaries, and return all newly arrived messages in a chat-ready JSON shape. Use when the user wants a recurring or on-demand mail check workflow that (1) fetches only messages newer than the previous run and (2) remembers summaries for downstream processing.
 ---
 
 # IMAP Inbox Monitor
@@ -12,8 +12,7 @@ Run incremental, read-only IMAP checks using the bundled script.
 - Load prior state (`last_seen_uid`)
 - Fetch only messages newer than that UID
 - Save summary memory for each new message
-- Classify actionable messages
-- Print a chat-ready report
+- Return all new messages in a stable JSON shape
 
 ## Required environment variables
 
@@ -48,14 +47,13 @@ python3 scripts/imap_monitor.py run --limit 100 --state-file /home/hiroki-yokouc
 - Next runs: process only UIDs greater than previous `last_seen_uid`.
 - Output includes:
   - `new_count`
-  - `actionable_count`
-  - message list for actionable items
+  - `messages`
+  - each message has `uid`, `date`, `from`, `to`, `subject`, `snippet`
 
 ## Reporting in chat
 
 After running the script, share only:
 - No new mail → short "新着なし" message
-- New actionable mail → sender + subject + one-line reason
-- Non-actionable new mail exists → mention count briefly
+- New mail exists → sender + subject を列挙するか、件数を短くまとめる
 
 Keep this skill read-only. Never send email.
