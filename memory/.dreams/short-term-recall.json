@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "updatedAt": "2026-04-08T07:20:11.702Z",
+  "entries": {
+    "memory:memory/2026-02-24.md:1:15": {
+      "key": "memory:memory/2026-02-24.md:1:15",
+      "path": "memory/2026-02-24.md",
+      "startLine": 1,
+      "endLine": 15,
+      "source": "memory",
+      "snippet": "## Auto Summary (cron) - Gmail/Proton連携方針を整理し、Gmail本体は触らず「転送受け口分離」で運用するのが安全という結論になった。 - read-only安全設計について、プロンプト制御だけでなくアカウント分離・承認ゲート・通信レイヤ制御（状態変更系の遮断）を重ねる方針を確認した。 - 口調設定として「にゃーにゃー強め」を永続化し、Slackの二重投稿は編集イベント拾いが原因候補と整理した。 - OpenClawユースケース収集用の新skill `openclaw-usecase-scout` を作成し、Web根拠URL必須ルールを追加した。 - 同skillを `.skill` でパッケージ化し、根拠URL付きユースケース提案の試運転を実施した。 - 毎朝8:00のユースケース通知cronを作成し、進捗確認cronは要望に合わせて「毎日18:00のみ」に調整した。 - 追加でLinuxローカル連携アイデア（Obsidian/API連携/ICS集約）を検討し、段階的に安全導入する方針を共有した。 ## Manual Save (16:03 JST) - `/restart` では要約の連続性が保証されない可能性を確認。 - ただし `/reset` は `session-memory` フック対象で、リセット前内容の保存に向いている点を確認。 - 「restart時hookできる？」への回答として、標準では `/new`・`/reset` 対応、`/restart` はカスタムhookが必要と整理。 - いま手動で本日の内容を memo",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "totalScore": 0.4868072867393493,
+      "maxScore": 0.4868072867393493,
+      "firstRecalledAt": "2026-04-08T00:10:28.641Z",
+      "lastRecalledAt": "2026-04-08T00:10:28.641Z",
+      "queryHashes": [
+        "edb4c1cb2fa7"
+      ],
+      "recallDays": [
+        "2026-04-08"
+      ],
+      "conceptTags": [
+        "gmail/proton連携方針を整理し",
+        "read-only安全設計について",
+        "openclaw-usecase-scout",
+        "obsidian/api連携/ics集約",
+        "session-memory",
+        "auto",
+        "summary",
+        "cron"
+      ]
+    },
+    "memory:memory/2026-03-01.md:1:10": {
+      "key": "memory:memory/2026-03-01.md:1:10",
+      "path": "memory/2026-03-01.md",
+      "startLine": 1,
+      "endLine": 10,
+      "source": "memory",
+      "snippet": "## Auto Summary (cron) - Slack DMでRaindrop連携可否の相談があり、専用コネクタは未搭載だがAPI経由で実装可能と案内。 - OpenClaw本体アップデート依頼を受け、バージョン確認と更新作業を実施。 - 本体は 2026.2.23 から 2026.2.26 へ更新済みであることを確認。 - 更新直後の一時的なGateway接続不安定を確認し、再確認で正常稼働（reachable）を確認。 - 2026.2.26の主な変更点として、Secrets管理強化・ACP連携強化・運用CLI拡充・安定性/セキュリティ修正を要約共有。 - 夕方の進捗チェックとして、無理のないペースでの進行を促すメッセージを送信。 - 夜の定時リマインドで当日DM内容をユーザー向けに簡潔要約し、翌日のアクション提案を添えて共有。",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "totalScore": 0.47899394035339354,
+      "maxScore": 0.47899394035339354,
+      "firstRecalledAt": "2026-04-08T00:10:28.641Z",
+      "lastRecalledAt": "2026-04-08T00:10:28.641Z",
+      "queryHashes": [
+        "edb4c1cb2fa7"
+      ],
+      "recallDays": [
+        "2026-04-08"
+      ],
+      "conceptTags": [
+        "gateway",
+        "2026.2.23",
+        "2026.2.26",
+        "2026.2.26の主な変更点として",
+        "安定性/セキュリティ修正を要約共有",
+        "auto",
+        "summary",
+        "cron"
+      ]
+    },
+    "memory:memory/2026-03-10.md:1:9": {
+      "key": "memory:memory/2026-03-10.md:1:9",
+      "path": "memory/2026-03-10.md",
+      "startLine": 1,
+      "endLine": 9,
+      "source": "memory",
+      "snippet": "# 2026-03-10 ## Auto Summary (cron) - 22:00のDM日次要約タスクを実行し、当日会話の要約フォーマット（5〜10行・日本語・機密非掲載）を維持した。 - 日次メールまとめでは26通を重要度で分類し、重要事項として「朝日新聞の規約改定」と「ヤマト受取変更要否」を先に確認する運用が明確になった。 - IMAP定期チェックは新着・要対応が0件で、不要通知を出さない静かな運用（通知抑制）で完了した。 - `raindrop-hourly` の日次エラーレビューで、再発シグネチャはDNS名前解決の一時失敗（`gaierror`→`URLError`）が主因と整理された。 - 改善方針として、HTTP取得に timeout + 指数バックオフ再試行、失敗時の劣化運転（スキップ継続）、構造化ログ強化の優先順が固まった。",
+      "recallCount": 1,
+      "dailyCount": 0,
+      "totalScore": 0.7492027413012211,
+      "maxScore": 0.7492027413012211,
+      "firstRecalledAt": "2026-04-08T07:20:11.702Z",
+      "lastRecalledAt": "2026-04-08T07:20:11.702Z",
+      "queryHashes": [
+        "2e5d52385c5c"
+      ],
+      "recallDays": [
+        "2026-04-08"
+      ],
+      "conceptTags": [
+        "raindrop-hourly",
+        "auto",
+        "summary",
+        "cron",
+        "要約",
+        "タスク",
+        "実行",
+        "当日"
+      ]
+    }
+  }
+}

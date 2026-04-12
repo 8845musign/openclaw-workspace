@@ -28,9 +28,6 @@
 - **Always-send rule:** 上記のどの分岐でも、heartbeat実行ごとに必ず最低1メッセージを送る（`HEARTBEAT_OK`のみで終了しない）。
 
 ## Delivery
-- Heartbeat通知は **Slack DM にも送る**。
-- Slack DMセッションキー: `agent:main:slack:direct:u08t8s3bbfx`
-- `sessions_send` で同じ内容を送ること。
 - webchatでの返答も通常通り行う（両方に届ける）。
 
 ## Quiet hours

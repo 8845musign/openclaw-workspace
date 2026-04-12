@@ -1,0 +1,31 @@
+.openclaw/
+
+# Dependencies and virtual environments
+node_modules/
+venv/
+venv_heartbeat/
+
+# Logs and caches
+logs/
+**/__pycache__/
+*.pyc
+.DS_Store
+
+# Volatile runtime state
+state/*.json
+skills/**/state/
+memory/*.jsonl
+memory/*.json
+memory/js-ts-trend/*.json
+memory/js-ts-trend/*.stale.json
+
+# Secrets
+.env
+.env.*
+*.pem
+*.key
+secrets.*
+credentials.*
+
+# codex
+.codex/

@@ -3,12 +3,22 @@
     {
       "name": "Work",
       "description": "仕事用カレンダー",
-      "url": "https://example.com/work.ics"
+      "url": "https://calendar.google.com/calendar/ical/hiroki.yokouchi%40shirukuru.net/private-a7bbd539e421b408c22ec52ee6c0f912/basic.ics"
     },
     {
       "name": "Private",
       "description": "個人予定",
-      "url": "https://example.com/private.ics"
+      "url": "https://calendar.google.com/calendar/ical/8845musign%40gmail.com/private-3c41626828e4c9eef463816faa82f0c5/basic.ics"
+    },
+    {
+      "name": "Family",
+      "description": "家族予定",
+      "url": "https://calendar.google.com/calendar/ical/family11179808575868051245%40group.calendar.google.com/private-93964c55d3b2d448e438928b52d725e6/basic.ics"
+    },
+    {
+      "name": "Japanese Holidays",
+      "description": "祝日カレンダー",
+      "url": "https://www.thunderbird.net/media/caldata/autogen/JapanHolidays.ics"
     }
   ]
 }
