@@ -104,11 +104,7 @@ If you create or update today's artifact, the file content must be valid JSON wi
       "why_important": "string"
     }
   ],
-  "deep_dive": {
-    "title": "string",
-    "url": "string",
-    "reason": "string"
-  }
+
 }
 ```
 
