@@ -8,7 +8,7 @@ description: Slack添付PDFを登録し、毎日1チャンクずつ日本語で�
 `/openclaw pdf ...` は次のスクリプトへ委譲する:
 
 ```bash
-/home/hiroki-yokouchi/.openclaw/workspace/.venv/bin/python /home/hiroki-yokouchi/.openclaw/workspace/scripts/pdf_digest.py <command>
+/home/hiroki-yokouchi/.openclaw/workspace/.venv/bin/python /home/hiroki-yokouchi/.openclaw/workspace/skills/pdf-digest/scripts/pdf_digest.py <command>
 ```
 
 このワークフローのために Slack plugin や OpenClaw core は変更しない。

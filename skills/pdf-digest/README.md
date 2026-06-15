@@ -7,7 +7,7 @@ Slack DM に添付された PDF を登録し、毎日 8:00 JST に 1 チャン�
 通常は `/openclaw pdf ...` から使う。スクリプトを直接実行する場合は workspace から実行する。
 
 ```bash
-/home/hiroki-yokouchi/.openclaw/workspace/.venv/bin/python scripts/pdf_digest.py <command>
+/home/hiroki-yokouchi/.openclaw/workspace/.venv/bin/python skills/pdf-digest/scripts/pdf_digest.py <command>
 ```
 
 - `register`: 直近の Slack DM から未登録 PDF を探して登録する。
@@ -25,10 +25,11 @@ Slack DM に添付された PDF を登録し、毎日 8:00 JST に 1 チャン�
 日次実行は `cron/jobs.json` の `pdf-digest-daily-0800` が担当する。
 
 ```bash
-bash /home/hiroki-yokouchi/.openclaw/workspace/scripts/run_pdf_digest_daily.sh
+bash /home/hiroki-yokouchi/.openclaw/workspace/skills/pdf-digest/scripts/run_pdf_digest_daily.sh
 ```
 
-このラッパーは `scripts/pdf_digest.py daily` を呼び、成功時は通知なし、失敗時はログに残す。
+このラッパーは `skills/pdf-digest/scripts/pdf_digest.py daily` を呼び、成功時は通知なし、失敗時はログに残す。
+旧パス `scripts/run_pdf_digest_daily.sh` は互換用 shim としてこのラッパーに転送する。
 
 ## Chunking
 
@@ -82,11 +83,11 @@ Slack には要約だけを送る。原文全文は送らない。
 ## Verification
 
 ```bash
-python3 -m py_compile workspace/scripts/pdf_digest.py
-workspace/.venv/bin/python workspace/scripts/pdf_digest.py list
-workspace/.venv/bin/python workspace/scripts/pdf_digest.py rechunk <short_id> --dry-run
-workspace/.venv/bin/python workspace/scripts/pdf_digest.py rechunk <short_id> --dry-run --chunk-strategy paragraph
-workspace/.venv/bin/python workspace/scripts/pdf_digest.py daily --dry-run
+python3 -m py_compile workspace/skills/pdf-digest/scripts/pdf_digest.py
+workspace/.venv/bin/python workspace/skills/pdf-digest/scripts/pdf_digest.py list
+workspace/.venv/bin/python workspace/skills/pdf-digest/scripts/pdf_digest.py rechunk <short_id> --dry-run
+workspace/.venv/bin/python workspace/skills/pdf-digest/scripts/pdf_digest.py rechunk <short_id> --dry-run --chunk-strategy paragraph
+workspace/.venv/bin/python workspace/skills/pdf-digest/scripts/pdf_digest.py daily --dry-run
 ```
 
 `daily --dry-run` は Slack 実送信も進捗更新もしない。
