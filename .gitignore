@@ -18,6 +18,12 @@ memory/*.jsonl
 memory/*.json
 memory/js-ts-trend/*.json
 memory/js-ts-trend/*.stale.json
+pdf-digest/state.json
+pdf-digest/inbox/
+pdf-digest/archive/
+pdf-digest/text/
+pdf-digest/chunks/
+pdf-digest/history/
 
 # Secrets
 .env

@@ -1,0 +1,92 @@
+# PDF Digest
+
+Slack DM に添付された PDF を登録し、毎日 8:00 JST に 1 チャンクずつ日本語で要約して Slack に送る。
+
+## Commands
+
+通常は `/openclaw pdf ...` から使う。スクリプトを直接実行する場合は workspace から実行する。
+
+```bash
+/home/hiroki-yokouchi/.openclaw/workspace/.venv/bin/python scripts/pdf_digest.py <command>
+```
+
+- `register`: 直近の Slack DM から未登録 PDF を探して登録する。
+- `register-downloaded <path>`: ローカル PDF を登録する。
+- `list`: 配信中・停止中の PDF を一覧表示する。
+- `pause <short_id>`: 日次配信を停止する。
+- `resume <short_id>`: 日次配信を再開する。
+- `archive <short_id>`: 日次配信対象から外す。
+- `rechunk <short_id>`: 未送信分だけを現在の分割方針で再チャンクする。
+
+`register`, `register-downloaded`, `rechunk` は `--chunk-strategy paragraph` を指定できる。未指定時は `PDF_DIGEST_CHUNK_STRATEGY`、それもなければ `paragraph` を使う。
+
+## Daily Cron
+
+日次実行は `cron/jobs.json` の `pdf-digest-daily-0800` が担当する。
+
+```bash
+bash /home/hiroki-yokouchi/.openclaw/workspace/scripts/run_pdf_digest_daily.sh
+```
+
+このラッパーは `scripts/pdf_digest.py daily` を呼び、成功時は通知なし、失敗時はログに残す。
+
+## Chunking
+
+チャンクサイズは固定ではなく、文書長から自動調整する。
+
+- `PDF_DIGEST_BASE_CHUNK_MAX`: 基本チャンク上限。default `8000`
+- `PDF_DIGEST_MAX_CHUNK_MAX`: 最大チャンク上限。default `15000`
+- `PDF_DIGEST_TARGET_DAYS`: 目標日数。default `30`
+
+計算ルール:
+
+```text
+required = ceil(text_length / PDF_DIGEST_TARGET_DAYS)
+effective_chunk_max = min(PDF_DIGEST_MAX_CHUNK_MAX, max(PDF_DIGEST_BASE_CHUNK_MAX, required))
+```
+
+短い PDF は早く終わる。長い PDF は 30 日前後に寄せる。最大チャンク上限を超える巨大 PDF は 30 日超過を許容する。
+
+現在の対応戦略:
+
+- `paragraph`: 段落境界を優先して `effective_chunk_max` 以内に詰める。
+
+今後、節や見出し境界を優先する戦略を追加する場合は、既存の `paragraph` を残したまま `--chunk-strategy` で切り替える。
+
+## Slack Message
+
+Slack には要約だけを送る。原文全文は送らない。
+
+```text
+[PDF] <title> (<current>/<total>)
+
+要約:
+<summary>
+```
+
+要約入力にはチャンク本文全体を使うが、Slack 表示は短く保つ。
+
+## State
+
+状態は `workspace/pdf-digest/` 以下に保存する。
+
+- `state.json`: 文書一覧と進捗
+- `inbox/<id>.pdf`: 登録中 PDF
+- `archive/<id>.pdf`: 完了・アーカイブ済み PDF
+- `text/<id>.txt`: 抽出済み本文
+- `chunks/<id>.json`: チャンク配列
+- `history/<id>.jsonl`: 登録、送信、再チャンク、失敗履歴
+
+`next_chunk_index` は 0 始まり。Slack 表示は 1 始まり。
+
+## Verification
+
+```bash
+python3 -m py_compile workspace/scripts/pdf_digest.py
+workspace/.venv/bin/python workspace/scripts/pdf_digest.py list
+workspace/.venv/bin/python workspace/scripts/pdf_digest.py rechunk <short_id> --dry-run
+workspace/.venv/bin/python workspace/scripts/pdf_digest.py rechunk <short_id> --dry-run --chunk-strategy paragraph
+workspace/.venv/bin/python workspace/scripts/pdf_digest.py daily --dry-run
+```
+
+`daily --dry-run` は Slack 実送信も進捗更新もしない。
