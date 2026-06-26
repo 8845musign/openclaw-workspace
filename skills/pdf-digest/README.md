@@ -17,8 +17,11 @@ Slack DM に添付された PDF を登録し、毎日 8:00 JST に 1 チャン�
 - `resume <short_id>`: 日次配信を再開する。
 - `archive <short_id>`: 日次配信対象から外す。
 - `rechunk <short_id>`: 未送信分だけを現在の分割方針で再チャンクする。
+- `export-chunk <short_id> <chunk>`: Slack送信や進捗更新なしで、指定チャンクをObsidian向けMarkdownとして書き出す。
 
 `register`, `register-downloaded`, `rechunk` は `--chunk-strategy paragraph` を指定できる。未指定時は `PDF_DIGEST_CHUNK_STRATEGY`、それもなければ `paragraph` を使う。
+`register`, `register-downloaded`, `daily` は `--export-obsidian` を付けると、送信チャンクをObsidian向けMarkdownにも保存する。
+保存先は `PDF_DIGEST_OBSIDIAN_EXPORT_DIR` または `--export-dir` で指定でき、既定値は `/home/hiroki-yokouchi/ドキュメント/openclaw/pdf-digest`。
 
 ## Daily Cron
 
@@ -83,6 +86,28 @@ Slack には要約だけを送る。原文全文は送らない。
 
 `next_chunk_index` は 0 始まり。Slack 表示は 1 始まり。
 
+## Obsidian Export
+
+Obsidian向け書き出しはPDFごと、チャンクごとにディレクトリを分ける。
+
+```text
+<export-dir>/
+  <title-slug>-<short_id>/
+    index.md
+    manifest.json
+    chunks/
+      0037/
+        original.md
+        summary.ja.md
+        translation.ja.md
+```
+
+- `original.md`: 抽出済み原文チャンク。
+- `summary.ja.md`: Slackに送る日本語要約と同じ内容。
+- `translation.ja.md`: 原文が日本語ではない場合だけ作る日本語訳。
+- `index.md`: PDF全体のチャンク一覧。
+- `manifest.json`: 機械処理用メタデータ。
+
 ## Verification
 
 ```bash
@@ -91,6 +116,7 @@ workspace/.venv/bin/python workspace/skills/pdf-digest/scripts/pdf_digest.py lis
 workspace/.venv/bin/python workspace/skills/pdf-digest/scripts/pdf_digest.py rechunk <short_id> --dry-run
 workspace/.venv/bin/python workspace/skills/pdf-digest/scripts/pdf_digest.py rechunk <short_id> --dry-run --chunk-strategy paragraph
 workspace/.venv/bin/python workspace/skills/pdf-digest/scripts/pdf_digest.py daily --dry-run
+workspace/.venv/bin/python workspace/skills/pdf-digest/scripts/pdf_digest.py export-chunk <short_id> <chunk> --export-dir /tmp/pdf-digest-obsidian-test
 ```
 
 `daily --dry-run` は Slack 実送信も進捗更新もしない。

@@ -29,6 +29,9 @@ OPENCLAW_BIN = os.environ.get(
 )
 MESSAGE_ACTION_BIN = WORKSPACE / "scripts" / "openclaw_message_action.mjs"
 DEFAULT_TARGET_ENV = "PDF_DIGEST_SLACK_TARGET"
+DEFAULT_OBSIDIAN_EXPORT_DIR = Path(
+    os.environ.get("PDF_DIGEST_OBSIDIAN_EXPORT_DIR", "/home/hiroki-yokouchi/ドキュメント/openclaw/pdf-digest")
+)
 BASE_CHUNK_MAX = int(os.environ.get("PDF_DIGEST_BASE_CHUNK_MAX", "8000"))
 MAX_CHUNK_MAX = int(os.environ.get("PDF_DIGEST_MAX_CHUNK_MAX", "15000"))
 TARGET_DAYS = int(os.environ.get("PDF_DIGEST_TARGET_DAYS", "30"))
@@ -94,6 +97,19 @@ def normalize_ws(text: str) -> str:
     text = re.sub(r"[ \t]+\n", "\n", text)
     text = re.sub(r"\n{4,}", "\n\n\n", text)
     return text.strip()
+
+
+def slugify(value: str, max_length: int = 80) -> str:
+    slug = re.sub(r"[^A-Za-z0-9]+", "-", value.lower()).strip("-")
+    slug = re.sub(r"-{2,}", "-", slug)
+    return (slug or "pdf")[:max_length].strip("-") or "pdf"
+
+
+def markdown_fence(text: str, language: str = "text") -> str:
+    fence = "```"
+    while fence in text:
+        fence += "`"
+    return f"{fence}{language}\n{text.rstrip()}\n{fence}"
 
 
 def require_pymupdf():
@@ -276,7 +292,14 @@ def register_downloaded(args: argparse.Namespace) -> int:
     append_history(doc, {"event": "registered", "chunk_count": len(chunks), "dry_run": args.dry_run})
 
     try:
-        send_next_chunk(doc, chunks, resolve_target(), args.dry_run)
+        send_next_chunk(
+            doc,
+            chunks,
+            resolve_target(),
+            args.dry_run,
+            export_obsidian=getattr(args, "export_obsidian", False),
+            export_dir=Path(args.export_dir) if getattr(args, "export_dir", None) else None,
+        )
         save_state(state)
     except Exception as exc:
         doc["last_error"] = str(exc)
@@ -480,6 +503,185 @@ def summarize_chunk(title: str, index: int, total: int, chunk_text_value: str, d
     raise PdfDigestError("要約結果を読み取れませんでした。")
 
 
+def looks_japanese(text: str) -> bool:
+    sample = re.sub(r"\s+", "", text[:8000])
+    if not sample:
+        return True
+    kana = len(re.findall(r"[\u3040-\u30ff]", sample))
+    cjk = len(re.findall(r"[\u4e00-\u9fff]", sample))
+    return kana >= 12 or (kana + cjk) / max(1, len(sample)) >= 0.12
+
+
+def translate_chunk_to_japanese(title: str, index: int, total: int, chunk_text_value: str) -> str:
+    prompt = textwrap.dedent(
+        f"""
+        次のPDF本文チャンクを日本語に翻訳してください。
+        コードブロック、コード片、識別子、関数名、設定値は翻訳せず、原文のまま残してください。
+        出力は翻訳本文だけにしてください。
+
+        PDF: {title}
+        チャンク: {index + 1}/{total}
+
+        本文:
+        {chunk_text_value}
+        """
+    ).strip()
+    result = run_json(
+        [
+            OPENCLAW_BIN,
+            "agent",
+            "--agent",
+            "main",
+            "--message",
+            prompt,
+            "--json",
+            "--timeout",
+            "600",
+        ]
+    )
+    text = extract_text_result(result)
+    if text:
+        return text
+    raise PdfDigestError("翻訳結果を読み取れませんでした。")
+
+
+def obsidian_doc_dir(base_dir: Path, doc: dict[str, Any]) -> Path:
+    return base_dir / f"{slugify(str(doc.get('title', 'pdf')))}-{doc['short_id']}"
+
+
+def chunk_dir_name(index: int) -> str:
+    return f"{index + 1:04d}"
+
+
+def markdown_frontmatter(data: dict[str, Any]) -> str:
+    lines = ["---"]
+    for key, value in data.items():
+        encoded = json.dumps(value, ensure_ascii=False)
+        lines.append(f"{key}: {encoded}")
+    lines.append("---")
+    return "\n".join(lines)
+
+
+def write_obsidian_index(doc_dir: Path, doc: dict[str, Any], total: int) -> None:
+    title = str(doc.get("title", doc.get("short_id", "PDF")))
+    lines = [
+        markdown_frontmatter(
+            {
+                "pdf_digest_id": doc.get("id"),
+                "short_id": doc.get("short_id"),
+                "source_pdf": title,
+                "total_chunks": total,
+                "updated_at": now_iso(),
+            }
+        ),
+        "",
+        f"# {title}",
+        "",
+        f"- PDF Digest ID: `{doc.get('id')}`",
+        f"- Short ID: `{doc.get('short_id')}`",
+        f"- Total chunks: `{total}`",
+        "",
+        "## Chunks",
+        "",
+    ]
+    chunks_dir = doc_dir / "chunks"
+    chunk_names = sorted(path.name for path in chunks_dir.iterdir() if path.is_dir()) if chunks_dir.exists() else []
+    for name in chunk_names:
+        chunk_path = chunks_dir / name
+        links = []
+        if (chunk_path / "summary.ja.md").exists():
+            links.append(f"[[chunks/{name}/summary.ja|要約]]")
+        if (chunk_path / "original.md").exists():
+            links.append(f"[[chunks/{name}/original|原文]]")
+        if (chunk_path / "translation.ja.md").exists():
+            links.append(f"[[chunks/{name}/translation.ja|翻訳]]")
+        if links:
+            lines.append(f"- {name}: {' / '.join(links)}")
+    if not chunk_names:
+        lines.append("- まだ書き出し済みチャンクはありません。")
+    (doc_dir / "index.md").write_text("\n".join(lines).rstrip() + "\n", encoding="utf-8")
+
+
+def export_obsidian_chunk(
+    doc: dict[str, Any],
+    chunk_text_value: str,
+    summary: str,
+    index: int,
+    total: int,
+    export_dir: Path,
+    dry_run: bool = False,
+) -> Path:
+    doc_dir = obsidian_doc_dir(export_dir.expanduser(), doc)
+    chunk_dir = doc_dir / "chunks" / chunk_dir_name(index)
+    if dry_run:
+        print(f"[dry-run] export obsidian chunk={index + 1}/{total} dir={chunk_dir}")
+        return chunk_dir
+
+    chunk_dir.mkdir(parents=True, exist_ok=True)
+    title = str(doc.get("title", doc.get("short_id", "PDF")))
+    common = {
+        "pdf_digest_id": doc.get("id"),
+        "short_id": doc.get("short_id"),
+        "chunk": index + 1,
+        "total_chunks": total,
+        "source_pdf": title,
+        "updated_at": now_iso(),
+    }
+    (chunk_dir / "original.md").write_text(
+        "\n".join(
+            [
+                markdown_frontmatter({**common, "kind": "original"}),
+                "",
+                f"# 原文 chunk {index + 1}/{total}",
+                "",
+                markdown_fence(chunk_text_value),
+                "",
+            ]
+        ),
+        encoding="utf-8",
+    )
+    (chunk_dir / "summary.ja.md").write_text(
+        "\n".join(
+            [
+                markdown_frontmatter({**common, "kind": "summary", "language": "ja"}),
+                "",
+                f"# 要約 chunk {index + 1}/{total}",
+                "",
+                summary.strip(),
+                "",
+            ]
+        ),
+        encoding="utf-8",
+    )
+    if not looks_japanese(chunk_text_value):
+        translation = translate_chunk_to_japanese(title, index, total, chunk_text_value)
+        (chunk_dir / "translation.ja.md").write_text(
+            "\n".join(
+                [
+                    markdown_frontmatter({**common, "kind": "translation", "language": "ja"}),
+                    "",
+                    f"# 翻訳 chunk {index + 1}/{total}",
+                    "",
+                    translation.strip(),
+                    "",
+                ]
+            ),
+            encoding="utf-8",
+        )
+    write_obsidian_index(doc_dir, doc, total)
+    manifest = {
+        "pdf_digest_id": doc.get("id"),
+        "short_id": doc.get("short_id"),
+        "title": title,
+        "total_chunks": total,
+        "source": doc.get("source", {}),
+        "paths": doc.get("paths", {}),
+        "updated_at": now_iso(),
+    }
+    (doc_dir / "manifest.json").write_text(json.dumps(manifest, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    return chunk_dir
+
+
 def build_digest_message(title: str, index: int, total: int, summary: str) -> str:
     message = f"[PDF] {title} ({index + 1}/{total})\n\n要約:\n{summary.strip()}"
     if len(message) <= MESSAGE_MAX:
@@ -509,7 +711,14 @@ def send_slack_message(target: str, message: str, dry_run: bool) -> None:
         raise PdfDigestError(proc.stderr.strip() or proc.stdout.strip() or "Slack送信に失敗しました。")
 
 
-def send_next_chunk(doc: dict[str, Any], chunks: list[dict[str, Any]], target: str, dry_run: bool) -> SendResult:
+def send_next_chunk(
+    doc: dict[str, Any],
+    chunks: list[dict[str, Any]],
+    target: str,
+    dry_run: bool,
+    export_obsidian: bool = False,
+    export_dir: Path | None = None,
+) -> SendResult:
     index = int(doc.get("next_chunk_index", 0))
     total = int(doc.get("total_chunks", len(chunks)))
     if index >= total:
@@ -519,6 +728,8 @@ def send_next_chunk(doc: dict[str, Any], chunks: list[dict[str, Any]], target: s
     chunk = chunks[index]["text"]
     summary = summarize_chunk(doc["title"], index, total, chunk, dry_run)
     message = build_digest_message(doc["title"], index, total, summary)
+    if export_obsidian:
+        export_obsidian_chunk(doc, chunk, summary, index, total, export_dir or DEFAULT_OBSIDIAN_EXPORT_DIR, dry_run=dry_run)
     send_slack_message(target, message, dry_run)
     if dry_run:
         return SendResult(summary, message)
@@ -552,7 +763,14 @@ def daily(args: argparse.Namespace) -> int:
         if doc.get("status") != "active":
             continue
         try:
-            send_next_chunk(doc, load_chunks(doc), target, args.dry_run)
+            send_next_chunk(
+                doc,
+                load_chunks(doc),
+                target,
+                args.dry_run,
+                export_obsidian=args.export_obsidian,
+                export_dir=Path(args.export_dir) if args.export_dir else None,
+            )
         except Exception as exc:
             failures += 1
             doc["last_error"] = str(exc)
@@ -562,6 +780,29 @@ def daily(args: argparse.Namespace) -> int:
     save_state(state)
     print(f"daily complete: failures={failures}")
     return 1 if failures else 0
+
+
+def export_chunk_cmd(args: argparse.Namespace) -> int:
+    state = load_state()
+    doc = find_doc(state, args.short_id)
+    chunks = load_chunks(doc)
+    index = args.chunk - 1
+    total = int(doc.get("total_chunks", len(chunks)))
+    if index < 0 or index >= len(chunks):
+        raise PdfDigestError(f"チャンク番号が範囲外です: {args.chunk} / total={total}")
+    chunk = chunks[index]["text"]
+    summary = summarize_chunk(doc["title"], index, total, chunk, args.dry_run)
+    export_path = export_obsidian_chunk(
+        doc,
+        chunk,
+        summary,
+        index,
+        total,
+        Path(args.export_dir) if args.export_dir else DEFAULT_OBSIDIAN_EXPORT_DIR,
+        dry_run=args.dry_run,
+    )
+    print(f"Obsidianに書き出しました: {export_path}")
+    return 0
 
 
 def rechunk_doc(args: argparse.Namespace) -> int:
@@ -884,6 +1125,8 @@ def register_from_slack(args: argparse.Namespace) -> int:
         source_file_id=candidate["file_id"],
         source_message_ts=candidate["message_ts"],
         chunk_strategy=args.chunk_strategy,
+        export_obsidian=args.export_obsidian,
+        export_dir=args.export_dir,
         dry_run=False,
     )
     return register_downloaded(register_args)
@@ -893,11 +1136,16 @@ def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="OpenClaw PDF daily digest")
     sub = parser.add_subparsers(dest="command", required=True)
 
+    def add_export_args(p: argparse.ArgumentParser) -> None:
+        p.add_argument("--export-obsidian", action="store_true", help="write Markdown files for Obsidian")
+        p.add_argument("--export-dir", default=None, help="Obsidian export directory")
+
     register = sub.add_parser("register", help="register one recent Slack PDF attachment")
     register.add_argument("--dry-run", action="store_true")
     register.add_argument("--lookback-minutes", type=int, default=10)
     register.add_argument("--latest", action="store_true", help="when multiple PDFs are found, register the newest one")
     register.add_argument("--chunk-strategy", default=None)
+    add_export_args(register)
     register.set_defaults(func=register_from_slack)
 
     downloaded = sub.add_parser("register-downloaded", help="register a local PDF")
@@ -908,6 +1156,7 @@ def build_parser() -> argparse.ArgumentParser:
     downloaded.add_argument("--source-message-ts")
     downloaded.add_argument("--dry-run", action="store_true")
     downloaded.add_argument("--chunk-strategy", default=None)
+    add_export_args(downloaded)
     downloaded.set_defaults(func=register_downloaded)
 
     list_parser = sub.add_parser("list", help="list active and paused PDFs")
@@ -932,7 +1181,15 @@ def build_parser() -> argparse.ArgumentParser:
 
     daily_parser = sub.add_parser("daily")
     daily_parser.add_argument("--dry-run", action="store_true")
+    add_export_args(daily_parser)
     daily_parser.set_defaults(func=daily)
+
+    export_chunk = sub.add_parser("export-chunk", help="write one existing chunk to Obsidian without Slack/progress updates")
+    export_chunk.add_argument("short_id")
+    export_chunk.add_argument("chunk", type=int, help="1-based chunk number")
+    export_chunk.add_argument("--dry-run", action="store_true")
+    export_chunk.add_argument("--export-dir", default=None, help="Obsidian export directory")
+    export_chunk.set_defaults(func=export_chunk_cmd)
     return parser
 
 

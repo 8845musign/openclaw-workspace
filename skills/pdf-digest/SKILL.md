@@ -44,6 +44,10 @@ description: Slack添付PDFを登録し、毎日1チャンクずつ日本語で�
   - `pdf_digest.py rechunk <short_id>` を実行する。
   - 未送信分だけを現在のチャンクサイズ方針で再分割する。
   - チャンク分割戦略を明示する場合は `--chunk-strategy paragraph` を付ける。
+- `pdf export-chunk <short_id> <chunk>`
+  - `pdf_digest.py export-chunk <short_id> <chunk>` を実行する。
+  - Slack送信や進捗更新なしで、指定チャンクをObsidian向けMarkdownとして書き出す。
+  - 保存先を変える場合は `--export-dir <path>` を付ける。
 
 ## Output
 
@@ -57,3 +61,5 @@ description: Slack添付PDFを登録し、毎日1チャンクずつ日本語で�
 - チャンクサイズは `PDF_DIGEST_BASE_CHUNK_MAX` (default: 8000), `PDF_DIGEST_MAX_CHUNK_MAX` (default: 15000), `PDF_DIGEST_TARGET_DAYS` (default: 30) で自動調整する。
 - チャンク分割戦略は `PDF_DIGEST_CHUNK_STRATEGY` または `--chunk-strategy` で指定する。現時点の対応値は `paragraph`。
 - Slack通知には原文を載せず、要約だけを送る。
+- Obsidian書き出しは `--export-obsidian` を付けた `register`, `register-downloaded`, `daily`、または `export-chunk` で行う。
+- Obsidian保存先は `PDF_DIGEST_OBSIDIAN_EXPORT_DIR`、または `--export-dir` で指定する。既定値は `/home/hiroki-yokouchi/ドキュメント/openclaw/pdf-digest`。
