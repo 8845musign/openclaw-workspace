@@ -57,6 +57,7 @@ effective_chunk_max = min(PDF_DIGEST_MAX_CHUNK_MAX, max(PDF_DIGEST_BASE_CHUNK_MA
 ## Slack Message
 
 Slack には要約だけを送る。原文全文は送らない。
+技術書のコードサンプルは、全文ではなく短い抜粋と読みどころとして要約に含める。
 
 ```text
 [PDF] <title> (<current>/<total>)
@@ -66,6 +67,8 @@ Slack には要約だけを送る。原文全文は送らない。
 ```
 
 要約入力にはチャンク本文全体を使うが、Slack 表示は短く保つ。
+重要なコードサンプルがある場合は、最大3件まで「コードサンプル:」欄に「何を示すか」「読むべきポイント」「短い抜粋」を残す。
+コードサンプルが重要なチャンクは、通常より少し長い要約を許容する。
 
 ## State
 
