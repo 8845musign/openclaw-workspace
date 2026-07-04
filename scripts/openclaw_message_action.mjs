@@ -1,14 +1,14 @@
 #!/usr/bin/env node
-import { t as createDefaultDeps } from "/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/lib/node_modules/openclaw/dist/deps-CoFdmf-Y.js";
-import { t as createOutboundSendDeps } from "/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/lib/node_modules/openclaw/dist/outbound-send-deps-BTAJetUA.js";
-import { t as resolveCommandConfigWithSecrets } from "/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/lib/node_modules/openclaw/dist/command-config-resolution-BxEwr3_T.js";
-import { t as resolveMessageSecretScope } from "/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/lib/node_modules/openclaw/dist/message-secret-scope-C_QkPCxV.js";
-import { d as getScopedChannelsCommandSecretTargets } from "/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/lib/node_modules/openclaw/dist/command-secret-targets-A-IIV5w2.js";
-import { i as getRuntimeConfig } from "/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/lib/node_modules/openclaw/dist/io-By9euW-h.js";
-import { t as ensurePluginRegistryLoaded } from "/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/lib/node_modules/openclaw/dist/runtime-registry-loader-DaQxX4I7.js";
-import { c as resolveDefaultAgentId } from "/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/lib/node_modules/openclaw/dist/agent-scope-config-CaXAl7-j.js";
-import { n as runMessageAction } from "/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/lib/node_modules/openclaw/dist/message-action-runner-CYfWVSMj.js";
-import { i as GATEWAY_CLIENT_NAMES, r as GATEWAY_CLIENT_MODES } from "/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/lib/node_modules/openclaw/dist/client-info-ErIekSPI.js";
+import { t as createDefaultDeps } from "/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/lib/node_modules/openclaw/dist/deps-LlpXIlnX.js";
+import { t as createOutboundSendDeps } from "/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/lib/node_modules/openclaw/dist/outbound-send-deps-CH6BMfrd.js";
+import { t as resolveCommandConfigWithSecrets } from "/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/lib/node_modules/openclaw/dist/command-config-resolution-ilY7zRgw.js";
+import { t as resolveMessageSecretScope } from "/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/lib/node_modules/openclaw/dist/message-secret-scope-CglxJANN.js";
+import { d as getScopedChannelsCommandSecretTargets } from "/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/lib/node_modules/openclaw/dist/command-secret-targets-CeWqyIH-.js";
+import { i as getRuntimeConfig } from "/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/lib/node_modules/openclaw/dist/io-9CAVAPVZ.js";
+import { t as ensurePluginRegistryLoaded } from "/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/lib/node_modules/openclaw/dist/runtime-registry-loader-BK8xc3f5.js";
+import { c as resolveDefaultAgentId } from "/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/lib/node_modules/openclaw/dist/agent-scope-config-C3ijpoNo.js";
+import { n as runMessageAction } from "/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/lib/node_modules/openclaw/dist/message-action-runner-DlxXNJiv.js";
+import { i as GATEWAY_CLIENT_NAMES, r as GATEWAY_CLIENT_MODES } from "/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/lib/node_modules/openclaw/dist/client-info-CcqJJIan.js";
 import { createWriteStream } from "node:fs";
 import { mkdir, stat, unlink } from "node:fs/promises";
 import { dirname } from "node:path";
