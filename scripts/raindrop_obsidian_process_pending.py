@@ -398,8 +398,7 @@ def main():
             elif classified:
                 coll = classified
             else:
-                # AI判定なし（no_matchなど）は通知対象外
-                continue
+                coll = "(未分類)"
 
             classification = classified or coll
 

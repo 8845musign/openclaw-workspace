@@ -5,7 +5,7 @@ WORKDIR="/home/hiroki-yokouchi/.openclaw/workspace"
 OPENCLAW_BIN="/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/bin/openclaw"
 NODE_BIN_DIR="/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/bin"
 NOTIFY_CHANNEL="${RAINDROP_NOTIFY_CHANNEL:-slack}"
-NOTIFY_TARGET="${RAINDROP_NOTIFY_TARGET:-U08T8S3BBFX}"
+NOTIFY_TARGET="${RAINDROP_NOTIFY_TARGET:-user:U08T8S3BBFX}"
 LOGDIR="$WORKDIR/logs"
 mkdir -p "$LOGDIR"
 
@@ -55,6 +55,7 @@ if not text or text == 'NO_PENDING':
     raise SystemExit(0)
 
 blocks = [b.strip() for b in text.split('---') if b.strip()]
+failures = 0
 for b in blocks:
     lines = [ln.rstrip() for ln in b.splitlines() if ln.strip()]
     title = ''
@@ -97,7 +98,11 @@ for b in blocks:
         ], check=True)
         print(f'notified: {title}')
     except Exception as e:
+        failures += 1
         print(f'notify failed: {title} :: {e}')
+
+if failures:
+    raise SystemExit(1)
 PY
 
 rm -f "$TMP_OUT"

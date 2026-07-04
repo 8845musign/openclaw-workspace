@@ -11,6 +11,8 @@ from pathlib import Path
 from typing import Any
 from zoneinfo import ZoneInfo
 
+from validate_js_ts_trend_artifact import validate_artifact
+
 
 JST = ZoneInfo("Asia/Tokyo")
 ROOT = Path("/home/hiroki-yokouchi/.openclaw/workspace")
@@ -24,6 +26,7 @@ OPENCLAW_BIN = os.environ.get(
 NOTIFY_CHANNEL = os.environ.get("JS_TS_TREND_NOTIFY_CHANNEL", "slack")
 NOTIFY_TARGET = os.environ.get("JS_TS_TREND_NOTIFY_TARGET", "U08T8S3BBFX")
 SKIP_SEND = os.environ.get("JS_TS_TREND_SKIP_SEND", "").lower() in {"1", "true", "yes"}
+NOTIFY_ON_FAILURE = os.environ.get("JS_TS_TREND_NOTIFY_ON_FAILURE", "").lower() in {"1", "true", "yes"}
 
 
 @dataclass
@@ -84,7 +87,9 @@ def parse_item(raw: dict[str, Any]) -> TrendItem:
 
 def load_artifact(path: Path) -> dict[str, Any]:
     if not path.exists():
-        raise FileNotFoundError(f"artifact not found: {path}")
+        raise FileNotFoundError(
+            f"artifact not found: {path}; the 09:45 collect job did not create a valid JSON artifact"
+        )
     data = json.loads(path.read_text(encoding="utf-8"))
     for key in ["date", "generated_at", "status", "coverage_notes", "tl_dr", "items"]:
         if key not in data:
@@ -174,6 +179,7 @@ def build_message(note_content: str) -> str:
 
 def publish_for(date_str: str) -> tuple[Path, dict[str, Any]]:
     artifact_path = artifact_path_for(date_str)
+    validate_artifact(date_str)
     data = load_artifact(artifact_path)
     NOTE_DIR.mkdir(parents=True, exist_ok=True)
     note_path = note_path_for(data["date"])
@@ -184,11 +190,12 @@ def publish_for(date_str: str) -> tuple[Path, dict[str, Any]]:
 
 
 def fail_and_notify(message: str) -> int:
-    try:
-        send_message(f"JS/TSトレンド要約の配信に失敗した: {message}")
-    except Exception as notify_error:  # pragma: no cover - best effort
-        print(f"notify_error={notify_error}", file=sys.stderr)
-    print(message, file=sys.stderr)
+    if NOTIFY_ON_FAILURE:
+        try:
+            send_message(f"JS/TSトレンド要約の配信に失敗した: {message}")
+        except Exception as notify_error:  # pragma: no cover - best effort
+            print(f"notify_error={notify_error}", file=sys.stderr)
+    print(f"publish failed: {message}", file=sys.stderr)
     return 1
 
 
@@ -196,6 +203,15 @@ def main() -> int:
     date_str = sys.argv[1] if len(sys.argv) > 1 else today_jst()
     try:
         note_path, data = publish_for(date_str)
+    except FileNotFoundError as exc:
+        result = {
+            "ok": False,
+            "date": date_str,
+            "status": "skipped",
+            "reason": str(exc),
+        }
+        print(json.dumps(result, ensure_ascii=False))
+        return 0
     except Exception as exc:
         return fail_and_notify(str(exc))
 

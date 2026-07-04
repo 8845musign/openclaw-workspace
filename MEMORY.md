@@ -28,3 +28,36 @@
 * Recurring requirement: Weekly reports.
 * 日次Markdownログのcronジョブは継続的に実行される。
 * `MEMORY.md`は日次サマリーから抽出された長期情報を保存し、更新する。
+
+## Promoted From Short-Term Memory (2026-06-06)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-06-02-1406.md:14:17 -->
+- "message_id": "1780363243.554529", "reply_to_id": "1780363243.554529", "sender_id": "U08T8S3BBFX", "sender": "U08T8S3BBFX", [score=0.877 recalls=0 avg=0.620 source=memory/2026-06-02-1406.md:14-17]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-02-1406.md:18:18 -->
+- "timestamp": "Tue 2026-06-02 10:20 GMT+9" [score=0.877 recalls=0 avg=0.620 source=memory/2026-06-02-1406.md:18-18]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-02-1406.md:25:27 -->
+- "label": "U08T8S3BBFX", "id": "U08T8S3BBFX", "name": "U08T8S3BBFX" [score=0.877 recalls=0 avg=0.620 source=memory/2026-06-02-1406.md:25-27]
+
+## Promoted From Short-Term Memory (2026-06-08)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-06-02-1406.md:11:11 -->
+- Conversation info (untrusted metadata): [score=0.871 recalls=0 avg=0.620 source=memory/2026-06-02-1406.md:11-11]
+
+## Promoted From Short-Term Memory (2026-06-09)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-06-02-1406.md:22:22 -->
+- Sender (untrusted metadata): [score=0.889 recalls=0 avg=0.620 source=memory/2026-06-02-1406.md:22-22]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-02-1406.md:9:9 -->
+- user: System: [2026-06-02 10:20:44 GMT+9] Slack DM from U08T8S3BBFX: 最近raindropが全然動かない。失敗してるの [score=0.889 recalls=0 avg=0.620 source=memory/2026-06-02-1406.md:9-9]
+
+## Promoted From Short-Term Memory (2026-06-10)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-06-02-1406.md:31:32 -->
+- 最近raindropが全然動かない。失敗してるの assistant: <final>ふぁ〜（あくび）ひろき、最近Raindropが動かないにゃんて、困ったにゃあ。ペロペロ（毛繕い）。 [score=0.887 recalls=0 avg=0.620 source=memory/2026-06-02-1406.md:31-32]
+
+## Promoted From Short-Term Memory (2026-06-14)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-06-02-1406.md:34:34 -->
+- 具体的にどんなときに動かないとか、どんなメッセージが出て失敗してるのか、もう少し詳しく教えてくれるとにゃんか助けられるかもしれないにゃ。 [score=0.841 recalls=0 avg=0.620 source=memory/2026-06-02-1406.md:34-34]
+<!-- openclaw-memory-promotion:memory:memory/2026-06-02-1406.md:43:43 -->
+- ヌッ（顔を動かす）。</final> [score=0.816 recalls=0 avg=0.620 source=memory/2026-06-02-1406.md:43-43]

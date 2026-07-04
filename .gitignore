@@ -16,8 +16,10 @@ state/*.json
 skills/**/state/
 memory/*.jsonl
 memory/*.json
+memory/.dreams/
 memory/js-ts-trend/*.json
 memory/js-ts-trend/*.stale.json
+*.migrated
 pdf-digest/state.json
 pdf-digest/inbox/
 pdf-digest/archive/

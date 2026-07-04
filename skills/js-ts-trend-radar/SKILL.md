@@ -63,6 +63,7 @@ Recency is strict.
 In cron runs, assume `web_search` is available unless a tool call proves otherwise.
 
 - Before writing any `partial` or `fallback` artifact, you must attempt live research with at least 3 `web_search` calls that target different buckets.
+- If any `web_search` call fails with `SearXNG base URL is not configured`, stop immediately, do not retry the same search, and report collection failure with that exact tool error.
 - Do not claim "time constraints", "execution constraints", or "web search not performed" unless you actually attempted the relevant tool call and it failed or returned unusable results.
 - Do not generate dummy, placeholder, or synthetic trend items.
 - If live research fails, record the concrete failed queries or tool errors in `coverage_notes`.
@@ -77,7 +78,9 @@ Save the artifact under:
 
 Use the current date in `Asia/Tokyo`.
 
-If today's artifact already exists, do not recollect. Inspect it briefly and return a short status line only.
+Always recollect for today's run, even if today's artifact already exists.
+Overwrite `/home/hiroki-yokouchi/.openclaw/workspace/memory/js-ts-trend/YYYY-MM-DD.json` with a freshly researched artifact.
+Do not skip collection because an existing artifact is present.
 
 If you create or update today's artifact, the file content must be valid JSON with this exact top-level shape:
 
@@ -98,26 +101,40 @@ If you create or update today's artifact, the file content must be valid JSON wi
     {
       "bucket": "design | library | signal",
       "title": "string",
+      "novelty_key": "optional stable topic key string",
       "url": "string",
       "source_kind": "string",
       "why_new": "string",
       "why_important": "string"
     }
-  ],
-
+  ]
 }
 ```
 
 ## Required Behavior
 
 - `tl_dr` should contain at most 3 short Japanese bullets.
-- `items` should normally contain 3-6 entries.
+- `items` may contain 0-6 entries. Prefer fewer fresh, non-duplicate items over filling a fixed count.
+- Each item may include `novelty_key`, a short stable topic key such as `typescript-6-native-transition` or `es2026-resource-management`.
 - `coverage_notes` should mention missing or weakly covered sources when relevant.
 - `deep_dive` should point to one of the selected items whenever possible.
 - Avoid repeating the same topic for 7 days unless there is a substantial update.
-- If there are not enough strong signals, return fewer items instead of padding with weak ones.
+- Before choosing items, inspect the previous 7 days of `/home/hiroki-yokouchi/.openclaw/workspace/memory/js-ts-trend/*.json` and treat their URLs, titles, and `novelty_key` values as a do-not-repeat list.
+- Do not reuse a URL from the previous 7 days.
+- Do not reuse the same topic under a renamed title. For example, avoid repeating `TypeScript 6.0 Roadmap`, `TypeScript 6.0 Major Update`, and `State of TypeScript 2026` as separate daily items unless there is a concrete new event.
+- A concrete new event means a formal release, migration guide, breaking change, major tool support, or production case study. Ongoing roadmap discussion, continued popularity, or general ecosystem momentum is not enough.
+- If there are not enough strong signals, return fewer items instead of padding with weak or duplicate ones.
 - If collection is weak or partially blocked, still write a valid JSON artifact with `status: "partial"` or `status: "fallback"`.
 - Before finalizing, sanity-check every selected item for freshness and remove anything that is obviously stale for today's digest.
+- After writing the artifact, run `python3 scripts/validate_js_ts_trend_artifact.py` from `/home/hiroki-yokouchi/.openclaw/workspace`.
+- Validation failures are execution inputs, not reasons to ask the user what to do.
+- Do not suggest bypassing validation, force-publishing, manually deleting items from an old artifact, or changing `publish_js_ts_trend.py` to skip validation.
+- When validation fails, continue the collect workflow by producing a fresh replacement artifact.
+- If validation fails, read the validator stderr and treat the exact failed URL/title/topic/novelty_key as a retry ban list.
+- Retry collection up to 2 additional times after validation failure, overwriting the same artifact path each time.
+- On each retry, explicitly avoid every URL, title, topic, and `novelty_key` named by the validator failure.
+- If retries still fail because of duplicate items, remove the duplicate items and write a smaller `partial` or `fallback` artifact, then run the validator again.
+- Do not report success until the validator passes. If the final validation still fails after retries and duplicate removal, report collection failure with the validator reason.
 
 ## Final Reply
 
@@ -130,14 +147,13 @@ Hard requirements:
 - Do not use persona, roleplay, emojis, or conversational filler.
 - Do not emit `<think>`, `<final>`, markdown, bullets, or code fences.
 - Do not output any text before or after the status line.
+- On success, return the validator stdout line exactly.
 - The entire final response must be a single line matching one of these patterns:
   - `collect ok: N items saved to memory/js-ts-trend/YYYY-MM-DD.json`
   - `collect partial: N items saved to memory/js-ts-trend/YYYY-MM-DD.json`
   - `collect fallback: N items saved to memory/js-ts-trend/YYYY-MM-DD.json`
-  - `collect skipped: existing artifact for YYYY-MM-DD`
 
 Examples:
 
 - `collect ok: 4 items saved to memory/js-ts-trend/2026-04-08.json`
 - `collect partial: 2 items saved to memory/js-ts-trend/2026-04-08.json`
-- `collect skipped: existing artifact for 2026-04-08`
