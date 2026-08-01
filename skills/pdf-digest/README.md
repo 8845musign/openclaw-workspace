@@ -17,6 +17,7 @@ Slack DM に添付された PDF を登録し、毎日 8:00 JST に 1 チャン�
 - `resume <short_id>`: 日次配信を再開する。
 - `archive <short_id>`: 日次配信対象から外す。
 - `rechunk <short_id>`: 未送信分だけを現在の分割方針で再チャンクする。
+- `resolve-pending <short_id> --sent | --retry`: 未確定のSlack送信を、送信済みまたは再送可能として明示的に解決する。
 - `export-chunk <short_id> <chunk>`: Slack送信や進捗更新なしで、指定チャンクをObsidian向けMarkdownとして書き出す。
 
 `register`, `register-downloaded`, `rechunk` は `--chunk-strategy paragraph` を指定できる。未指定時は `PDF_DIGEST_CHUNK_STRATEGY`、それもなければ `paragraph` を使う。
@@ -25,13 +26,13 @@ Slack DM に添付された PDF を登録し、毎日 8:00 JST に 1 チャン�
 
 ## Daily Cron
 
-日次実行は `cron/jobs.json` の `pdf-digest-daily-0800` が担当する。
+日次実行は OpenClaw cron の `pdf-digest-daily-0800` command job が担当する。
 
 ```bash
 bash /home/hiroki-yokouchi/.openclaw/workspace/skills/pdf-digest/scripts/run_pdf_digest_daily.sh
 ```
 
-このラッパーは `skills/pdf-digest/scripts/pdf_digest.py daily` を呼び、成功時は通知なし、失敗時はログに残す。
+このラッパーは `skills/pdf-digest/scripts/pdf_digest.py daily` を呼び、実行時の `PATH` から `openclaw` を解決する。成功時は通知なし、失敗時は非ゼロ終了してcronの失敗通知とログに残す。
 旧パス `scripts/run_pdf_digest_daily.sh` は互換用 shim としてこのラッパーに転送する。
 
 ## Chunking
@@ -83,6 +84,7 @@ Slack には要約だけを送る。原文全文は送らない。
 - `text/<id>.txt`: 抽出済み本文
 - `chunks/<id>.json`: チャンク配列
 - `history/<id>.jsonl`: 登録、送信、再チャンク、失敗履歴
+- `pending_delivery`: Slack送信を開始してから結果を確定するまでの保護マーカー。残っている場合は自動再送しない。
 
 `next_chunk_index` は 0 始まり。Slack 表示は 1 始まり。
 
@@ -112,6 +114,7 @@ Obsidian向け書き出しはPDFごと、チャンクごとにディレクトリ
 
 ```bash
 python3 -m py_compile workspace/skills/pdf-digest/scripts/pdf_digest.py
+workspace/.venv/bin/python -m unittest discover -s workspace/tests -v
 workspace/.venv/bin/python workspace/skills/pdf-digest/scripts/pdf_digest.py list
 workspace/.venv/bin/python workspace/skills/pdf-digest/scripts/pdf_digest.py rechunk <short_id> --dry-run
 workspace/.venv/bin/python workspace/skills/pdf-digest/scripts/pdf_digest.py rechunk <short_id> --dry-run --chunk-strategy paragraph

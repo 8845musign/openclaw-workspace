@@ -112,10 +112,13 @@ pdf_digest.py daily
   openclaw agent --message <要約プロンプト> --json
         │
         ▼
+  state.json に pending_delivery を保存
+        │
+        ▼
   Slack 送信 (openclaw message send)
         │
         ▼
-  next_chunk_index += 1、state.json 更新
+  pending_delivery を消去し、next_chunk_index += 1、state.json 更新
         │
   next_chunk_index >= total_chunks なら:
         ▼
@@ -179,6 +182,7 @@ pdf-digest/
 | `total_chunks` | int | チャンク総数 |
 | `last_sent_at` | string | 最終送信日時（JST ISO 8601） |
 | `last_error` | string\|null | 最後に発生したエラー文字列 |
+| `pending_delivery` | object\|null | Slack送信結果が未確定なチャンク。存在する間は自動再送しない。 |
 
 state.json の書き込みは `tmp → os.replace` のアトミック書き換えで行う。
 
@@ -238,15 +242,17 @@ state.json の書き込みは `tmp → os.replace` のアトミック書き換�
 
 ## cron 設定
 
-`cron/jobs.json` の `pdf-digest-daily-0800` ジョブ：
+OpenClaw cron の `pdf-digest-daily-0800` command job：
 
 | 項目 | 値 |
 |---|---|
 | スケジュール | `0 8 * * *` (Asia/Tokyo) |
-| 実行対象 | `run_pdf_digest_daily.sh` を bash で実行 |
-| セッション | isolated（毎回独立セッション） |
+| 実行対象 | `run_pdf_digest_daily.sh` を command payload として bash で直接実行 |
 | 二重起動防止 | `flock` によるロックファイル |
 | ログ | `workspace/logs/pdf-digest-daily.log` / `.error.log` |
+| 失敗通知 | 1回目の実行エラーからSlack failure alert |
+
+ジョブ定義の実体はOpenClawの現行ストレージで管理される。`cron/*.migrated` の旧JSONは編集しない。
 
 ---
 

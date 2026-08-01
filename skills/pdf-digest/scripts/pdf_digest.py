@@ -23,11 +23,7 @@ JST = ZoneInfo("Asia/Tokyo")
 WORKSPACE = Path("/home/hiroki-yokouchi/.openclaw/workspace")
 STATE_DIR = Path(os.environ.get("PDF_DIGEST_DIR", str(WORKSPACE / "pdf-digest")))
 OPENCLAW_STATE = Path("/home/hiroki-yokouchi/.openclaw")
-OPENCLAW_BIN = os.environ.get(
-    "OPENCLAW_BIN",
-    shutil.which("openclaw")
-    or "/home/hiroki-yokouchi/.local/share/mise/installs/node/24.18.0/bin/openclaw",
-)
+OPENCLAW_BIN = os.environ.get("OPENCLAW_BIN") or shutil.which("openclaw")
 MESSAGE_ACTION_BIN = WORKSPACE / "scripts" / "openclaw_message_action.mjs"
 DEFAULT_TARGET_ENV = "PDF_DIGEST_SLACK_TARGET"
 DEFAULT_OBSIDIAN_EXPORT_DIR = Path(
@@ -42,6 +38,12 @@ MESSAGE_MAX = int(os.environ.get("PDF_DIGEST_MESSAGE_MAX", "7800"))
 
 class PdfDigestError(Exception):
     pass
+
+
+def require_openclaw_bin() -> str:
+    if OPENCLAW_BIN:
+        return OPENCLAW_BIN
+    raise PdfDigestError("openclaw コマンドがPATHで見つかりません。")
 
 
 @dataclass
@@ -258,6 +260,7 @@ def build_doc(pdf_path: Path, title: str, source: dict[str, Any]) -> tuple[dict[
             "updated_at": now_iso(),
             "last_sent_at": None,
             "last_error": None,
+            "pending_delivery": None,
         },
         [],
         doc_id,
@@ -294,6 +297,7 @@ def register_downloaded(args: argparse.Namespace) -> int:
 
     try:
         send_next_chunk(
+            state,
             doc,
             chunks,
             resolve_target(),
@@ -487,7 +491,7 @@ def summarize_chunk(title: str, index: int, total: int, chunk_text_value: str, d
     ).strip()
     result = run_json(
         [
-            OPENCLAW_BIN,
+            require_openclaw_bin(),
             "agent",
             "--agent",
             "main",
@@ -529,7 +533,7 @@ def translate_chunk_to_japanese(title: str, index: int, total: int, chunk_text_v
     ).strip()
     result = run_json(
         [
-            OPENCLAW_BIN,
+            require_openclaw_bin(),
             "agent",
             "--agent",
             "main",
@@ -694,7 +698,7 @@ def build_digest_message(title: str, index: int, total: int, summary: str) -> st
 
 def send_slack_message(target: str, message: str, dry_run: bool) -> None:
     command = [
-        OPENCLAW_BIN,
+        require_openclaw_bin(),
         "message",
         "send",
         "--channel",
@@ -712,7 +716,42 @@ def send_slack_message(target: str, message: str, dry_run: bool) -> None:
         raise PdfDigestError(proc.stderr.strip() or proc.stdout.strip() or "Slack送信に失敗しました。")
 
 
+def complete_doc_if_needed(doc: dict[str, Any]) -> None:
+    if doc["next_chunk_index"] < doc["total_chunks"]:
+        return
+    doc["status"] = "done"
+    archive_path = STATE_DIR / "archive" / Path(doc["paths"]["pdf"]).name
+    if Path(doc["paths"]["pdf"]).exists():
+        shutil.move(doc["paths"]["pdf"], archive_path)
+        doc["paths"]["pdf"] = str(archive_path)
+
+
+def mark_chunk_sent(doc: dict[str, Any], index: int) -> None:
+    if int(doc.get("next_chunk_index", 0)) != index:
+        raise PdfDigestError(f"送信進捗が不正です: next_chunk_index={doc.get('next_chunk_index')}, chunk_index={index}")
+    doc["next_chunk_index"] = index + 1
+    doc["last_sent_at"] = now_iso()
+    doc["updated_at"] = now_iso()
+    doc["last_error"] = None
+    doc["pending_delivery"] = None
+    complete_doc_if_needed(doc)
+
+
+def pending_delivery_error(doc: dict[str, Any]) -> PdfDigestError | None:
+    pending = doc.get("pending_delivery")
+    if not isinstance(pending, dict):
+        return None
+    index = pending.get("chunk_index")
+    started_at = pending.get("started_at", "不明")
+    return PdfDigestError(
+        f"Slack送信結果が未確定です: {doc['short_id']} / チャンク {index + 1 if isinstance(index, int) else index} "
+        f"/ 開始 {started_at}。送信済みなら resolve-pending {doc['short_id']} --sent、"
+        f"未送信なら resolve-pending {doc['short_id']} --retry を実行してください。"
+    )
+
+
 def send_next_chunk(
+    state: dict[str, Any],
     doc: dict[str, Any],
     chunks: list[dict[str, Any]],
     target: str,
@@ -720,6 +759,9 @@ def send_next_chunk(
     export_obsidian: bool = False,
     export_dir: Path | None = None,
 ) -> SendResult:
+    pending_error = pending_delivery_error(doc)
+    if pending_error:
+        raise pending_error
     index = int(doc.get("next_chunk_index", 0))
     total = int(doc.get("total_chunks", len(chunks)))
     if index >= total:
@@ -731,20 +773,17 @@ def send_next_chunk(
     message = build_digest_message(doc["title"], index, total, summary)
     if export_obsidian:
         export_obsidian_chunk(doc, chunk, summary, index, total, export_dir or DEFAULT_OBSIDIAN_EXPORT_DIR, dry_run=dry_run)
+    if not dry_run:
+        doc["pending_delivery"] = {"chunk_index": index, "started_at": now_iso()}
+        doc["updated_at"] = now_iso()
+        append_history(doc, {"event": "send_started", "chunk_index": index, "dry_run": False})
+        save_state(state)
     send_slack_message(target, message, dry_run)
     if dry_run:
         return SendResult(summary, message)
-    doc["next_chunk_index"] = index + 1
-    doc["last_sent_at"] = now_iso()
-    doc["updated_at"] = now_iso()
-    doc["last_error"] = None
-    if doc["next_chunk_index"] >= total:
-        doc["status"] = "done"
-        archive_path = STATE_DIR / "archive" / Path(doc["paths"]["pdf"]).name
-        if Path(doc["paths"]["pdf"]).exists():
-            shutil.move(doc["paths"]["pdf"], archive_path)
-            doc["paths"]["pdf"] = str(archive_path)
+    mark_chunk_sent(doc, index)
     append_history(doc, {"event": "sent", "chunk_index": index, "dry_run": dry_run})
+    save_state(state)
     return SendResult(summary, message)
 
 
@@ -765,6 +804,7 @@ def daily(args: argparse.Namespace) -> int:
             continue
         try:
             send_next_chunk(
+                state,
                 doc,
                 load_chunks(doc),
                 target,
@@ -781,6 +821,31 @@ def daily(args: argparse.Namespace) -> int:
     save_state(state)
     print(f"daily complete: failures={failures}")
     return 1 if failures else 0
+
+
+def resolve_pending_delivery(args: argparse.Namespace) -> int:
+    state = load_state()
+    doc = find_doc(state, args.short_id)
+    pending = doc.get("pending_delivery")
+    if not isinstance(pending, dict):
+        raise PdfDigestError(f"未確定のSlack送信はありません: {doc['short_id']}")
+    index = pending.get("chunk_index")
+    if not isinstance(index, int):
+        raise PdfDigestError(f"未確定送信のチャンク番号が不正です: {pending!r}")
+    if args.sent:
+        mark_chunk_sent(doc, index)
+        event = "pending_delivery_confirmed_sent"
+        result = "送信済みとして進捗を確定しました"
+    else:
+        doc["pending_delivery"] = None
+        doc["updated_at"] = now_iso()
+        doc["last_error"] = None
+        event = "pending_delivery_reopened"
+        result = "未送信として再送可能に戻しました"
+    append_history(doc, {"event": event, "chunk_index": index, "dry_run": False})
+    save_state(state)
+    print(f"{doc['short_id']} / {result} / {doc['next_chunk_index']}/{doc['total_chunks']} / {doc['title']}")
+    return 0
 
 
 def export_chunk_cmd(args: argparse.Namespace) -> int:
@@ -809,6 +874,9 @@ def export_chunk_cmd(args: argparse.Namespace) -> int:
 def rechunk_doc(args: argparse.Namespace) -> int:
     state = load_state()
     doc = find_doc(state, args.short_id)
+    pending_error = pending_delivery_error(doc)
+    if pending_error:
+        raise pending_error
     chunks = load_chunks(doc)
     next_index = int(doc.get("next_chunk_index", 0))
     if next_index < 0 or next_index > len(chunks):
@@ -1027,7 +1095,7 @@ def download_slack_pdf_via_agent(candidate: dict[str, Any], title: str) -> Path:
         title: {title}
         """
     ).strip()
-    result = run_json([OPENCLAW_BIN, "agent", "--agent", "main", "--message", prompt, "--json", "--timeout", "600"])
+    result = run_json([require_openclaw_bin(), "agent", "--agent", "main", "--message", prompt, "--json", "--timeout", "600"])
     pdf_path = extract_path_result(result)
     if not pdf_path:
         raise PdfDigestError("Slack PDFのダウンロード結果にローカルPDFパスがありませんでした。")
@@ -1069,7 +1137,7 @@ def download_slack_pdf_via_message_action(candidate: dict[str, Any]) -> Path | N
 def read_recent_pdf_candidates(target: str, lookback_minutes: int = 10) -> list[dict[str, Any]]:
     payload = run_json(
         [
-            OPENCLAW_BIN,
+            require_openclaw_bin(),
             "message",
             "read",
             "--channel",
@@ -1184,6 +1252,13 @@ def build_parser() -> argparse.ArgumentParser:
     daily_parser.add_argument("--dry-run", action="store_true")
     add_export_args(daily_parser)
     daily_parser.set_defaults(func=daily)
+
+    resolve_pending = sub.add_parser("resolve-pending", help="resolve an uncertain Slack delivery without re-sending it")
+    resolve_pending.add_argument("short_id")
+    resolve_choice = resolve_pending.add_mutually_exclusive_group(required=True)
+    resolve_choice.add_argument("--sent", action="store_true", help="confirm that the pending chunk reached Slack")
+    resolve_choice.add_argument("--retry", action="store_true", help="clear the pending marker so the chunk can be sent again")
+    resolve_pending.set_defaults(func=resolve_pending_delivery)
 
     export_chunk = sub.add_parser("export-chunk", help="write one existing chunk to Obsidian without Slack/progress updates")
     export_chunk.add_argument("short_id")

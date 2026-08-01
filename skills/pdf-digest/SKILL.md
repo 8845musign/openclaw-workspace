@@ -44,6 +44,9 @@ description: Slack添付PDFを登録し、毎日1チャンクずつ日本語で�
   - `pdf_digest.py rechunk <short_id>` を実行する。
   - 未送信分だけを現在のチャンクサイズ方針で再分割する。
   - チャンク分割戦略を明示する場合は `--chunk-strategy paragraph` を付ける。
+- `pdf resolve-pending <short_id> --sent | --retry`
+  - Slack送信直後にプロセスが落ち、送信結果が未確定になったチャンクを解決する。
+  - Slackに届いたことを確認できた場合は `--sent`、届いていない場合だけ `--retry` を使う。
 - `pdf export-chunk <short_id> <chunk>`
   - `pdf_digest.py export-chunk <short_id> <chunk>` を実行する。
   - Slack送信や進捗更新なしで、指定チャンクをObsidian向けMarkdownとして書き出す。
@@ -56,6 +59,7 @@ description: Slack添付PDFを登録し、毎日1チャンクずつ日本語で�
 ## Notes
 
 - 状態は `/home/hiroki-yokouchi/.openclaw/workspace/pdf-digest/` に保存される。
+- 送信中は状態に未確定マーカーを保存する。マーカーが残ったPDFは自動再送せず、`resolve-pending` で明示的に解決する。
 - PDF本文抽出は `/home/hiroki-yokouchi/.openclaw/workspace/.venv` の PyMuPDF (`fitz`) を使う。
 - Slack/LLM送信なしでローカル検証する場合は `register-downloaded <path> --dry-run` を使う。
 - チャンクサイズは `PDF_DIGEST_BASE_CHUNK_MAX` (default: 8000), `PDF_DIGEST_MAX_CHUNK_MAX` (default: 15000), `PDF_DIGEST_TARGET_DAYS` (default: 30) で自動調整する。
