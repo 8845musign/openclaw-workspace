@@ -13,7 +13,7 @@ JST = ZoneInfo("Asia/Tokyo")
 ROOT = Path("/home/hiroki-yokouchi/.openclaw/workspace")
 OPENCLAW_BIN = os.environ.get(
     "OPENCLAW_BIN",
-    "/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/bin/openclaw",
+    "openclaw",
 )
 MAX_RETRIES = int(os.environ.get("JS_TS_TREND_COLLECT_RETRIES", "2"))
 AGENT_TIMEOUT_SECONDS = int(os.environ.get("JS_TS_TREND_COLLECT_AGENT_TIMEOUT", "300"))

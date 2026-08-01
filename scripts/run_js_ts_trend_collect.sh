@@ -2,8 +2,12 @@
 set -euo pipefail
 
 WORKDIR="/home/hiroki-yokouchi/.openclaw/workspace"
-NODE_BIN_DIR="/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/bin"
-OPENCLAW_BIN="/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/bin/openclaw"
+OPENCLAW_BIN="$(command -v openclaw || true)"
+if [[ -z "$OPENCLAW_BIN" ]]; then
+  echo "openclaw executable was not found on PATH" >&2
+  exit 1
+fi
+NODE_BIN_DIR="$(dirname "$OPENCLAW_BIN")"
 LOGDIR="$WORKDIR/logs"
 mkdir -p "$LOGDIR"
 
