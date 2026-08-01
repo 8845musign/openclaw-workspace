@@ -25,7 +25,8 @@ STATE_DIR = Path(os.environ.get("PDF_DIGEST_DIR", str(WORKSPACE / "pdf-digest"))
 OPENCLAW_STATE = Path("/home/hiroki-yokouchi/.openclaw")
 OPENCLAW_BIN = os.environ.get(
     "OPENCLAW_BIN",
-    "/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/bin/openclaw",
+    shutil.which("openclaw")
+    or "/home/hiroki-yokouchi/.local/share/mise/installs/node/24.18.0/bin/openclaw",
 )
 MESSAGE_ACTION_BIN = WORKSPACE / "scripts" / "openclaw_message_action.mjs"
 DEFAULT_TARGET_ENV = "PDF_DIGEST_SLACK_TARGET"

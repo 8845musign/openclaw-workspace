@@ -61,3 +61,13 @@
 - 具体的にどんなときに動かないとか、どんなメッセージが出て失敗してるのか、もう少し詳しく教えてくれるとにゃんか助けられるかもしれないにゃ。 [score=0.841 recalls=0 avg=0.620 source=memory/2026-06-02-1406.md:34-34]
 <!-- openclaw-memory-promotion:memory:memory/2026-06-02-1406.md:43:43 -->
 - ヌッ（顔を動かす）。</final> [score=0.816 recalls=0 avg=0.620 source=memory/2026-06-02-1406.md:43-43]
+
+## Promoted From Short-Term Memory (2026-07-19)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-03-24-heartbeat-status.md:141:147 -->
+- Chat: I fetched the last 50 messages from the main session (`agent:main:main`). After filtering by `last_chat_cursor` (`ts:1774489200000`), there are new messages. The chat delta includes the previous heartbeat interaction, the daily error review, and the start of the current heartbeat. - The `last_chat_cursor` points to 2026-03-24 14:00:00 UTC. The messages in the fetched history go up to the current heartbeat request. This means all messages since the last heartbeat are new. - The `DAILY_ERROR_REVIEW_REQUEST` is an important event, as it requests a prioritized fix plan.... [score=0.827 recalls=3 avg=0.580 source=memory/2026-03-24-heartbeat-status.md:141-147]
+
+## Promoted From Short-Term Memory (2026-07-22)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-03-24-heartbeat-status.md:17:28 -->
+- The `last_chat_cursor` points to 2026-03-24 13:30:00 UTC. The messages in the fetched history go up to the current heartbeat request. This means all messages since the last heartbeat are new. However, since the primary interaction was a heartbeat request and my casual response, there are no "actionable" deltas in the chat to summarize or act upon. - Mail: As determined in previous turns, the `scripts/imap_monitor.py` file is missing. Therefore, I cannot perform the incremental IMAP check. I will continue to report this as a limitation.... [score=0.868 recalls=4 avg=0.593 source=memory/2026-03-24-heartbeat-status.md:17-28]

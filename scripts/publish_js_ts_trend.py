@@ -21,7 +21,7 @@ VAULT_ROOT = Path(os.environ.get("JS_TS_TREND_VAULT_ROOT", "~/ドキュメント
 NOTE_DIR = VAULT_ROOT / "tech-digest"
 OPENCLAW_BIN = os.environ.get(
     "OPENCLAW_BIN",
-    "/home/hiroki-yokouchi/.local/share/mise/installs/node/24.13.1/bin/openclaw",
+    "openclaw",
 )
 NOTIFY_CHANNEL = os.environ.get("JS_TS_TREND_NOTIFY_CHANNEL", "slack")
 NOTIFY_TARGET = os.environ.get("JS_TS_TREND_NOTIFY_TARGET", "U08T8S3BBFX")

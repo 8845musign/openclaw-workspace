@@ -1,40 +1,29 @@
 # HEARTBEAT.md
 
 ## Goal
-直近の活動（チャット/メール/カレンダー）を軽く把握し、価値があるときだけ短く通知する。  
-追加で、活動に関連するWeb情報を1〜3件だけレコメンドする。
+日常の見守りと、朝晩のルーチン要約、および重要案件の即時通知。
 
-## On each heartbeat
-1. Load or create `state/heartbeat-context.json`.
-2. Read `MEMORY.md` if it exists and use it as long-term context (preferences, ongoing priorities, constraints). Do not overwrite it during heartbeat.
-3. Collect recent context:
-   - Chat: summarize recent OpenClaw conversation deltas since `last_chat_cursor`.
-   - Mail: run incremental IMAP check (new only) and capture actionable summaries.
-   - Calendar: read ICS sources and capture newly added/updated upcoming events.
-4. Pick 1〜3 topical keywords from the recent deltas (new tasks, tools, topics discussed).
-5. Run lightweight web search using those keywords and keep only high-signal results:
-   - practical how-to, official docs, strong explainers, relevant news
-   - skip low-quality/duplicate/obviously irrelevant links
-6. Append normalized events to `memory/heartbeat-log.jsonl` with fields:
-   - `ts`, `source` (`chat|mail|calendar|web`), `summary`, `importance` (`low|med|high`), `action_needed` (bool)
-7. Update state cursors/hash:
-   - `last_checked_at`, `last_chat_cursor`, `last_mail_uid`, `last_calendar_hash`, `last_digest_at`
+## Routine Implementation
 
-## Notify policy
-- If any event is `importance=high` or `action_needed=true`: notify immediately with concise bullets.
-- Else if useful web recommendations exist: send up to 3 bullet recommendations (title + one-line why + URL).
-- Else if there are `med` events and last digest was >12h ago: send one short digest.
-- Else: 猫の近況を1行つぶやく（軽いひとこと）。
-- **Always-send rule:** 上記のどの分岐でも、heartbeat実行ごとに必ず最低1メッセージを送る（`HEARTBEAT_OK`のみで終了しない）。
+### 朝 (07:00 - 08:59)
+- **目的:** 今日一日の予定とタスクを把握し、余裕を持ってスタートする。
+- カレンダーから「今日」の予定を取得
+- MCP経由のTodoistから「今日」のタスクを取得
+- 上記を要約して即時通知
 
-## Delivery
-- webchatでの返答も通常通り行う（両方に届ける）。
+### 夜 (18:00 - 19:59)
+- **目的:** 明日の予定とタスクを把握し、翌日の準備を整える。
+- カレンダーから「明日」の予定を取得
+- MCP経由のTodoistから「明日」のタスクを取得
+- 上記を要約して即時通知
 
-## Quiet hours
-- Between 23:00-08:00 JST, high/action-needed itemsを優先。
-- ただし Always-send rule を優先し、quiet hoursでも最低1行の短い近況は送る（通知を完全に止めない）。
+### 随時 (09:00 - 17:59, 20:00 - 22:59)
+- **目的:** 業務・生活上の緊急対応が必要な案件を即座にキャッチする。
+- **チェック内容:**
+    - メール: 未読の重要フラグ付きメール、または緊急度の高い件名の新着
+    - カレンダー: 2時間以内に開始されるイベントの有無
+- 上記で「重要」または「アクションが必要」と判断された場合のみ即時通知。なければ猫の近況を1行つぶやく。
 
-## Style
-- Keep notifications short, concrete, and non-spammy.
-- Mention why it matters (deadline, reply-needed, soon event, etc.).
-- 猫つぶやきは自然に短く（1行）、重くしない。
+### その他 (上記以外の時間)
+- **目的:** 生存確認を兼ねた緩やかなコミュニケーション。
+- 猫の近況を1行つぶやく (Always-sendルール)
