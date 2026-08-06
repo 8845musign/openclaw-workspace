@@ -21,7 +21,7 @@ Slack DM に添付された PDF を登録し、毎日 8:00 JST に 1 チャン�
 - `export-chunk <short_id> <chunk>`: Slack送信や進捗更新なしで、指定チャンクをObsidian向けMarkdownとして書き出す。
 
 `register`, `register-downloaded`, `rechunk` は `--chunk-strategy paragraph` を指定できる。未指定時は `PDF_DIGEST_CHUNK_STRATEGY`、それもなければ `paragraph` を使う。
-`register`, `register-downloaded`, `daily` は `--export-obsidian` を付けると、送信チャンクをObsidian向けMarkdownにも保存する。
+`register`, `register-downloaded`, `daily` は、送信チャンクを既定でObsidian向けMarkdownにも保存する。一時的に無効化するときだけ `--no-export-obsidian` を付ける。
 保存先は `PDF_DIGEST_OBSIDIAN_EXPORT_DIR` または `--export-dir` で指定でき、既定値は `/home/hiroki-yokouchi/ドキュメント/openclaw/pdf-digest`。
 
 ## Daily Cron
@@ -32,7 +32,7 @@ Slack DM に添付された PDF を登録し、毎日 8:00 JST に 1 チャン�
 bash /home/hiroki-yokouchi/.openclaw/workspace/skills/pdf-digest/scripts/run_pdf_digest_daily.sh
 ```
 
-このラッパーは `skills/pdf-digest/scripts/pdf_digest.py daily` を呼び、実行時の `PATH` から `openclaw` を解決する。成功時は通知なし、失敗時は非ゼロ終了してcronの失敗通知とログに残す。
+このラッパーは `skills/pdf-digest/scripts/pdf_digest.py daily` を呼び、送信チャンクを既定でObsidianにも書き出す。実行時の `PATH` から `openclaw` を解決する。成功時は通知なし、失敗時は非ゼロ終了してcronの失敗通知とログに残す。
 旧パス `scripts/run_pdf_digest_daily.sh` は互換用 shim としてこのラッパーに転送する。
 
 ## Chunking

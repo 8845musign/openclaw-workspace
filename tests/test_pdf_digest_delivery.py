@@ -110,6 +110,18 @@ class PdfDigestDeliveryTests(unittest.TestCase):
         finally:
             pdf_digest.OPENCLAW_BIN = original
 
+    def test_obsidian_export_is_enabled_by_default_and_can_be_disabled(self):
+        parser = pdf_digest.build_parser()
+
+        for argv in (
+            ["register"],
+            ["register-downloaded", "/tmp/example.pdf"],
+            ["daily"],
+        ):
+            self.assertTrue(parser.parse_args(argv).export_obsidian)
+
+        self.assertFalse(parser.parse_args(["daily", "--no-export-obsidian"]).export_obsidian)
+
 
 if __name__ == "__main__":
     unittest.main()

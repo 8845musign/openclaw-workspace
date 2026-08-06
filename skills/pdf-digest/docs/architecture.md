@@ -51,7 +51,7 @@ skills/pdf-digest/
   ・download-file action
 
                      ┌───────────────┐
-                     │  Obsidian     │  --export-obsidian 時のみ
+                     │  Obsidian     │  送信チャンクを既定で書き出す
                      │  export dir   │
                      └───────────────┘
 ```
@@ -206,7 +206,7 @@ state.json の書き込みは `tmp → os.replace` のアトミック書き換�
 
 ## Obsidian エクスポート
 
-`--export-obsidian` を付けた `register` / `register-downloaded` / `daily` または `export-chunk` コマンドで出力する。
+`register` / `register-downloaded` / `daily` は送信チャンクを既定で出力する。1回だけ出力を止めるときは `--no-export-obsidian` を付ける。`export-chunk` は常に出力する。
 
 ```
 <export-dir>/
@@ -270,7 +270,7 @@ OpenClaw cron の `pdf-digest-daily-0800` command job：
 | `export-chunk <short_id> <chunk>` | 指定チャンクを Obsidian 向け Markdown に書き出す（Slack 送信・進捗更新なし） |
 | `daily` | 全 active PDF の次チャンクを送信（cron から呼ばれる） |
 
-共通オプション: `--dry-run`（Slack 送信・進捗更新なし）、`--export-obsidian`、`--export-dir`
+共通オプション: `--dry-run`（Slack 送信・進捗更新なし）、`--no-export-obsidian`、`--export-dir`
 
 ---
 

@@ -1206,7 +1206,20 @@ def build_parser() -> argparse.ArgumentParser:
     sub = parser.add_subparsers(dest="command", required=True)
 
     def add_export_args(p: argparse.ArgumentParser) -> None:
-        p.add_argument("--export-obsidian", action="store_true", help="write Markdown files for Obsidian")
+        export_group = p.add_mutually_exclusive_group()
+        export_group.add_argument(
+            "--export-obsidian",
+            dest="export_obsidian",
+            action="store_true",
+            help="write Markdown files for Obsidian (default)",
+        )
+        export_group.add_argument(
+            "--no-export-obsidian",
+            dest="export_obsidian",
+            action="store_false",
+            help="do not write Markdown files for Obsidian",
+        )
+        p.set_defaults(export_obsidian=True)
         p.add_argument("--export-dir", default=None, help="Obsidian export directory")
 
     register = sub.add_parser("register", help="register one recent Slack PDF attachment")

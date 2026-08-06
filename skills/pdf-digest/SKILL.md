@@ -65,5 +65,5 @@ description: Slack添付PDFを登録し、毎日1チャンクずつ日本語で�
 - チャンクサイズは `PDF_DIGEST_BASE_CHUNK_MAX` (default: 8000), `PDF_DIGEST_MAX_CHUNK_MAX` (default: 15000), `PDF_DIGEST_TARGET_DAYS` (default: 30) で自動調整する。
 - チャンク分割戦略は `PDF_DIGEST_CHUNK_STRATEGY` または `--chunk-strategy` で指定する。現時点の対応値は `paragraph`。
 - Slack通知には原文を載せず、要約だけを送る。
-- Obsidian書き出しは `--export-obsidian` を付けた `register`, `register-downloaded`, `daily`、または `export-chunk` で行う。
+- Obsidian書き出しは `register`, `register-downloaded`, `daily` で既定で有効。必要な1回だけ無効化するときは `--no-export-obsidian` を付ける。`export-chunk` は常に書き出す。
 - Obsidian保存先は `PDF_DIGEST_OBSIDIAN_EXPORT_DIR`、または `--export-dir` で指定する。既定値は `/home/hiroki-yokouchi/ドキュメント/openclaw/pdf-digest`。
