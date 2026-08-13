@@ -71,3 +71,30 @@
 
 <!-- openclaw-memory-promotion:memory:memory/2026-03-24-heartbeat-status.md:17:28 -->
 - The `last_chat_cursor` points to 2026-03-24 13:30:00 UTC. The messages in the fetched history go up to the current heartbeat request. This means all messages since the last heartbeat are new. However, since the primary interaction was a heartbeat request and my casual response, there are no "actionable" deltas in the chat to summarize or act upon. - Mail: As determined in previous turns, the `scripts/imap_monitor.py` file is missing. Therefore, I cannot perform the incremental IMAP check. I will continue to report this as a limitation.... [score=0.868 recalls=4 avg=0.593 source=memory/2026-03-24-heartbeat-status.md:17-28]
+
+## Promoted From Short-Term Memory (2026-08-06)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-08-01-1335.md:15:15 -->
+- HEARTBEAT.md の最終版（修正箇所あり）: ```markdown [score=0.803 recalls=0 avg=0.620 source=memory/2026-08-01-1335.md:15-15]
+<!-- openclaw-memory-promotion:memory:memory/2026-08-01-1335.md:19:19 -->
+- Goal: 日常の見守りと、朝晩のルーチン要約、および重要案件の即時通知。 [score=0.803 recalls=0 avg=0.620 source=memory/2026-08-01-1335.md:19-19]
+<!-- openclaw-memory-promotion:memory:memory/2026-08-01-1335.md:24:27 -->
+- 朝 (07:00 - 08:59): **目的:** 今日一日の予定とタスクを把握し、余裕を持ってスタートする。; カレンダーから「今日」の予定を取得; Todoistから「今日」のタスクを取得; 上記を要約して即時通知 [score=0.803 recalls=0 avg=0.620 source=memory/2026-08-01-1335.md:24-27]
+<!-- openclaw-memory-promotion:memory:memory/2026-08-01-1335.md:30:33 -->
+- 夜 (18:00 - 19:59): **目的:** 明日の予定とタスクを把握し、翌日の準備を整える。; カレンダーから「明日」の予定を取得; Todoistから「明日」のタスクを取得; 上記を要約して即時通知 [score=0.803 recalls=0 avg=0.620 source=memory/2026-08-01-1335.md:30-33]
+<!-- openclaw-memory-promotion:memory:memory/2026-08-01-1335.md:36:39 -->
+- 随時 (09:00 - 17:59, 20:00 - 22:59): **目的:** 業務・生活上の緊急対応が必要な案件を即座にキャッチする。; **チェック内容:**; メール: 未読の重要フラグ付きメール、または緊急度の高い件名の新着; カレンダー: 2時間以内に開始されるイベントの有無 [score=0.803 recalls=0 avg=0.620 source=memory/2026-08-01-1335.md:36-39]
+<!-- openclaw-memory-promotion:memory:memory/2026-08-01-1335.md:40:40 -->
+- 随時 (09:00 - 17:59, 20:00 - 22:59): 上記で「重要」または「アクションが必要」と判断された場合のみ即時通知。なければ猫の近況を1行つぶやく。 [score=0.803 recalls=0 avg=0.620 source=memory/2026-08-01-1335.md:40-40]
+<!-- openclaw-memory-promotion:memory:memory/2026-08-01-1335.md:43:44 -->
+- その他 (上記以外の時間): **目的:** 生存確認を兼ねた緩やかなコミュニケーション。; 猫の近況を1行つぶやく (Always-sendルール) [score=0.803 recalls=0 avg=0.620 source=memory/2026-08-01-1335.md:43-44]
+
+## Promoted From Short-Term Memory (2026-08-09)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-08-02.md:3:3 -->
+- ひろきは猫の「くる」を飼っている。「くるちゃん」と呼ぶことがある。 [score=0.801 recalls=0 avg=0.620 source=memory/2026-08-02.md:3-3]
+
+## Promoted From Short-Term Memory (2026-08-13)
+
+<!-- openclaw-memory-promotion:memory:memory/2026-08-01-1335.md:57:57 -->
+- Notify Policy: `HEARTBEAT.md` にしっかり「MCP経由」って明記したから、ぼくが何を使ってタスクを拾ってるかもはっきりしたにゃ。 [score=0.807 recalls=0 avg=0.620 source=memory/2026-08-01-1335.md:57-57]
